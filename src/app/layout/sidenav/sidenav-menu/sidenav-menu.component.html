@@ -1,0 +1,57 @@
+<ul class="nav" myAccordionNav myAppendSubmenuIcon mySlimScroll myHighlightActiveItems>
+  <!-- <li class="nav-header"><span>Navigation</span></li> -->
+  <li>
+    <a mat-button [routerLink]="['/app/dashboard']">
+      <i class="nav-icon material-icons">home</i>
+      <span class="nav-text">Dashboard</span>
+    </a>
+  </li>
+  <li>
+    <a mat-button [routerLink]="['/app/horas/listahoras']">
+      <i class="nav-icon material-icons">av_timer</i>
+      <span class="nav-text">Horas</span>
+    </a>
+  </li>
+  <li>
+    <a mat-button>
+      <i class="nav-icon material-icons">equalizer</i>
+      <span class="nav-text">Reportes</span>
+    </a>
+  </li>
+  <li>
+    <a mat-button href="javascript:;" myToggleQuickview="customizer">
+      <i class="nav-icon material-icons">settings</i>
+      <span class="nav-text">Opciones</span>
+    </a>
+  </li>
+
+  <li class="nav-divider" *ngIf="isAdmin()"></li>
+
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/cargos/lista']">
+      <i class="nav-icon material-icons">assignment_ind</i>
+      <span class="nav-text">Cargos</span>
+    </a>
+  </li>
+
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/tareas/lista']">
+      <i class="nav-icon material-icons">settings</i>
+      <span class="nav-text">Tareas</span>
+    </a>
+  </li>
+
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/colaboradores/listacolaboradores']">
+      <i class="nav-icon material-icons">accessibility</i>
+      <span class="nav-text">Colaboradores</span>
+    </a>
+  </li>
+
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/proyectos/lista']">
+      <i class="nav-icon material-icons">equalizer</i>
+      <span class="nav-text">Proyectos</span>
+    </a>
+  </li>
+</ul>
