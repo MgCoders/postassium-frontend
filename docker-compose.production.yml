@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
 
-    sulfurapp:
+    potassiumapp:
       image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:latest
       environment:
         VIRTUAL_HOST: ${VIRTUAL_HOST}
