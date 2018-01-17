@@ -21,56 +21,57 @@ export class HistoricoPrecioCargoComponent implements OnInit {
                 private service: CargoService,
                 private as: AlertService,
                 private route: ActivatedRoute,
-                private layoutService: LayoutService) { }
+                private layoutService: LayoutService) {
+    }
 
     ngOnInit() {
-/* 
-      this.route.params.subscribe(params => {
-        this.id = +params['id']; 
-     });
+        /*
+         this.route.params.subscribe(params => {
+         this.id = +params['id'];
+         });
 
-/*       this.layoutService.updatePreloaderState('active');
-      this.service.get(1).subscribe(
-        (data) => {
-          this.cargoActual = data;
-          // tslint:disable-next-line:only-arrow-functions
-          this.lista.sort(function(a, b) {
-            return a.id - b.id;
-          });
-          this.layoutService.updatePreloaderState('hide');
-        },
-        (error) => {
-          this.layoutService.updatePreloaderState('hide');
-          this.as.error(error, 5000);
-        });
+         /*       this.layoutService.updatePreloaderState('active');
+         this.service.get(1).subscribe(
+         (data) => {
+         this.cargoActual = data;
+         // tslint:disable-next-line:only-arrow-functions
+         this.lista.sort(function(a, b) {
+         return a.id - b.id;
+         });
+         this.layoutService.updatePreloaderState('hide');
+         },
+         (error) => {
+         this.layoutService.updatePreloaderState('hide');
+         this.as.error(error, 5000);
+         });
+         }
+
+         Nuevo() {
+         const dialog = this.dialog.open(AltaCargoComponent, {
+         data: [undefined, this.lista],
+         width: '600px',
+         });
+         }
+
+         Eliminar(x: Cargo) {
+         const dialogRef = this.dialog.open(DialogConfirmComponent, {
+         data: '¿Está seguro que desea eliminar el cargo ' + x.nombre + '?',
+         });
+
+         dialogRef.afterClosed().subscribe(
+         (result) => {
+         if (result) {
+         // TODO
+         this.as.success('Cargo eliminado correctamente.', 3000);
+         }
+         });
+         }
+
+         Editar(x: Cargo) {
+         const dialog = this.dialog.open(AltaCargoComponent, {
+         data: [x, this.lista],
+         width: '600px',
+         });
+         } */
     }
-  
-    Nuevo() {
-      const dialog = this.dialog.open(AltaCargoComponent, {
-        data: [undefined, this.lista],
-        width: '600px',
-      });
-    }
-  
-    Eliminar(x: Cargo) {
-      const dialogRef = this.dialog.open(DialogConfirmComponent, {
-        data: '¿Está seguro que desea eliminar el cargo ' + x.nombre + '?',
-      });
-  
-      dialogRef.afterClosed().subscribe(
-        (result) => {
-          if (result) {
-            // TODO
-            this.as.success('Cargo eliminado correctamente.', 3000);
-          }
-      });
-    }
-  
-    Editar(x: Cargo) {
-      const dialog = this.dialog.open(AltaCargoComponent, {
-        data: [x, this.lista],
-        width: '600px',
-      });
-    } */
-  }
-  
+}
