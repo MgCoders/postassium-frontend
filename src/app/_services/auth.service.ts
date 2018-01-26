@@ -54,7 +54,7 @@ export class AuthService {
         const body = new URLSearchParams();
         body.set('email', email);
         body.set('password', password);
-        const url = `${environment.apiUrl}/users/login`;
+        const url = `${environment.apiUrl}/auth/login`;
         return this.http.post(url, body.toString(), options)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
@@ -71,11 +71,11 @@ export class AuthService {
     }
 
     resetPassword(email: string) {
-        return this.http.post(`${environment.apiUrl}/users/recuperar/` + email, {});
+        return this.http.post(`${environment.apiUrl}/auth/recuperar/` + email, {});
     }
 
     resetEmail(token: string): Observable<any> {
-        return this.http.get(`${environment.apiUrl}/users/recuperar/` + token)
+        return this.http.get(`${environment.apiUrl}/auth/recuperar/` + token)
             .map((res: Response) => res.json());
     }
 
@@ -85,7 +85,7 @@ export class AuthService {
         const body = new URLSearchParams();
         body.set('token', token);
         body.set('password', password);
-        return this.http.put(`${environment.apiUrl}/users/recuperar/`, body.toString(), options);
+        return this.http.put(`${environment.apiUrl}/auth/recuperar/`, body.toString(), options);
     }
 
     private handleErrorObservable(error: Response | any) {
