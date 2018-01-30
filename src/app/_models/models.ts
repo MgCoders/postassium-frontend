@@ -13,3 +13,5 @@ export * from './Proyecto';
 export * from './ProyectoImp';
 export * from './TipoTarea';
 export * from './TipoTareaImp';
+export * from './Tarea';
+export * from './TareaImp';

@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TareaService } from '../../_services/tarea.service';
 import { AlertService } from '../../_services/alert.service';
-import { TipoTarea } from '../../_models/models';
+import { Tarea } from '../../_models/Tarea';
 
 @Component({
   selector: 'app-select-tarea',
@@ -17,9 +17,9 @@ export class SelectTareaComponent implements OnInit {
   @Input() id: string;
   @Input() desc: string;
 
-  @Output() onChange: EventEmitter<TipoTarea> = new EventEmitter<TipoTarea>();
+  @Output() onChange: EventEmitter<Tarea> = new EventEmitter<Tarea>();
 
-  public lista: TipoTarea[];
+  public lista: Tarea[];
 
   constructor(private service: TareaService,
               private as: AlertService) { }

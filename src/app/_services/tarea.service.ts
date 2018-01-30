@@ -3,25 +3,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { TipoTarea } from '../_models/models';
 import { Observable } from 'rxjs/Observable';
+import {Tarea} from '../_models/Tarea';
 
 @Injectable()
 export class TareaService {
 
   constructor(public http: HttpClient) { }
 
-  getAll(): Observable<TipoTarea[]> {
-    return this.http.get<TipoTarea[]>(`${environment.apiUrl}/tareas/`);
+  getAll(): Observable<Tarea[]> {
+    return this.http.get<Tarea[]>(`${environment.apiUrl}/tareas/`);
   }
 
-  get(id: number): Observable<TipoTarea> {
-    return this.http.get<TipoTarea>(`${environment.apiUrl}/tareas/` + id);
+  get(id: number): Observable<Tarea> {
+    return this.http.get<Tarea>(`${environment.apiUrl}/tareas/` + id);
   }
 
-  create(x: TipoTarea): Observable<any> {
+  create(x: Tarea): Observable<any> {
     return this.http.post(`${environment.apiUrl}/tareas/`, x);
   }
 
-  edit(x: TipoTarea): Observable<any> {
+  edit(x: Tarea): Observable<any> {
         return this.http.put(`${environment.apiUrl}/tareas/` + x.id, x);
   }
 }

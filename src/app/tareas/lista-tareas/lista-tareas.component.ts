@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { AltaTareaComponent } from '../alta-tarea/alta-tarea.component';
-import { TareaService } from '../../_services/tarea.service';
-import { AlertService } from '../../_services/alert.service';
-import { TipoTarea } from '../../_models/models';
-import { LayoutService } from '../../layout/layout.service';
-import { DialogConfirmComponent } from '../../shared/dialog-confirm/dialog-confirm.component';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {AltaTareaComponent} from '../alta-tarea/alta-tarea.component';
+import {TareaService} from '../../_services/tarea.service';
+import {AlertService} from '../../_services/alert.service';
+import {LayoutService} from '../../layout/layout.service';
+import {DialogConfirmComponent} from '../../shared/dialog-confirm/dialog-confirm.component';
+import {Tarea} from '../../_models/Tarea';
 
 @Component({
   selector: 'app-lista-tareas',
@@ -14,7 +14,7 @@ import { DialogConfirmComponent } from '../../shared/dialog-confirm/dialog-confi
 })
 export class ListaTareasComponent implements OnInit {
 
-  public lista: TipoTarea[];
+  public lista: Tarea[];
 
   constructor(public dialog: MatDialog,
               private service: TareaService,
@@ -47,7 +47,7 @@ export class ListaTareasComponent implements OnInit {
     });
   }
 
-  Eliminar(x: TipoTarea) {
+  Eliminar(x: Tarea) {
     const dialogRef = this.dialog.open(DialogConfirmComponent, {
       data: '¿Está seguro que desea eliminar la tarea ' + x.nombre + '?',
     });
@@ -61,7 +61,7 @@ export class ListaTareasComponent implements OnInit {
       });
   }
 
-  Editar(x: TipoTarea) {
+  Editar(x: Tarea) {
     const dialog = this.dialog.open(AltaTareaComponent, {
       data: [x, this.lista],
       width: '600px',

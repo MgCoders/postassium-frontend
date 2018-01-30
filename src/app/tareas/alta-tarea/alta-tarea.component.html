@@ -13,7 +13,14 @@
       <div class="row">
         <div class="col-12">
           <mat-input-container class="full-width">
-            <input [(ngModel)]="tareaActual.codigo" matInput placeholder="Código" name="Codigo">
+            <input [(ngModel)]="tareaActual.descripcion" matInput placeholder="Descripción" name="Descripción">
+          </mat-input-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="tareaActual.minutosEstimados" matInput placeholder="Tiempo" name="Tiempo">
           </mat-input-container>
         </div>
       </div>

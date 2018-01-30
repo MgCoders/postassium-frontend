@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { TipoTarea, TipoTareaImp } from '../../_models/models';
-import { TareaService } from '../../_services/tarea.service';
-import { AlertService } from '../../_services/alert.service';
-import { LayoutService } from '../../layout/layout.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {TareaService} from '../../_services/tarea.service';
+import {AlertService} from '../../_services/alert.service';
+import {LayoutService} from '../../layout/layout.service';
+import {Tarea} from '../../_models/Tarea';
+import {TareaImp} from '../../_models/TareaImp';
 
 @Component({
   selector: 'app-alta-tarea',
@@ -12,19 +13,19 @@ import { LayoutService } from '../../layout/layout.service';
 })
 export class AltaTareaComponent implements OnInit {
 
-  public tareaActual: TipoTarea;
+  public tareaActual: Tarea;
 
   constructor(public dialogRef: MatDialogRef<AltaTareaComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: [TipoTarea, TipoTarea[]],
+              @Inject(MAT_DIALOG_DATA) public data: [Tarea, Tarea[]],
               private cs: TareaService,
               private as: AlertService,
               private layoutService: LayoutService) { }
 
   ngOnInit() {
     if (this.data[0] === undefined) {
-      this.tareaActual = {} as TipoTarea;
+      this.tareaActual = {} as Tarea;
     } else {
-      this.tareaActual = new TipoTareaImp(this.data[0]);
+      this.tareaActual = new TareaImp(this.data[0]);
     }
   }
 
