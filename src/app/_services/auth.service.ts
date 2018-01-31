@@ -11,6 +11,7 @@ import 'rxjs/add/operator/catch';
 import { JwtHelper } from 'angular2-jwt';
 import { environment } from '../../environments/environment';
 import { Colaborador } from '../_models/Colaborador';
+import {Usuario} from '../_models/Usuario';
 
 export const TOKEN_NAME: string = 'jwt_token';
 
@@ -58,7 +59,7 @@ export class AuthService {
         return this.http.post(url, body.toString(), options)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
-                const user: Colaborador = response.json();
+                const user: Usuario = response.json();
                 console.log(user);
                 if (user && user.token) {
                     localStorage.setItem('currentUser', JSON.stringify(user));
@@ -96,7 +97,7 @@ export class AuthService {
         localStorage.removeItem('currentUser');
     }
 
-    public getCurrentUser(): Colaborador {
+    public getCurrentUser(): Usuario {
         return JSON.parse(localStorage.getItem('currentUser'));
     }
 

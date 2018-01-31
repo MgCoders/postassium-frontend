@@ -145,7 +145,7 @@ export class ListaHorasComponent implements OnInit {
 
   GuardarOnClick() {
 
-    this.horaActual.colaborador = this.authService.getCurrentUser();
+    this.horaActual.colaborador = null;
     this.horaActual.dia = this.datePipe.transform(this.diaActual, 'dd-MM-yyyy');
 
     this.layoutService.updatePreloaderState('active');
