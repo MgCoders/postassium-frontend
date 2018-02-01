@@ -10,9 +10,12 @@ export class RubroImp implements models.Rubro {
 
     nombre: string;
 
+    descripcion: string;
+
     public constructor(x: models.Rubro) {
         this.id = x.id;
         this.nombre = x.nombre;
+        this.descripcion = x.descripcion;
     }
 
 }

@@ -17,4 +17,5 @@ export interface Rubro {
 
     nombre: string;
 
+    descripcion: string;
 }
