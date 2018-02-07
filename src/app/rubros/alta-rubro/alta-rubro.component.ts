@@ -16,50 +16,40 @@ export class AltaRubroComponent implements OnInit {
   public rubroActual: Rubro;
 
   constructor(public dialogRef: MatDialogRef<AltaRubroComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: [Rubro, Rubro[]],
-              private cs: RubroService,
-              private as: AlertService,
+              @Inject(MAT_DIALOG_DATA) public rubro: Rubro,
+              private rubroService: RubroService,
+              private alertService: AlertService,
               private layoutService: LayoutService) { }
 
   ngOnInit() {
-    if (this.data[0] === undefined) {
+    if (this.rubro.id == null) {
       this.rubroActual = {} as Rubro;
     } else {
-      this.rubroActual = new RubroImp(this.data[0]);
+      this.rubroActual = new RubroImp(this.rubro);
     }
   }
 
-  Cerrar() {
-    this.dialogRef.close();
-  }
-
-  Guardar() {
+  guardar() {
     this.layoutService.updatePreloaderState('active');
-    if (this.data[0] === undefined) {
-      this.cs.create(this.rubroActual).subscribe(
+    if (this.rubro.id == null) {
+      this.rubroService.create(this.rubroActual).subscribe(
           (data) => {
-            this.as.success('Rubro agregado correctamente.', 3000);
-            this.data[1].push(data);
-            this.layoutService.updatePreloaderState('hide');
-            this.dialogRef.close();
+            this.alertService.success('Rubro agregado correctamente.', 3000);
+            this.dialogRef.close(1);
           },
           (error) => {
-            this.layoutService.updatePreloaderState('hide');
-            this.as.error(error, 5000);
+            this.alertService.error(error, 5000);
           });
     } else {
-      this.cs.edit(this.rubroActual).subscribe(
+      this.rubroService.edit(this.rubroActual).subscribe(
           (data) => {
-            this.layoutService.updatePreloaderState('hide');
-            this.as.success('Rubro actualizado correctamente.', 3000);
-            const index: number = this.data[1].indexOf(this.data[0]);
-            this.data[1][index] = data;
-            this.dialogRef.close();
+            this.alertService.success('Rubro actualizado correctamente.', 3000);
+            this.dialogRef.close(1);
           },
           (error) => {
-            this.layoutService.updatePreloaderState('hide');
-            this.as.error(error, 5000);
+            this.alertService.error(error, 5000);
           });
     }
+    this.layoutService.updatePreloaderState('hide');
   }
 }

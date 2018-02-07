@@ -1,10 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {TareaService} from '../../_services/tarea.service';
-import {AlertService} from '../../_services/alert.service';
-import {LayoutService} from '../../layout/layout.service';
-import {Tarea} from '../../_models/Tarea';
-import {TareaImp} from '../../_models/TareaImp';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { TareaService } from '../../_services/tarea.service';
+import { AlertService } from '../../_services/alert.service';
+import { LayoutService } from '../../layout/layout.service';
+import { Tarea } from '../../_models/Tarea';
+import { TareaImp } from '../../_models/TareaImp';
 
 @Component({
   selector: 'app-alta-tarea',

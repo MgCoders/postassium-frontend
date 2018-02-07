@@ -21,3 +21,6 @@ export * from './Usuario';
 export * from './UsuarioImp';
 export * from './UsuarioRubro';
 export * from './UsuarioRubroImp';
+export * from './Cliente';
+export * from './Equipo';
+export * from './TipoEquipo';

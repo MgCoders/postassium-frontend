@@ -3,7 +3,7 @@
     <div class="row">
       <h2 class="article-title padding-top-30 col-12 col-sm-6">Rubros</h2>
       <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
-        <button mat-raised-button color="accent" class="btn-w-md" (click)="Nuevo()">Crear Rubro</button>
+        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Rubro</button>
       </div>
     </div>
 
@@ -23,11 +23,11 @@
           <td class="mdl-data-table__cell--non-numeric">{{x.nombre}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.descripcion}}</td>
           <td>
-            <button mat-icon-button color="primary" (click)="Editar(x)">
+            <button mat-icon-button color="primary" (click)="editar(x)">
               <mat-icon class="material-icons">mode_edit</mat-icon>
             </button>
             <button mat-icon-button color="warn">
-              <mat-icon class="material-icons" (click)="Eliminar(x)">delete</mat-icon>
+              <mat-icon class="material-icons" (click)="eliminar(x)">delete</mat-icon>
             </button>
           </td>
         </tr>
