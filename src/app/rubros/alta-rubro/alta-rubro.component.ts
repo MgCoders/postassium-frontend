@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Rubro } from '../../_models/Rubro';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { RubroService } from '../../_services/rubros.service';
+import { RubroService } from '../../_services/rubro.service';
 import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import { RubroImp } from '../../_models/RubroImp';

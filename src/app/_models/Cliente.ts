@@ -13,7 +13,7 @@
 import * as models from './models';
 
 export interface Cliente {
-    idCliente?: number;
+    id?: number;
 
     nombreEmpresa: string;
 

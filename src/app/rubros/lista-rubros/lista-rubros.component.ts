@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Rubro } from '../../_models/Rubro';
-import { RubroService } from '../../_services/rubros.service';
+import { RubroService } from '../../_services/rubro.service';
 import { MatDialog } from '@angular/material';
 import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
