@@ -24,3 +24,5 @@ export * from './UsuarioRubroImp';
 export * from './Cliente';
 export * from './Equipo';
 export * from './TipoEquipo';
+export * from './PuntoControl';
+export * from './PuntoControlImp';
