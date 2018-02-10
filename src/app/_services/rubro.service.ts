@@ -27,4 +27,8 @@ export class RubroService {
     edit(x: Rubro): Observable<any> {
         return this.http.put(`${environment.apiUrl}/rubros/` + x.id, x);
     }
+
+    delete(id: number): Observable<any> {
+        return this.http.delete(`${environment.apiUrl}/rubros/` + id);
+    }
 }

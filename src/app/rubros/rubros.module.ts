@@ -12,7 +12,7 @@ import { SelectRubroComponent } from './select-rubro/select-rubro.component';
 import { ListaRubrosComponent } from './lista-rubros/lista-rubros.component';
 import { RubrosComponent } from './rubros.component';
 import { AltaRubroComponent } from './alta-rubro/alta-rubro.component';
-import { RubroService } from '../_services/rubros.service';
+import { RubroService } from '../_services/rubro.service';
 import { AlertService } from '../_services/alert.service';
 import { LayoutService } from '../layout/layout.service';
 /**

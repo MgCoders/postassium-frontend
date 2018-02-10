@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Rubro } from '../../_models/Rubro';
-import { RubroService } from '../../_services/rubros.service';
+import { RubroService } from '../../_services/rubro.service';
 import { MatDialog } from '@angular/material';
 import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import { DialogConfirmComponent } from '../../shared/dialog-confirm/dialog-confirm.component';
-import { AltaCargoComponent } from '../../cargos/alta-cargo/alta-cargo.component';
 import { AltaRubroComponent } from '../alta-rubro/alta-rubro.component';
 
 @Component({
@@ -18,37 +17,42 @@ export class ListaRubrosComponent implements OnInit {
   public lista: Rubro[];
 
   constructor(public dialog: MatDialog,
-              private service: RubroService,
+              private rubroService: RubroService,
               private as: AlertService,
               private layoutService: LayoutService) { }
 
   ngOnInit() {
-    this.lista = new Array();
+    this.loadData();
+  }
 
-    this.layoutService.updatePreloaderState('active');
-    this.service.getAll().subscribe(
-        (data) => {
-          this.lista = data;
-          // tslint:disable-next-line:only-arrow-functions
-          this.lista.sort(function(a, b) {
-            return a.id - b.id;
+  loadData() {
+      // this.layoutService.updatePreloaderState('active');
+      this.lista = new Array();
+      this.rubroService.getAll().subscribe(
+          (data) => {
+              this.lista = data;
+          },
+          (error) => {
+              this.as.error(error, 5000);
           });
-          this.layoutService.updatePreloaderState('hide');
-        },
-        (error) => {
-          this.layoutService.updatePreloaderState('hide');
-          this.as.error(error, 5000);
+      // this.layoutService.updatePreloaderState('hide');
+  }
+
+  nuevo() {
+    const dialog = this.dialog.open(AltaRubroComponent, {
+      data: {},
+      width: '600px',
+    });
+
+    dialog.afterClosed().subscribe(
+        (result) => {
+            if (result === 1) {
+                  this.loadData();
+              }
         });
   }
 
-  Nuevo() {
-    const dialog = this.dialog.open(AltaRubroComponent, {
-      data: [undefined, this.lista],
-      width: '600px',
-    });
-  }
-
-  Eliminar(x: Rubro) {
+  eliminar(x: Rubro) {
     const dialogRef = this.dialog.open(DialogConfirmComponent, {
       data: '¿Está seguro que desea eliminar el rubro ' + x.nombre + '?',
     });
@@ -56,17 +60,29 @@ export class ListaRubrosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
         (result) => {
           if (result) {
-            // TODO
+            this.rubroService.delete(x.id).subscribe(
+                (data) => {
+                    this.loadData();
+                },
+                (error) => {
+                    this.as.error(error, 5000);
+                });
             this.as.success('Cargo eliminado correctamente.', 3000);
           }
         });
   }
 
-  Editar(x: Rubro) {
+  editar(x: Rubro) {
     const dialog = this.dialog.open(AltaRubroComponent, {
-      data: [x, this.lista],
+      data: x,
       width: '600px',
     });
+    dialog.afterClosed().subscribe(
+          (result) => {
+              if (result === 1) {
+                  this.loadData();
+              }
+          });
   }
 
 }

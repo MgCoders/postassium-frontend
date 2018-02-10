@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Rubro } from '../../_models/Rubro';
-import { RubroService } from '../../_services/rubros.service';
+import { RubroService } from '../../_services/rubro.service';
 import { AlertService } from '../../_services/alert.service';
 
 @Component({

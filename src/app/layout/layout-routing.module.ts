@@ -19,6 +19,7 @@ const routes: Routes = [
       { path: 'proyectos', loadChildren: '../proyectos/proyectos.module#ProyectosModule' },
       { path: 'horas', loadChildren: '../horas/horas.module#HorasModule' },
       { path: 'rubros', loadChildren: '../rubros/rubros.module#RubrosModule' },
+      { path: 'puntoscontrol', loadChildren: '../puntoscontrol/puntoscontrol.module#PuntosControlModule' },
       { path: 'chart', loadChildren: '../charts/charts.module#ChartsModule' },
       { path: 'form', loadChildren: '../forms/forms.module#MyFormsModule' },
       { path: 'page', loadChildren: '../pages/pages.module#PagesModule' },
