@@ -3,10 +3,10 @@
  */
 import * as models from './models';
 
-export class Trabajo implements models.Trabajo {
+export class TrabajoImp implements models.Trabajo {
     id?: number;
-    // cliente: models.Cliente;
-    // equipo: models.Equipo;
+    cliente: models.Cliente;
+    equipo: models.Equipo;
     motivoVisita: string;
     fechaRecepcion: string;
     fechaProvistaEntrega: string;
@@ -35,6 +35,8 @@ export class Trabajo implements models.Trabajo {
         this.nroFactura = x.nroFactura;
         this.nroRemito = x.nroRemito;
         this.nroOrdenCompra = x.nroOrdenCompra;
+        this.cliente = x.cliente;
+        this.equipo = x.equipo
     }
 
 }

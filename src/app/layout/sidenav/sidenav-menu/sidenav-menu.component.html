@@ -68,4 +68,11 @@
     </a>
   </li>
 
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/monitorfacturacion/lista']">
+      <i class="nav-icon material-icons">assignment_ind</i>
+      <span class="nav-text">Monitor Facturación</span>
+    </a>
+  </li>
+
 </ul>
