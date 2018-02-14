@@ -4,8 +4,8 @@ function makeAppConfig() {
   const year = date.getFullYear();
 
   const AppConfig = {
-    brand: 'MARQ',
-    brandLogoUrl: 'assets/images/logoMarq.png',
+    brand: 'SANDONATO',
+    brandLogoUrl: 'assets/images/LOGOSANDONATO.png',
     user: 'Lisa',
     year,
     layoutBoxed: false,               // true, false
@@ -16,7 +16,7 @@ function makeAppConfig() {
     theme: 'light',                   // light, gray, dark
     colorOption: '21',                // 11,12,13,14,15,16; 21,22,23,24,25,26; 31,32,33,34,35,36
     AutoCloseMobileNav: true,         // true, false. Automatically close sidenav on route change (Mobile only)
-    productLink: 'https://themeforest.net/item/material-design-angular-2-admin-web-app-with-bootstrap-4/19421267'
+    productLink: 'http://www.sandonato.com.uy/sitio/'
   };
 
   return AppConfig;
