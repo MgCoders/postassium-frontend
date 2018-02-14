@@ -20,6 +20,7 @@ const routes: Routes = [
       { path: 'horas', loadChildren: '../horas/horas.module#HorasModule' },
       { path: 'rubros', loadChildren: '../rubros/rubros.module#RubrosModule' },
       { path: 'puntoscontrol', loadChildren: '../puntoscontrol/puntoscontrol.module#PuntosControlModule' },
+      { path: 'monitorfacturacion', loadChildren: '../monitorfacturacion/monitorfacturacion.module#MonitorFacturacionModule' },
       { path: 'chart', loadChildren: '../charts/charts.module#ChartsModule' },
       { path: 'form', loadChildren: '../forms/forms.module#MyFormsModule' },
       { path: 'page', loadChildren: '../pages/pages.module#PagesModule' },

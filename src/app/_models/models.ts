@@ -26,3 +26,5 @@ export * from './Equipo';
 export * from './TipoEquipo';
 export * from './PuntoControl';
 export * from './PuntoControlImp';
+export * from './Trabajo';
+export * from './TrabajoImp';
