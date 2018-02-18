@@ -4,6 +4,7 @@ import {
     ListaPuntosControlComponent
 } from './lista-puntoscontrol/lista-puntoscontrol.component';
 import { PuntosControlComponent } from './puntoscontrol.component';
+import { AltaPuntocontrolComponent } from './alta-puntocontrol/alta-puntocontrol.component';
 
 export const PuntosControlRoutes: Routes = [
     {
@@ -11,7 +12,7 @@ export const PuntosControlRoutes: Routes = [
         component: PuntosControlComponent,
         children: [
             { path: '', redirectTo: '/app/dashboard', pathMatch: 'full' },
-            { path: 'lista', component: ListaPuntosControlComponent }
+            { path: 'listaPuntosControl', component: ListaPuntosControlComponent },
         ]
     }
 ]

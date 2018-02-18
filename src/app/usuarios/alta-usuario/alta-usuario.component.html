@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Usuario</h1>
+
+<div mat-dialog-content class="box box-default">
+  <div class="box-body">
+    <form>
+      <div class="row">
+        <div class="col-12">
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="usuarioActual.nombre" matInput placeholder="Nombre" name="Nombre" [formControl]="nombreFC">
+            <mat-error *ngIf="nombreFC.hasError('required')">El nombre es obligatorio.</mat-error>
+          </mat-input-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="usuarioActual.email" matInput placeholder="E-Mail" name="Email" [formControl]="mailFC">
+            <mat-error *ngIf="mailFC.hasError('email')">El mail no tiene formato correcto.</mat-error>
+            <mat-error *ngIf="mailFC.hasError('required')">El mail es obligatorio.</mat-error>
+          </mat-input-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <app-select-rubro [object]="rubroActual" (onChange)="rubroOnChange($event)" idModel="id" placeHolder="Rubro" id="id" desc="nombre"></app-select-rubro>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div mat-dialog-actions class="full-width">
+  <div class="full-width text-sm-right">
+    <button mat-button color="info" class="btn-w-xs" [mat-dialog-close]="false">Cancelar</button>
+    <button *ngIf="editando" [disabled]="nombreFC.invalid || mailFC.invalid" mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
+    <button *ngIf="!editando" [disabled]="nombreFC.invalid || mailFC.invalid || passwordFC.invalid" mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
+  </div>
+</div>

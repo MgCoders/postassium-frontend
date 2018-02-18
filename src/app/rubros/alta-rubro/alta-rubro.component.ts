@@ -34,22 +34,25 @@ export class AltaRubroComponent implements OnInit {
     if (this.rubro.id == null) {
       this.rubroService.create(this.rubroActual).subscribe(
           (data) => {
+            this.layoutService.updatePreloaderState('hide');
             this.alertService.success('Rubro agregado correctamente.', 3000);
             this.dialogRef.close(1);
           },
           (error) => {
+            this.layoutService.updatePreloaderState('hide');
             this.alertService.error(error, 5000);
           });
     } else {
       this.rubroService.edit(this.rubroActual).subscribe(
           (data) => {
+            this.layoutService.updatePreloaderState('hide');
             this.alertService.success('Rubro actualizado correctamente.', 3000);
             this.dialogRef.close(1);
           },
           (error) => {
+            this.layoutService.updatePreloaderState('hide');
             this.alertService.error(error, 5000);
           });
     }
-    this.layoutService.updatePreloaderState('hide');
   }
 }

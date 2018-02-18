@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  ListaPuntosControlComponent
-} from './lista-puntoscontrol/lista-puntoscontrol.component';
+import { ListaPuntosControlComponent } from './lista-puntoscontrol/lista-puntoscontrol.component';
 import { PuntoControlService } from '../_services/punto-control.services';
 import { AlertService } from '../_services/alert.service';
 import { LayoutService } from '../layout/layout.service';
@@ -18,6 +16,8 @@ import {
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { PuntosControlComponent } from './puntoscontrol.component';
+import { AltaPuntocontrolComponent } from './alta-puntocontrol/alta-puntocontrol.component';
+import { UsuariosModule } from '../usuarios/usuarios.module';
 
 @NgModule({
   imports: [
@@ -30,10 +30,12 @@ import { PuntosControlComponent } from './puntoscontrol.component';
     MatSnackBarModule,
     MatSelectModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    UsuariosModule
   ],
   providers: [PuntoControlService, AlertService, LayoutService],
-  declarations: [ListaPuntosControlComponent, PuntosControlComponent]
+  declarations: [ListaPuntosControlComponent, PuntosControlComponent, AltaPuntocontrolComponent],
+  entryComponents: [AltaPuntocontrolComponent]
 })
 
 export class PuntosControlModule { }

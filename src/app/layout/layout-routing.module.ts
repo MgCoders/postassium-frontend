@@ -21,6 +21,7 @@ const routes: Routes = [
       { path: 'rubros', loadChildren: '../rubros/rubros.module#RubrosModule' },
       { path: 'puntoscontrol', loadChildren: '../puntoscontrol/puntoscontrol.module#PuntosControlModule' },
       { path: 'monitorfacturacion', loadChildren: '../monitorfacturacion/monitorfacturacion.module#MonitorFacturacionModule' },
+      { path: 'usuarios', loadChildren: '../usuarios/usuarios.module#UsuariosModule' },
       { path: 'chart', loadChildren: '../charts/charts.module#ChartsModule' },
       { path: 'form', loadChildren: '../forms/forms.module#MyFormsModule' },
       { path: 'page', loadChildren: '../pages/pages.module#PagesModule' },

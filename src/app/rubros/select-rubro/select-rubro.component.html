@@ -1,5 +1,5 @@
 <mat-form-field class="full-width">
-  <mat-select [(ngModel)]="object[idModel]" [placeholder]="placeHolder" class="full-width" (change)="onChangeValue($event)">
+  <mat-select [(ngModel)]="object[idModel]" [placeholder]="placeHolder" class="full-width" (change)="onChangeValue($event)" multiple>
     <mat-option *ngFor="let x of lista" [value]="x[id]">
       {{x[desc]}}
     </mat-option>

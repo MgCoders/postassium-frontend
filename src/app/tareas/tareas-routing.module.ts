@@ -10,7 +10,7 @@ export const TareasRoutes: Routes = [
     component: TareasComponent,
     children: [
       { path: '', redirectTo: '/app/dashboard', pathMatch: 'full' },
-      { path: 'lista', component: ListaTareasComponent },
+      { path: 'listaTareas', component: ListaTareasComponent },
       { path: 'alta', component: AltaTareaComponent },
     ]
   }

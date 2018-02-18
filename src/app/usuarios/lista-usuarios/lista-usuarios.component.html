@@ -1,10 +1,9 @@
 <section class="container-fluid with-maxwidth chapter">
   <article class="article">
-
     <div class="row">
-      <h2 class="article-title padding-top-30 col-12 col-sm-6">Puntos Control y Tareas</h2>
+      <h2 class="article-title padding-top-30 col-12 col-sm-6">Usuarios</h2>
       <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
-        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Punto de Control</button>
+        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Usuario</button>
       </div>
     </div>
 
@@ -14,13 +13,17 @@
         <tr>
           <th>#</th>
           <th class="mdl-data-table__cell--non-numeric">Nombre</th>
+          <th class="mdl-data-table__cell--non-numeric">Email</th>
+          <th class="mdl-data-table__cell--non-numeric">Rol</th>
           <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let x of puntosControl">
+        <tr *ngFor="let x of usuarios">
           <td>{{x.id}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.nombre}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{x.email}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{x.role}}</td>
           <td>
             <button mat-icon-button color="primary" (click)="editar(x)">
               <mat-icon class="material-icons">mode_edit</mat-icon>

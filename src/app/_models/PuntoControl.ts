@@ -6,7 +6,7 @@ export interface PuntoControl {
 
     nombre: string;
 
-    // trabajo: models.Trabajo;
+    trabajo: models.Trabajo;
 
     responsable?: models.Usuario;
 

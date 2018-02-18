@@ -17,48 +17,48 @@ export class AltaTareaComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AltaTareaComponent>,
               @Inject(MAT_DIALOG_DATA) public data: [Tarea, Tarea[]],
-              private cs: TareaService,
-              private as: AlertService,
+              private tareaService: TareaService,
+              private alertService: AlertService,
               private layoutService: LayoutService) { }
 
   ngOnInit() {
-    if (this.data[0] === undefined) {
-      this.tareaActual = {} as Tarea;
+    if (this.data[0].id == null) {
+      this.tareaActual = this.data[0]; // TODO cambiar esto
     } else {
       this.tareaActual = new TareaImp(this.data[0]);
     }
   }
 
-  Cerrar() {
+  cerrar() {
     this.dialogRef.close();
   }
 
-  Guardar() {
+  guardar() {
     this.layoutService.updatePreloaderState('active');
-    if (this.data[0] === undefined) {
-      this.cs.create(this.tareaActual).subscribe(
+    if (this.data[0].id == null) {
+      this.tareaService.create(this.tareaActual).subscribe(
         (data) => {
-          this.layoutService.updatePreloaderState('hide');
-          this.as.success('Tarea agregada correctamente.', 3000);
+          this.alertService.success('Tarea agregada correctamente.', 3000);
           this.data[1].push(data);
           this.dialogRef.close();
+          this.layoutService.updatePreloaderState('hide');
         },
         (error) => {
           this.layoutService.updatePreloaderState('hide');
-          this.as.error(error, 5000);
+          this.alertService.error(error, 5000);
         });
     } else {
-      this.cs.edit(this.tareaActual).subscribe(
+      this.tareaService.edit(this.tareaActual).subscribe(
         (data) => {
           this.layoutService.updatePreloaderState('hide');
-          this.as.success('Tarea actualizada correctamente.', 3000);
+          this.alertService.success('Tarea actualizada correctamente.', 3000);
           const index: number = this.data[1].indexOf(this.data[0]);
           this.data[1][index] = data;
           this.dialogRef.close();
         },
         (error) => {
           this.layoutService.updatePreloaderState('hide');
-          this.as.error(error, 5000);
+          this.alertService.error(error, 5000);
         });
     }
   }

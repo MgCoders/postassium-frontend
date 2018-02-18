@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  MatIconModule,
   MatButtonModule,
-  MatInputModule,
-  MatSnackBarModule,
-  MatSelectModule,
-  MatTooltipModule,
   MatDialogModule,
+  MatIconModule,
+  MatInputModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import { TareasComponent } from './tareas.component';
@@ -20,6 +20,8 @@ import { AltaTareaComponent } from './alta-tarea/alta-tarea.component';
 import { TareaService } from '../_services/tarea.service';
 import { AlertService } from '../_services/alert.service';
 import { LayoutService } from '../layout/layout.service';
+import { AltaPuntocontrolComponent } from '../puntoscontrol/alta-puntocontrol/alta-puntocontrol.component';
+import { PuntosControlModule } from '../puntoscontrol/puntoscontrol.module';
 
 @NgModule({
   imports: [
@@ -33,6 +35,7 @@ import { LayoutService } from '../layout/layout.service';
     MatSelectModule,
     MatTooltipModule,
     MatDialogModule,
+    PuntosControlModule
   ],
 
   declarations: [
@@ -54,6 +57,7 @@ import { LayoutService } from '../layout/layout.service';
 
   entryComponents: [
     AltaTareaComponent,
+    AltaPuntocontrolComponent
   ],
 })
 export class TareasModule { }

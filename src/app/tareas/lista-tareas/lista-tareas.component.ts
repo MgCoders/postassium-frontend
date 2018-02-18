@@ -6,6 +6,8 @@ import {AlertService} from '../../_services/alert.service';
 import {LayoutService} from '../../layout/layout.service';
 import {DialogConfirmComponent} from '../../shared/dialog-confirm/dialog-confirm.component';
 import {Tarea} from '../../_models/Tarea';
+import { AltaPuntocontrolComponent } from '../../puntoscontrol/alta-puntocontrol/alta-puntocontrol.component';
+import { PuntoControl } from '../../_models/PuntoControl';
 
 @Component({
   selector: 'app-lista-tareas',
@@ -15,39 +17,43 @@ import {Tarea} from '../../_models/Tarea';
 export class ListaTareasComponent implements OnInit {
 
   public lista: Tarea[];
+  public tarea: Tarea;
+  public puntoControl: PuntoControl;
 
   constructor(public dialog: MatDialog,
-              private service: TareaService,
-              private as: AlertService,
+              private tareaService: TareaService,
+              private alertService: AlertService,
               private layoutService: LayoutService) { }
 
   ngOnInit() {
     this.lista = new Array();
 
     this.layoutService.updatePreloaderState('active');
-    this.service.getAll().subscribe(
+    this.tareaService.getAll().subscribe(
       (data) => {
         this.lista = data;
-        // tslint:disable-next-line:only-arrow-functions
-        this.lista.sort(function(a, b) {
-          return a.id - b.id;
-        });
+
+        // TODO ESTO NO VA ASI, DEBE SER POR SELECT
+        this.tarea = {} as Tarea; // TODO esto NO VA hay que hacer un select
+        this.tarea.puntoControl = this.lista[0].puntoControl;
+        this.puntoControl = {} as PuntoControl;
+        this.puntoControl.trabajo = this.lista[0].puntoControl.trabajo;
         this.layoutService.updatePreloaderState('hide');
       },
       (error) => {
         this.layoutService.updatePreloaderState('hide');
-        this.as.error(error, 5000);
+        this.alertService.error(error, 5000);
       });
   }
 
-  Nuevo() {
+  nuevo() {
     const dialog = this.dialog.open(AltaTareaComponent, {
-      data: [undefined, this.lista],
+      data: [this.tarea, this.lista],
       width: '600px',
     });
   }
 
-  Eliminar(x: Tarea) {
+  eliminar(x: Tarea) {
     const dialogRef = this.dialog.open(DialogConfirmComponent, {
       data: '¿Está seguro que desea eliminar la tarea ' + x.nombre + '?',
     });
@@ -56,15 +62,23 @@ export class ListaTareasComponent implements OnInit {
       (result) => {
         if (result) {
           // TODO
-          this.as.success('Tarea eliminada correctamente.', 3000);
+          this.alertService.success('Tarea eliminada correctamente.', 3000);
         }
       });
   }
 
-  Editar(x: Tarea) {
+  editar(x: Tarea) {
     const dialog = this.dialog.open(AltaTareaComponent, {
       data: [x, this.lista],
       width: '600px',
     });
   }
+
+  nuevoPuntoContol() {
+    const dialog = this.dialog.open(AltaPuntocontrolComponent, {
+      data: this.puntoControl,
+      width: '600px',
+    });
+  }
+
 }

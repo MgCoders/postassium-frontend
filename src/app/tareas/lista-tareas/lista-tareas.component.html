@@ -4,7 +4,8 @@
     <div class="row">
       <h2 class="article-title padding-top-30 col-12 col-sm-6">Tareas</h2>
       <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
-        <button mat-raised-button color="accent" class="btn-w-md" (click)="Nuevo()">Crear Tarea</button>
+        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevoPuntoContol()">Crear Punto de Control</button>
+        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Tarea</button>
       </div>
     </div>
 
@@ -16,6 +17,7 @@
             <th class="mdl-data-table__cell--non-numeric">Nombre</th>
             <th class="mdl-data-table__cell--non-numeric">Descripción</th>
             <th class="mdl-data-table__cell--non-numeric">Minutos Estimados</th>
+            <th class="mdl-data-table__cell--non-numeric">Punto de Control</th>
             <th></th>
           </tr>
         </thead>
@@ -25,12 +27,13 @@
             <td class="mdl-data-table__cell--non-numeric">{{x.nombre}}</td>
             <td class="mdl-data-table__cell--non-numeric">{{x.descripcion}}</td>
             <td class="mdl-data-table__cell--non-numeric">{{x.minutosEstimados}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{x.puntoControl.nombre}}</td>
             <td>
-              <button mat-icon-button color="primary" (click)="Editar(x)">
+              <button mat-icon-button color="primary" (click)="editar(x)">
                 <mat-icon class="material-icons">mode_edit</mat-icon>
               </button>
               <button mat-icon-button color="warn">
-                <mat-icon class="material-icons" (click)="Eliminar(x)">delete</mat-icon>
+                <mat-icon class="material-icons" (click)="eliminar(x)">delete</mat-icon>
               </button>
             </td>
           </tr>
