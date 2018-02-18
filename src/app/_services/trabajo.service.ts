@@ -37,7 +37,7 @@ export class TrabajoService {
         return this.http.post(`${environment.apiUrl}/trabajos/`, x);
     }
 
-    edit(x: Proyecto): Observable<any> {
-        return this.http.put(`${environment.apiUrl}/proyectos/` + x.id, x);
+    edit(x: Trabajo): Observable<any> {
+        return this.http.put(`${environment.apiUrl}/trabajos/` + x.id, x);
     }
 }

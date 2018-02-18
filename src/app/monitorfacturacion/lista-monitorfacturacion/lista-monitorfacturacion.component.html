@@ -2,10 +2,7 @@
   <article class="article">
 
     <div class="row">
-      <h2 class="article-title padding-top-30 col-12 col-sm-6">Monitor Facturación</h2>
-      <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
-        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Tarea</button>
-      </div>
+      <h2 class="article-title padding-top-30 col-12 col-sm-6">Trabajos a facturar</h2>
     </div>
 
     <div class="box box-default table-box table-responsive mdl-shadow--2dp">
@@ -23,20 +20,26 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let x of lista">
+        <tr *ngFor="let x of listaParaFacturar">
           <td>{{x.id}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.id}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.motivoVisita}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.cliente.rut}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.cliente.nombreEmpresa}}</td>
-          <td class="mdl-data-table__cell--non-numeric">{{x.equipo.matricula}}</td>
-          <td class="mdl-data-table__cell--non-numeric">{{x.equipo.marca}} / {{x.equipo.modelo}}</td>
+          <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo !== undefined">{{x.equipo.matricula}}</td>
+          <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo !== undefined">{{x.equipo.marca}} / {{x.equipo.modelo}}</td>
+          <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo === undefined">N/A</td>
+          <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo === undefined">N/A</td>
           <td>
-            <button mat-icon-button color="primary" (click)="editar(x)">
+            <button mat-icon-button color="primary" matTooltip="Asignar número factura" (click)="asignarFactura(x)">
+
               <mat-icon class="material-icons">mode_edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn">
-              <mat-icon class="material-icons" (click)="eliminar(x)">delete</mat-icon>
+            <button mat-icon-button matTooltip="Ver detalle" color="success">
+              <mat-icon class="material-icons" (click)="eliminar(x)">search</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" matTooltip="En espera">
+              <mat-icon class="material-icons" (click)="ponerEnEspera(x)">announcement</mat-icon>
             </button>
           </td>
         </tr>
@@ -44,4 +47,48 @@
       </table>
     </div>
   </article>
+</section>
+
+<section class="container-fluid with-maxwidth chapter">
+    <article class="article">
+
+        <div class="row">
+            <h2 class="article-title padding-top-30 col-12 col-sm-6">Trabajos en espera</h2>
+        </div>
+
+        <div class="box box-default table-box table-responsive mdl-shadow--2dp">
+            <table class="mdl-data-table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th class="mdl-data-table__cell--non-numeric">Id. Trabajo</th>
+                    <th class="mdl-data-table__cell--non-numeric">Motivo Visita</th>
+                    <th class="mdl-data-table__cell--non-numeric">RUT Cliente</th>
+                    <th class="mdl-data-table__cell--non-numeric">Nombre Cliente</th>
+                    <th class="mdl-data-table__cell--non-numeric">Matrícula Equipo</th>
+                    <th class="mdl-data-table__cell--non-numeric">Marca/Modelo Equipo</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let x of listaEnEspera">
+                    <td>{{x.id}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{x.id}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{x.motivoVisita}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{x.cliente.rut}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{x.cliente.nombreEmpresa}}</td>
+                    <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo !== undefined">{{x.equipo.matricula}}</td>
+                    <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo !== undefined">{{x.equipo.marca}} / {{x.equipo.modelo}}</td>
+                    <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo === undefined">N/A</td>
+                    <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo === undefined">N/A</td>
+                    <td>
+                        <button mat-icon-button color="primary" matTooltip="A facturar">
+                            <mat-icon class="material-icons" (click)="aFacturar(x)">announcement</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </article>
 </section>
