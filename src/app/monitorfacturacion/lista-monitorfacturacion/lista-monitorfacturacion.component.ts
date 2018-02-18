@@ -6,6 +6,8 @@ import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import {TrabajoService} from "../../_services/trabajo.service";
 import {Trabajo} from "../../_models/Trabajo";
+import {AltaMonitorFacturacionComponent} from "../alta-monitorfacturacion/alta-monitorfacturacion.component";
+import {DialogConfirmComponent} from "../../shared/dialog-confirm/dialog-confirm.component";
 
 @Component({
   selector: 'app-lista-monitorfacturacion',
@@ -14,31 +16,111 @@ import {Trabajo} from "../../_models/Trabajo";
 })
 export class ListaMonitorFacturacionComponent implements OnInit {
 
-  public lista: Trabajo[];
+  public listaParaFacturar: Trabajo[];
+  public listaEnEspera: Trabajo[]
   // public trabajo: Trabajo;
 
   constructor(public dialog: MatDialog,
-              private puntoControlService: TrabajoService,
+              private trabajoService: TrabajoService,
               private alertService: AlertService,
               private layoutService: LayoutService) { }
 
   ngOnInit() {
-    this.lista = new Array();
+    this.listaParaFacturar = new Array();
+    this.listaEnEspera = new Array();
     this.layoutService.updatePreloaderState('active');
-    this.puntoControlService.getByEstado('PARA_FACTURAR').subscribe(
+    this.trabajoService.getByEstado('PARA_FACTURAR').subscribe(
         (data) => {
-          this.lista = data;
+          this.listaParaFacturar = data;
         },
         (error) => {
           this.alertService.error(error, 5000);
         });
+    this.trabajoService.getByEstado('EN_ESPERA').subscribe(
+        (data) => {
+            this.listaEnEspera = data;
+        },
+        (error) => {
+            this.alertService.error(error, 5000);
+        });
     this.layoutService.updatePreloaderState('hide');
   }
 
-  nuevo() { }
+  loadData() {
+    // this.layoutService.updatePreloaderState('active');
+    this.listaParaFacturar = new Array();
+    this.listaEnEspera = new Array();
+    this.trabajoService.getByEstado('PENDIENTE_FACTURA').subscribe(
+        (data) => {
+          this.listaParaFacturar = data;
+        },
+        (error) => {
+          this.alertService.error(error, 5000);
+        });
+    this.trabajoService.getByEstado('EN_ESPERA').subscribe(
+          (data) => {
+              this.listaEnEspera = data;
+          },
+          (error) => {
+              this.alertService.error(error, 5000);
+          });
+    // this.layoutService.updatePreloaderState('hide');
+  }
 
-  editar() { }
+  asignarFactura(x: Trabajo) {
+    const dialog = this.dialog.open(AltaMonitorFacturacionComponent, {
+    data: [x, this.listaParaFacturar],
+    width: '600px',
+  });
+    dialog.afterClosed().subscribe(
+        (result) => {
+          console.log(result);
+          if (result === 1) {
+            this.loadData();
+          }
+        });
+  }
 
-  eliminar() { }
+  ponerEnEspera(x: Trabajo) {
+      const dialogRef = this.dialog.open(DialogConfirmComponent, {
+      data: '¿Está seguro que desea marcar en espera el trabajo #' + x.id + '?',
+  });
+      dialogRef.afterClosed().subscribe(
+          (result) => {
+              if (result) {
+                  x.estado = 'EN_ESPERA';
+                  this.trabajoService.edit(x).subscribe(
+                      (data) => {
+                          this.loadData();
+                      },
+                      (error) => {
+                          this.alertService.error(error, 5000);
+                      });
+                  this.alertService.success('Trabajo marcado en espera correctamente.', 3000);
+              }
+          });
+  }
+
+  aFacturar(x: Trabajo) {
+      const dialogRef = this.dialog.open(DialogConfirmComponent, {
+          data: '¿Está seguro que desea marcar para facturar el trabajo #' + x.id + '?',
+      });
+      dialogRef.afterClosed().subscribe(
+          (result) => {
+              if (result) {
+                  x.estado = 'PENDIENTE_FACTURA';
+                  this.trabajoService.edit(x).subscribe(
+                      (data) => {
+                          this.loadData();
+                      },
+                      (error) => {
+                          this.alertService.error(error, 5000);
+                      });
+                  this.alertService.success('Trabajo marcado para facturar correctamente.', 3000);
+              }
+          });
+  }
+
+  verDetalle() { }
 
 }

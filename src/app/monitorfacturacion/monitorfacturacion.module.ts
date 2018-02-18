@@ -19,6 +19,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import {MonitorFacturacionComponent} from './monitorfacturacion.component';
 import {TrabajoService} from "../_services/trabajo.service";
+import {AltaMonitorFacturacionComponent} from "./alta-monitorfacturacion/alta-monitorfacturacion.component";
 
 @NgModule({
   imports: [
@@ -34,7 +35,10 @@ import {TrabajoService} from "../_services/trabajo.service";
     MatDialogModule
   ],
   providers: [TrabajoService, AlertService, LayoutService],
-  declarations: [ListaMonitorFacturacionComponent, MonitorFacturacionComponent]
+  declarations: [ListaMonitorFacturacionComponent, MonitorFacturacionComponent, AltaMonitorFacturacionComponent],
+  entryComponents: [
+    AltaMonitorFacturacionComponent,
+  ],
 })
 
 export class MonitorFacturacionModule { }
