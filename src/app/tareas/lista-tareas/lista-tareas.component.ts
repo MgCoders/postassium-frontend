@@ -19,6 +19,7 @@ export class ListaTareasComponent implements OnInit {
 
   public lista: Tarea[];
   public trabajo: Trabajo;
+  public loadCompleted: boolean;
 
   constructor(public dialog: MatDialog,
               private tareaService: TareaService,
@@ -28,7 +29,7 @@ export class ListaTareasComponent implements OnInit {
 
   ngOnInit() {
     this.lista = new Array();
-
+    this.loadCompleted = false;
     this.layoutService.updatePreloaderState('active');
     this.trabajoService.get(1).subscribe(
         (data) => {
@@ -38,6 +39,7 @@ export class ListaTareasComponent implements OnInit {
               (datatarea) => {
                 this.lista = datatarea;
                 this.layoutService.updatePreloaderState('hide');
+                this.loadCompleted = true;
               },
               (error) => {
                 this.layoutService.updatePreloaderState('hide');
