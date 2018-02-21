@@ -20,6 +20,7 @@ export class AltaUsuarioComponent implements OnInit {
   public rubrosActuales: Rubro[];
   public rubroActual: Rubro;
 
+
   public nombreFC = new FormControl('', [Validators.required]);
   public mailFC = new FormControl('', [Validators.required, Validators.email]);
 

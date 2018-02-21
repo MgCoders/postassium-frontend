@@ -5,6 +5,7 @@ import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import { Tarea } from '../../_models/Tarea';
 import { TareaImp } from '../../_models/TareaImp';
+import { PuntoControl } from '../../_models/PuntoControl';
 
 @Component({
   selector: 'app-alta-tarea',
@@ -14,18 +15,21 @@ import { TareaImp } from '../../_models/TareaImp';
 export class AltaTareaComponent implements OnInit {
 
   public tareaActual: Tarea;
+  public puntoControlActual: PuntoControl;
 
   constructor(public dialogRef: MatDialogRef<AltaTareaComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: [Tarea, Tarea[]],
+              @Inject(MAT_DIALOG_DATA) public data: [Tarea, Tarea[], number],
               private tareaService: TareaService,
               private alertService: AlertService,
               private layoutService: LayoutService) { }
 
   ngOnInit() {
-    if (this.data[0].id == null) {
-      this.tareaActual = this.data[0]; // TODO cambiar esto
+    if (this.data[0] === undefined) {
+      this.tareaActual = {} as Tarea;
+      this.puntoControlActual = {} as PuntoControl;
     } else {
       this.tareaActual = new TareaImp(this.data[0]);
+      this.puntoControlActual = this.data[0].puntoControl;
     }
   }
 
@@ -35,7 +39,7 @@ export class AltaTareaComponent implements OnInit {
 
   guardar() {
     this.layoutService.updatePreloaderState('active');
-    if (this.data[0].id == null) {
+    if (this.data[0] === undefined) {
       this.tareaService.create(this.tareaActual).subscribe(
         (data) => {
           this.alertService.success('Tarea agregada correctamente.', 3000);
@@ -61,5 +65,9 @@ export class AltaTareaComponent implements OnInit {
           this.alertService.error(error, 5000);
         });
     }
+  }
+
+  puntoControlOnChange(x: PuntoControl) {
+    this.tareaActual.puntoControl = x;
   }
 }

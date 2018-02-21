@@ -18,6 +18,9 @@ import { FormsModule } from '@angular/forms';
 import { PuntosControlComponent } from './puntoscontrol.component';
 import { AltaPuntocontrolComponent } from './alta-puntocontrol/alta-puntocontrol.component';
 import { UsuariosModule } from '../usuarios/usuarios.module';
+import {
+  SelectPuntoControlComponent
+} from './select-puntocontrol/select-puntocontrol.component';
 
 @NgModule({
   imports: [
@@ -34,8 +37,9 @@ import { UsuariosModule } from '../usuarios/usuarios.module';
     UsuariosModule
   ],
   providers: [PuntoControlService, AlertService, LayoutService],
-  declarations: [ListaPuntosControlComponent, PuntosControlComponent, AltaPuntocontrolComponent],
-  entryComponents: [AltaPuntocontrolComponent]
+  declarations: [ListaPuntosControlComponent, PuntosControlComponent, AltaPuntocontrolComponent, SelectPuntoControlComponent],
+  entryComponents: [AltaPuntocontrolComponent, SelectPuntoControlComponent],
+  exports: [SelectPuntoControlComponent]
 })
 
 export class PuntosControlModule { }

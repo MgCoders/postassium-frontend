@@ -6,6 +6,7 @@ import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import { PuntoControlImp } from '../../_models/PuntoControlImp';
 import { Usuario } from '../../_models/Usuario';
+import { Trabajo } from '../../_models/Trabajo';
 
 @Component({
   selector: 'app-alta-puntocontrol',
@@ -19,26 +20,27 @@ export class AltaPuntocontrolComponent implements OnInit {
 
   constructor(
       public dialogRef: MatDialogRef<AltaPuntocontrolComponent>,
-      @Inject(MAT_DIALOG_DATA) public puntoControl: PuntoControl,
+      @Inject(MAT_DIALOG_DATA) public data: [PuntoControl, Trabajo],
       private puntoControlService: PuntoControlService,
       private alertService: AlertService,
       private layoutService: LayoutService
   ) { }
 
   ngOnInit() {
-    if (this.puntoControl.id == null) {
-      this.puntoControlActual = this.puntoControl; // TODO OJo ver esto
+    if (this.data[0] === undefined) {
+      this.puntoControlActual = {} as PuntoControl;
       this.responsableActual = {} as Usuario;
-        this.puntoControlActual.orden = 2;
+      this.puntoControlActual.trabajo = this.data[1];
+      this.puntoControlActual.orden = 2;
     } else {
-      this.puntoControlActual = new PuntoControlImp(this.puntoControl);
-      this.responsableActual = this.puntoControl.responsable;
+      this.puntoControlActual = new PuntoControlImp(this.data[0]);
+      this.responsableActual = this.data[0].responsable;
     }
   }
 
   guardar() {
     this.layoutService.updatePreloaderState('active');
-    if (this.puntoControl.id == null) {
+    if (this.data[0] === undefined) {
       this.puntoControlService.create(this.puntoControlActual).subscribe(
           (data) => {
             this.layoutService.updatePreloaderState('hide');
