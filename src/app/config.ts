@@ -4,7 +4,7 @@ function makeAppConfig() {
   const year = date.getFullYear();
 
   const AppConfig = {
-    brand: 'SANDONATO',
+    brand: 'SANDONATO S.A.',
     brandLogoUrl: 'assets/images/LOGOSANDONATO.png',
     user: 'Lisa',
     year,
