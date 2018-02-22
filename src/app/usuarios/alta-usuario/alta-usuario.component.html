@@ -25,6 +25,28 @@
           <app-select-rubro [object]="rubroActual" (onChange)="rubroOnChange($event)" idModel="id" placeHolder="Rubro" id="id" desc="nombre"></app-select-rubro>
         </div>
       </div>
+      <div class="row">
+        <div class="col-12">
+          <table class="mdl-data-table">
+            <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Rubro</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rubro of rubrosActuales">
+              <td class="mdl-data-table__cell--non-numeric">{{rubro.nombre}}</td>
+              <td>
+                <button mat-icon-button color="warn">
+                  <mat-icon class="material-icons" (click)="eliminarRubro(rubro)">delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </form>
   </div>
 </div>
@@ -32,7 +54,6 @@
 <div mat-dialog-actions class="full-width">
   <div class="full-width text-sm-right">
     <button mat-button color="info" class="btn-w-xs" [mat-dialog-close]="false">Cancelar</button>
-    <button *ngIf="editando" [disabled]="nombreFC.invalid || mailFC.invalid" mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
-    <button *ngIf="!editando" [disabled]="nombreFC.invalid || mailFC.invalid || passwordFC.invalid" mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
+    <button [disabled]="nombreFC.invalid || mailFC.invalid" mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
   </div>
 </div>

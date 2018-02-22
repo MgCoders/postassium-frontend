@@ -16,7 +16,6 @@ import { Rubro } from '../../_models/Rubro';
 export class AltaUsuarioComponent implements OnInit {
 
   public usuarioActual: Usuario;
-  public editando: boolean;
   public rubrosActuales: Rubro[];
   public rubroActual: Rubro;
 
@@ -32,14 +31,14 @@ export class AltaUsuarioComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.rubroActual = {} as Rubro;
-      this.rubrosActuales = new Array();
+    this.rubroActual = {} as Rubro;
+    this.rubrosActuales = new Array();
     if (this.data[0] === undefined) {
       this.usuarioActual = {} as Usuario;
-      this.editando = false;
     } else {
       this.usuarioActual = new UsuarioImp(this.data[0]);
-      this.editando = true;
+      this.usuarioActual.usuarioRubros.forEach(
+          (r) => this.rubrosActuales.push(r.rubro));
     }
   }
 
@@ -74,6 +73,21 @@ export class AltaUsuarioComponent implements OnInit {
   }
 
   rubroOnChange(x: Rubro) {
-    console.log('####  CargoOnChange $$$' + x);
+    const rub: Rubro = this.rubrosActuales.find((r) => r.id === x.id);
+    if (rub == null || rub === undefined) {
+        this.rubrosActuales.push(x);
+    }
+  }
+
+  eliminarRubro(x: Rubro) {
+    const rub: Rubro = this.rubrosActuales.find((r) => r.id === x.id);
+    const index = this.rubrosActuales.indexOf(rub);
+    this.rubrosActuales.splice(index, 1);
+  }
+
+  rubrosUsuario(u: Usuario) {
+      const result: string;
+      u.usuarioRubros.forEach((r) => result += r.rubro.nombre);
+      return result;
   }
 }

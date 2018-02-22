@@ -14,6 +14,10 @@ export class TareaService {
     return this.http.get<Tarea[]>(`${environment.apiUrl}/tareas/`);
   }
 
+  getAllByTrabajo(trabajoId: number): Observable<Tarea[]> {
+    return this.http.get<Tarea[]>(`${environment.apiUrl}/tareas/trabajo/` + trabajoId);
+  }
+
   get(id: number): Observable<Tarea> {
     return this.http.get<Tarea>(`${environment.apiUrl}/tareas/` + id);
   }

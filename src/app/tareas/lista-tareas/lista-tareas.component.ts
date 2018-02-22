@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material';
-import {AltaTareaComponent} from '../alta-tarea/alta-tarea.component';
-import {TareaService} from '../../_services/tarea.service';
-import {AlertService} from '../../_services/alert.service';
-import {LayoutService} from '../../layout/layout.service';
-import {DialogConfirmComponent} from '../../shared/dialog-confirm/dialog-confirm.component';
-import {Tarea} from '../../_models/Tarea';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { AltaTareaComponent } from '../alta-tarea/alta-tarea.component';
+import { TareaService } from '../../_services/tarea.service';
+import { AlertService } from '../../_services/alert.service';
+import { LayoutService } from '../../layout/layout.service';
+import { DialogConfirmComponent } from '../../shared/dialog-confirm/dialog-confirm.component';
+import { Tarea } from '../../_models/Tarea';
 import { AltaPuntocontrolComponent } from '../../puntoscontrol/alta-puntocontrol/alta-puntocontrol.component';
-import { PuntoControl } from '../../_models/PuntoControl';
+import { Trabajo } from '../../_models/Trabajo';
+import { TrabajoService } from '../../_services/trabajo.service';
 
 @Component({
   selector: 'app-lista-tareas',
@@ -17,38 +18,44 @@ import { PuntoControl } from '../../_models/PuntoControl';
 export class ListaTareasComponent implements OnInit {
 
   public lista: Tarea[];
-  public tarea: Tarea;
-  public puntoControl: PuntoControl;
+  public trabajo: Trabajo;
+  public loadCompleted: boolean;
 
   constructor(public dialog: MatDialog,
               private tareaService: TareaService,
+              private trabajoService: TrabajoService,
               private alertService: AlertService,
               private layoutService: LayoutService) { }
 
   ngOnInit() {
     this.lista = new Array();
-
+    this.loadCompleted = false;
     this.layoutService.updatePreloaderState('active');
-    this.tareaService.getAll().subscribe(
-      (data) => {
-        this.lista = data;
+    this.trabajoService.get(1).subscribe(
+        (data) => {
+          this.trabajo = data;
+          console.log(this.trabajo);
+          this.tareaService.getAllByTrabajo(this.trabajo.id).subscribe(
+              (datatarea) => {
+                this.lista = datatarea;
+                this.layoutService.updatePreloaderState('hide');
+                this.loadCompleted = true;
+              },
+              (error) => {
+                this.layoutService.updatePreloaderState('hide');
+                this.alertService.error(error, 5000);
+              });
 
-        // TODO ESTO NO VA ASI, DEBE SER POR SELECT
-        this.tarea = {} as Tarea; // TODO esto NO VA hay que hacer un select
-        this.tarea.puntoControl = this.lista[0].puntoControl;
-        this.puntoControl = {} as PuntoControl;
-        this.puntoControl.trabajo = this.lista[0].puntoControl.trabajo;
-        this.layoutService.updatePreloaderState('hide');
-      },
-      (error) => {
-        this.layoutService.updatePreloaderState('hide');
-        this.alertService.error(error, 5000);
-      });
+        },
+        (error) => {
+          this.alertService.error(error, 5000);
+        }
+    );
   }
 
   nuevo() {
     const dialog = this.dialog.open(AltaTareaComponent, {
-      data: [this.tarea, this.lista],
+      data: [undefined, this.lista, this.trabajo.id],
       width: '600px',
     });
   }
@@ -69,14 +76,14 @@ export class ListaTareasComponent implements OnInit {
 
   editar(x: Tarea) {
     const dialog = this.dialog.open(AltaTareaComponent, {
-      data: [x, this.lista],
+      data: [x, this.lista, this.trabajo.id],
       width: '600px',
     });
   }
 
   nuevoPuntoContol() {
     const dialog = this.dialog.open(AltaPuntocontrolComponent, {
-      data: this.puntoControl,
+      data: [undefined, this.trabajo],
       width: '600px',
     });
   }

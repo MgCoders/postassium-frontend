@@ -9,16 +9,8 @@ export class PuntoControlService {
 
     constructor(public http: HttpClient) { }
 
-    getAll(): Observable<PuntoControl[]> {
-        return this.http.get<PuntoControl[]>(`${environment.apiUrl}/puntoscontrol/`);
-    }
-
     getByTrabajo(idTrabajo: number): Observable<PuntoControl[]> {
         return this.http.get<PuntoControl[]>(`${environment.apiUrl}/puntoscontrol/` + idTrabajo);
-    }
-
-    get(id: number): Observable<PuntoControl> {
-        return this.http.get<PuntoControl>(`${environment.apiUrl}/puntoscontrol/` + id);
     }
 
     create(x: PuntoControl): Observable<any> {

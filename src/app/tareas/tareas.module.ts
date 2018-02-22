@@ -22,6 +22,7 @@ import { AlertService } from '../_services/alert.service';
 import { LayoutService } from '../layout/layout.service';
 import { AltaPuntocontrolComponent } from '../puntoscontrol/alta-puntocontrol/alta-puntocontrol.component';
 import { PuntosControlModule } from '../puntoscontrol/puntoscontrol.module';
+import { TrabajoService } from '../_services/trabajo.service';
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { PuntosControlModule } from '../puntoscontrol/puntoscontrol.module';
     TareaService,
     AlertService,
     LayoutService,
+    TrabajoService
   ],
 
   entryComponents: [
