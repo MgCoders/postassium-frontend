@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { TipoTarea } from '../_models/models';
 import { Observable } from 'rxjs/Observable';
-import {Tarea} from '../_models/Tarea';
+import { Tarea } from '../_models/Tarea';
 
 @Injectable()
 export class TareaService {

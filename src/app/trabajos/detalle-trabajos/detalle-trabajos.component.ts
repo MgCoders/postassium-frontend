@@ -40,7 +40,7 @@ export class DetalleTrabajosComponent implements OnInit {
         this.layoutService.updatePreloaderState('hide');
         this.alertService.error(error, 5000);
       });
-    this.tareaService.getAll().subscribe(
+    this.tareaService.getAllByTrabajo(1).subscribe(
       (data) => {
         this.lista = data;
         this.layoutService.updatePreloaderState('hide');

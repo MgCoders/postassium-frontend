@@ -9,7 +9,7 @@ export const TrabajosRoutes: Routes = [
     component: TrabajosComponent,
     children: [
       { path: '', redirectTo: '/app/dashboard', pathMatch: 'full' },
-      { path: 'detalle', component: DetalleTrabajosComponent },
+      { path: 'detalle', component: DetalleTrabajosComponent }
     ]
   }
 ];
