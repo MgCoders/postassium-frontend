@@ -86,8 +86,8 @@ export class AltaUsuarioComponent implements OnInit {
   }
 
   rubrosUsuario(u: Usuario) {
-      const result: string;
+      /*const result: string;
       u.usuarioRubros.forEach((r) => result += r.rubro.nombre);
-      return result;
+      return result;*/
   }
 }
