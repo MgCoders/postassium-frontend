@@ -6,16 +6,16 @@ import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import { TrabajoService } from "../../_services/trabajo.service";
 import { Trabajo } from "../../_models/Trabajo";
-import { AltaMonitorFacturacionComponent } from "../alta-monitorfacturacion/alta-monitorfacturacion.component";
+import { AltaMonitorFacturacionTrabajosComponent } from "../alta-monitorfacturacion-trabajos/alta-monitorfacturacion-trabajos.component";
 import { DialogConfirmComponent } from "../../shared/dialog-confirm/dialog-confirm.component";
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-monitorfacturacion',
-  templateUrl: './lista-monitorfacturacion.component.html',
-  styleUrls: ['./lista-monitorfacturacion.component.scss']
+  templateUrl: './monitorfacturacion-trabajos.component.html',
+  styleUrls: ['./monitorfacturacion-trabajos.component.scss']
 })
-export class ListaMonitorFacturacionComponent implements OnInit {
+export class MonitorFacturacionTrabajosComponent implements OnInit {
 
   public listaParaFacturar: Trabajo[];
   public listaEnEspera: Trabajo[]
@@ -70,7 +70,7 @@ export class ListaMonitorFacturacionComponent implements OnInit {
   }
 
   asignarFactura(x: Trabajo) {
-    const dialog = this.dialog.open(AltaMonitorFacturacionComponent, {
+    const dialog = this.dialog.open(AltaMonitorFacturacionTrabajosComponent, {
     data: [x, this.listaParaFacturar],
     width: '600px',
   });

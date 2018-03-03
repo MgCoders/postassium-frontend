@@ -19,6 +19,8 @@ import { TareaService } from '../_services/tarea.service';
 import { TrabajoService } from '../_services/trabajo.service';
 import { AlertService } from '../_services/alert.service';
 import { LayoutService } from '../layout/layout.service';
+import {AltaMonitorFacturacionTrabajosComponent} from "./alta-monitorfacturacion-trabajos/alta-monitorfacturacion-trabajos.component";
+import {MonitorFacturacionTrabajosComponent} from "./monitorfacturacion-trabajos/monitorfacturacion-trabajos.component";
 
 @NgModule({
   imports: [
@@ -36,13 +38,18 @@ import { LayoutService } from '../layout/layout.service';
 
   declarations: [
     TrabajosComponent,
-    DetalleTrabajosComponent
+    DetalleTrabajosComponent,
+    MonitorFacturacionTrabajosComponent,
+    AltaMonitorFacturacionTrabajosComponent
   ],
   providers: [
     TareaService,
     TrabajoService,
     AlertService,
     LayoutService,
+  ],
+  entryComponents: [
+    AltaMonitorFacturacionTrabajosComponent,
   ],
 
 })
