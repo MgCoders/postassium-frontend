@@ -5,8 +5,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import { UsuarioImp } from '../../_models/UsuarioImp';
-import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, Validators, FormsModule } from '@angular/forms';
 import { Rubro } from '../../_models/Rubro';
+import { UsuarioRubro } from '../../_models/UsuarioRubro';
 
 @Component({
   selector: 'app-alta-usuario',
@@ -16,7 +17,6 @@ import { Rubro } from '../../_models/Rubro';
 export class AltaUsuarioComponent implements OnInit {
 
   public usuarioActual: Usuario;
-  public rubrosActuales: Rubro[];
   public rubroActual: Rubro;
 
   public nombreFC = new FormControl('', [Validators.required]);
@@ -32,13 +32,12 @@ export class AltaUsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.rubroActual = {} as Rubro;
-    this.rubrosActuales = new Array();
     if (this.data[0] === undefined) {
       this.usuarioActual = {} as Usuario;
+      this.usuarioActual.usuarioRubros = new Array();
+      this.usuarioActual.role = 'USER';
     } else {
       this.usuarioActual = new UsuarioImp(this.data[0]);
-      this.usuarioActual.usuarioRubros.forEach(
-          (r) => this.rubrosActuales.push(r.rubro));
     }
   }
 
@@ -73,21 +72,20 @@ export class AltaUsuarioComponent implements OnInit {
   }
 
   rubroOnChange(x: Rubro) {
-    const rub: Rubro = this.rubrosActuales.find((r) => r.id === x.id);
+    const rub: UsuarioRubro = this.usuarioActual.usuarioRubros.find((ur) => ur.rubro.id === x.id);
     if (rub == null || rub === undefined) {
-        this.rubrosActuales.push(x);
+        const usuarioRubro = {} as UsuarioRubro;
+        usuarioRubro.rubro = x;
+        this.usuarioActual.usuarioRubros.push(usuarioRubro);
     }
+    this.rubroActual = {} as Rubro;
   }
 
   eliminarRubro(x: Rubro) {
-    const rub: Rubro = this.rubrosActuales.find((r) => r.id === x.id);
-    const index = this.rubrosActuales.indexOf(rub);
-    this.rubrosActuales.splice(index, 1);
+    const rub: UsuarioRubro = this.usuarioActual.usuarioRubros.find((ur) => ur.rubro.id === x.id);
+    const index = this.usuarioActual.usuarioRubros.indexOf(rub);
+    this.usuarioActual.usuarioRubros.splice(index, 1);
   }
 
-  rubrosUsuario(u: Usuario) {
-      const result: string;
-      u.usuarioRubros.forEach((r) => result += r.rubro.nombre);
-      return result;
-  }
+
 }

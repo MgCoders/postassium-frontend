@@ -4,7 +4,7 @@ import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule, MatCheckboxModule,
-  MatDialogModule, MatIconModule, MatInputModule, MatSelectModule, MatSnackBarModule,
+  MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatSelectModule, MatSnackBarModule,
   MatTooltipModule
 } from '@angular/material';
 import { AlertService } from '../_services/alert.service';
@@ -30,7 +30,8 @@ import { RubrosModule } from '../rubros/rubros.module';
     UsuariosRoutingModule,
     MatCheckboxModule,
     ReactiveFormsModule,
-    RubrosModule
+    RubrosModule,
+    MatListModule
   ],
   providers: [
     AlertService,

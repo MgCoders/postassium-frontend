@@ -22,29 +22,29 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <app-select-rubro [object]="rubroActual" (onChange)="rubroOnChange($event)" idModel="id" placeHolder="Rubro" id="id" desc="nombre"></app-select-rubro>
+          <mat-form-field class="full-width">
+            <mat-select [(value)]="usuarioActual.role" placeholder="Rol" class="full-width">
+              <mat-option value="ADMIN">Administrador</mat-option>
+              <mat-option value="USER">Usuario</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
-          <table class="mdl-data-table">
-            <thead>
-            <tr>
-              <th class="mdl-data-table__cell--non-numeric">Rubro</th>
-              <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let rubro of rubrosActuales">
-              <td class="mdl-data-table__cell--non-numeric">{{rubro.nombre}}</td>
-              <td>
-                <button mat-icon-button color="warn">
-                  <mat-icon class="material-icons" (click)="eliminarRubro(rubro)">delete</mat-icon>
-                </button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+            <app-select-rubro [object]="rubroActual" (onChange)="rubroOnChange($event)" idModel="id" placeHolder="Rubro" id="id" desc="nombre"></app-select-rubro>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-list>
+            <mat-list-item *ngFor="let ur of usuarioActual.usuarioRubros">
+              <h3 matLine> {{ur.rubro.nombre}} </h3>
+              <button mat-icon-button color="warn">
+                <mat-icon class="material-icons" (click)="eliminarRubro(ur.rubro)">delete</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-list>
         </div>
       </div>
     </form>
