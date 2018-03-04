@@ -1,0 +1,46 @@
+<section class="container-fluid with-maxwidth chapter">
+  <article class="article">
+    <div class="row">
+      <h2 class="article-title padding-top-30 col-12 col-sm-6">Registros</h2>
+      <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
+        <button mat-raised-button color="primary" (click)="verTrabajo()">
+          <mat-icon class="material-icons">keyboard_backspace</mat-icon>
+          Trabajo
+        </button>
+        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Registro</button>
+      </div>
+    </div>
+
+    <div class="box box-default table-box table-responsive mdl-shadow--2dp">
+      <table class="mdl-data-table">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th class="mdl-data-table__cell--non-numeric">Fecha</th>
+          <th class="mdl-data-table__cell--non-numeric">Duración</th>
+          <th class="mdl-data-table__cell--non-numeric">Usuario</th>
+          <th class="mdl-data-table__cell--non-numeric">Rubro</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let r of registros">
+          <td>{{r.id}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{r.fecha}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{r.minutos}}</td>
+          <td class="mdl-data-table__cell--non-numeric"><span *ngIf="r.usuario != undefined">{{r.usuario.nombre}}</span></td>
+          <td class="mdl-data-table__cell--non-numeric"><span *ngIf="r.rubro != undefined">{{r.rubro.nombre}}</span></td>
+          <td>
+            <button mat-icon-button color="primary" (click)="editar(r)">
+              <mat-icon class="material-icons">mode_edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+              <mat-icon class="material-icons" (click)="eliminar(r)">delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>

@@ -32,10 +32,23 @@ import { LayoutService } from '../layout/layout.service';
         MatTooltipModule,
         MatDialogModule
     ],
-    exports: [SelectRubroComponent],
-    declarations: [RubrosComponent, ListaRubrosComponent, AltaRubroComponent, SelectRubroComponent],
-    providers: [RubroService, AlertService, LayoutService],
-    entryComponents: [AltaRubroComponent]
+    exports: [
+        SelectRubroComponent
+    ],
+    declarations: [
+        RubrosComponent,
+        ListaRubrosComponent,
+        AltaRubroComponent,
+        SelectRubroComponent
+    ],
+    providers: [
+        RubroService,
+        AlertService,
+        LayoutService
+    ],
+    entryComponents: [
+        AltaRubroComponent
+    ]
 })
 
 export class RubrosModule { }

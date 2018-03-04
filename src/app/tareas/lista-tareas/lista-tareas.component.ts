@@ -9,6 +9,8 @@ import { Tarea } from '../../_models/Tarea';
 import { AltaPuntocontrolComponent } from '../../puntoscontrol/alta-puntocontrol/alta-puntocontrol.component';
 import { Trabajo } from '../../_models/Trabajo';
 import { TrabajoService } from '../../_services/trabajo.service';
+import { Router } from '@angular/router';
+import { PuntoControl } from '../../_models/PuntoControl';
 
 @Component({
   selector: 'app-lista-tareas',
@@ -25,7 +27,9 @@ export class ListaTareasComponent implements OnInit {
               private tareaService: TareaService,
               private trabajoService: TrabajoService,
               private alertService: AlertService,
-              private layoutService: LayoutService) { }
+              private layoutService: LayoutService,
+              private router: Router,
+  ) { }
 
   ngOnInit() {
     this.lista = new Array();
@@ -35,22 +39,25 @@ export class ListaTareasComponent implements OnInit {
         (data) => {
           this.trabajo = data;
           console.log(this.trabajo);
-          this.tareaService.getAllByTrabajo(this.trabajo.id).subscribe(
-              (datatarea) => {
-                this.lista = datatarea;
-                this.layoutService.updatePreloaderState('hide');
-                this.loadCompleted = true;
-              },
-              (error) => {
-                this.layoutService.updatePreloaderState('hide');
-                this.alertService.error(error, 5000);
-              });
-
+          this.loadData();
         },
         (error) => {
           this.alertService.error(error, 5000);
         }
     );
+  }
+
+  loadData() {
+      this.tareaService.getAllByTrabajo(this.trabajo.id).subscribe(
+          (datatarea) => {
+              this.lista = datatarea;
+              this.layoutService.updatePreloaderState('hide');
+              this.loadCompleted = true;
+          },
+          (error) => {
+              this.layoutService.updatePreloaderState('hide');
+              this.alertService.error(error, 5000);
+          });
   }
 
   nuevo() {
@@ -88,4 +95,11 @@ export class ListaTareasComponent implements OnInit {
     });
   }
 
+  editarPuntoControl(p: PuntoControl) {
+
+  }
+
+  verRegistros(x: Tarea) {
+      this.router.navigate(['/app/registros/listaRegistros/', x.id]);
+  }
 }

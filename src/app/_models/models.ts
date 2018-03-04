@@ -28,3 +28,5 @@ export * from './PuntoControl';
 export * from './PuntoControlImp';
 export * from './Trabajo';
 export * from './TrabajoImp';
+export * from './Registro';
+export * from './RegistroImp';
