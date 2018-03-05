@@ -23,6 +23,8 @@ const routes: Routes = [
       { path: 'trabajos', loadChildren: '../trabajos/trabajos.module#TrabajosModule' },
       { path: 'usuarios', loadChildren: '../usuarios/usuarios.module#UsuariosModule' },
       { path: 'registros', loadChildren: '../registros/registros.module#RegistrosModule' },
+      { path: 'tiposmateriales', loadChildren: '../tiposmateriales/tiposmateriales.module#TiposMaterialesModule' },
+      { path: 'materiales', loadChildren: '../materiales/materiales.module#MaterialesModule' },
       { path: 'chart', loadChildren: '../charts/charts.module#ChartsModule' },
       { path: 'form', loadChildren: '../forms/forms.module#MyFormsModule' },
       { path: 'page', loadChildren: '../pages/pages.module#PagesModule' },

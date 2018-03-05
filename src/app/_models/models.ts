@@ -30,3 +30,7 @@ export * from './Trabajo';
 export * from './TrabajoImp';
 export * from './Registro';
 export * from './RegistroImp';
+export * from './Material';
+export * from './MaterialImp';
+export * from './TipoMaterial';
+export * from './TipoMaterialImp';

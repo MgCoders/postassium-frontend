@@ -48,4 +48,18 @@
     </a>
   </li>
 
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/materiales/listaMateriales']">
+      <i class="nav-icon material-icons">assignment_ind</i>
+      <span class="nav-text">Materiales</span>
+    </a>
+  </li>
+
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/tiposmateriales/listaTiposMateriales']">
+      <i class="nav-icon material-icons">assignment_ind</i>
+      <span class="nav-text">Tipos Materiales</span>
+    </a>
+  </li>
+
 </ul>
