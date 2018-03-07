@@ -102,4 +102,8 @@ export class ListaTareasComponent implements OnInit {
   verRegistros(x: Tarea) {
       this.router.navigate(['/app/registros/listaRegistros/', x.id]);
   }
+
+  verMateriales(x: Tarea) {
+        this.router.navigate(['/app/tareas/listaTareaMateriales/', x.id]);
+  }
 }

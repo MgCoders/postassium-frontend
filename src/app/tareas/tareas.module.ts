@@ -23,6 +23,8 @@ import { LayoutService } from '../layout/layout.service';
 import { AltaPuntocontrolComponent } from '../puntoscontrol/alta-puntocontrol/alta-puntocontrol.component';
 import { PuntosControlModule } from '../puntoscontrol/puntoscontrol.module';
 import { TrabajoService } from '../_services/trabajo.service';
+import { ListaTareaMaterialesComponent } from './lista-tareamateriales/lista-tareamateriales.component';
+import { AltaTareaMaterialComponent } from './alta-tareamaterial/alta-tareamaterial.component';
 
 @NgModule({
   imports: [
@@ -43,7 +45,9 @@ import { TrabajoService } from '../_services/trabajo.service';
     TareasComponent,
     ListaTareasComponent,
     SelectTareaComponent,
-    AltaTareaComponent
+    AltaTareaComponent,
+    ListaTareaMaterialesComponent,
+    AltaTareaMaterialComponent,
   ],
 
   exports: [

@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { TipoTarea } from '../_models/models';
 import { Observable } from 'rxjs/Observable';
 import { Tarea } from '../_models/Tarea';
+import { TareaMaterial } from '../_models/TareaMaterial';
 
 @Injectable()
 export class TareaService {
@@ -29,4 +30,13 @@ export class TareaService {
   edit(x: Tarea): Observable<any> {
         return this.http.put(`${environment.apiUrl}/tareas/` + x.id, x);
   }
+
+  getAllMaterialesByTarea(tareaId: number): Observable<TareaMaterial[]> {
+    return this.http.get<TareaMaterial[]>(`${environment.apiUrl}/tareas/` + tareaId + '/materiales');
+  }
+
+  createTareaMaterial(tm: TareaMaterial): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/tareas/materiales/`, tm);
+  }
+
 }
