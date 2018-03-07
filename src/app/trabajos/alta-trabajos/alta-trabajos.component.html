@@ -1,14 +1,21 @@
-<section class="container-fluid with-maxwidth chapter" *ngIf="trabajo !== undefined">
+<section class="container-fluid with-maxwidth chapter">
 
   <div class="row" >
-    <h2 class="article-title padding-top-30 col-12 col-sm-6">Trabajo #{{trabajo.id}}</h2>
-    <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
-      <button *ngIf="trabajo.estado == 'PARA_FACTURAR'" mat-raised-button color="accent" class="btn-w-md" (click)="monitorFacturacion()">Ir a Monitor de Facturación</button>
-    </div>
+    <h2 class="article-title padding-top-30 col-12 col-sm-6">Nuevo Trabajo</h2>
   </div>
   <article class="article">
-    <h2 class="article-title">Cliente</h2>
+    <div class="row">
+      <h2 class="article-title padding-top-30 col-6 col-sm-6">Cliente</h2>
+      <div class="padding-top-30 text-left text-sm-right col-6 col-sm-6">
+        <div class="col-12 col-sm-6">
+        <mat-input-container class=" mat-icon-left">
+          <input matInput placeholder="Buscar RUT" [(ngModel)]="rut">
+        </mat-input-container>
+          <button mat-raised-button color="accent" class="btn-w-md" (click)="buscar()">Buscar</button>
+        </div>
 
+      </div>
+    </div>
     <div class="box box-default">
       <div class="box-body">
 
@@ -16,12 +23,12 @@
           <div class="form-group row">
             <div class="col-6">
               <mat-input-container class="full-width">
-                <input matInput placeholder="Nombre Empresa" disabled value="{{trabajo.cliente.nombreEmpresa}}">
+                <input matInput placeholder="Nombre Empresa" value="{{cliente.nombreEmpresa}}">
               </mat-input-container>
             </div>
             <div class="col-6">
               <mat-input-container class="full-width">
-                <input matInput placeholder="RUT" disabled value="{{trabajo.cliente.rut}}">
+                <input matInput placeholder="RUT" value="{{cliente.rut}}">
               </mat-input-container>
             </div>
           </div>
@@ -29,13 +36,13 @@
             <div class="col-6">
               <mat-input-container class="full-width mat-icon-left">
                 <mat-icon class="material-icons">email</mat-icon>
-                <input matInput disabled value="{{trabajo.cliente.emailEmpresa}}" placeholder="Email">
+                <input matInput value="{{cliente.emailEmpresa}}" placeholder="Email">
               </mat-input-container>
             </div>
             <div class="col-6">
               <mat-input-container class="full-width mat-icon-left">
                 <mat-icon class="material-icons">settings_phone</mat-icon>
-                <input matInput disabled value="{{trabajo.cliente.telefono}}" placeholder="Teléfono">
+                <input matInput value="{{cliente.telefono}}" placeholder="Teléfono">
               </mat-input-container>
             </div>
           </div>
@@ -43,7 +50,7 @@
             <div class="col-12">
               <mat-input-container class="full-width mat-icon-left">
                 <mat-icon class="material-icons">map</mat-icon>
-                <textarea matInput placeholder="Dirección" disabled value="{{trabajo.cliente.direccion}}"></textarea>
+                <textarea matInput placeholder="Dirección" value="{{cliente.direccion}}"></textarea>
               </mat-input-container>
             </div>
           </div>
@@ -51,13 +58,13 @@
             <div class="col-6">
               <mat-input-container class="full-width mat-icon-left">
                 <mat-icon class="material-icons">perm_identity</mat-icon>
-                <input matInput disabled value="{{trabajo.cliente.personaContacto}}" placeholder="Persona de contacto">
+                <input matInput value="{{cliente.personaContacto}}" placeholder="Persona de contacto">
               </mat-input-container>
             </div>
             <div class="col-6">
               <mat-input-container class="full-width mat-icon-left">
                 <mat-icon class="material-icons">settings_phone</mat-icon>
-                <input matInput disabled value="{{trabajo.cliente.telefonoContacto}}" placeholder="Teléfono contacto">
+                <input matInput value="{{cliente.telefonoContacto}}" placeholder="Teléfono contacto">
               </mat-input-container>
             </div>
           </div>
