@@ -21,6 +21,8 @@ import { AlertService } from '../_services/alert.service';
 import { LayoutService } from '../layout/layout.service';
 import {AltaMonitorFacturacionTrabajosComponent} from "./alta-monitorfacturacion-trabajos/alta-monitorfacturacion-trabajos.component";
 import {MonitorFacturacionTrabajosComponent} from "./monitorfacturacion-trabajos/monitorfacturacion-trabajos.component";
+import {AltaTrabajosComponent} from "./alta-trabajos/alta-trabajos.component";
+import {ClienteService} from '../_services/cliente.service';
 
 @NgModule({
   imports: [
@@ -40,10 +42,12 @@ import {MonitorFacturacionTrabajosComponent} from "./monitorfacturacion-trabajos
     TrabajosComponent,
     DetalleTrabajosComponent,
     MonitorFacturacionTrabajosComponent,
+    AltaTrabajosComponent,
     AltaMonitorFacturacionTrabajosComponent
   ],
   providers: [
     TareaService,
+    ClienteService,
     TrabajoService,
     AlertService,
     LayoutService,

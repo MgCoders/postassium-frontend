@@ -31,14 +31,16 @@
           <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo === undefined">N/A</td>
           <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo === undefined">N/A</td>
           <td>
-            <button mat-icon-button color="primary" matTooltip="Asignar número factura" (click)="asignarFactura(x)">
-
+            <button mat-icon-button color="primary" matTooltip="Asignar número factura" (click)="asignarFactura(x)" *ngIf="this.estado === 'PENDIENTE_FACTURA'">
               <mat-icon class="material-icons">mode_edit</mat-icon>
             </button>
+              <button mat-icon-button color="primary" matTooltip="Asignar número remito" (click)="asignarRemito(x)" *ngIf="this.estado === 'PENDIENTE_REMITO'">
+                  <mat-icon class="material-icons">mode_edit</mat-icon>
+              </button>
             <button mat-icon-button matTooltip="Ver detalle" color="success">
               <mat-icon class="material-icons" (click)="verDetalle(x)">search</mat-icon>
             </button>
-            <button mat-icon-button color="warn" matTooltip="En espera">
+            <button mat-icon-button color="warn" matTooltip="En espera" *ngIf="this.estado === 'factura'">
               <mat-icon class="material-icons" (click)="ponerEnEspera(x)">announcement</mat-icon>
             </button>
           </td>
@@ -49,7 +51,7 @@
   </article>
 </section>
 
-<section class="container-fluid with-maxwidth chapter">
+<section class="container-fluid with-maxwidth chapter" *ngIf="this.estado === 'factura'">
     <article class="article">
 
         <div class="row">

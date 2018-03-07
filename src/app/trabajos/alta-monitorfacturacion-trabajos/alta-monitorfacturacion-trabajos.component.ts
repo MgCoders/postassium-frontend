@@ -5,9 +5,9 @@ import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import { Tarea } from '../../_models/Tarea';
 import { TareaImp } from '../../_models/TareaImp';
-import {TrabajoService} from "../../_services/trabajo.service";
-import {Trabajo} from "../../_models/Trabajo";
-import {TrabajoImp} from "../../_models/TrabajoImp";
+import {TrabajoService} from '../../_services/trabajo.service';
+import {Trabajo} from '../../_models/Trabajo';
+import {TrabajoImp} from '../../_models/TrabajoImp';
 
 @Component({
   selector: 'app-alta-monitorfacturacion',
@@ -17,6 +17,7 @@ import {TrabajoImp} from "../../_models/TrabajoImp";
 export class AltaMonitorFacturacionTrabajosComponent implements OnInit {
 
   public trabajoActual: Trabajo;
+  public tipo: string;
 
   constructor(public dialogRef: MatDialogRef<AltaMonitorFacturacionTrabajosComponent>,
               @Inject(MAT_DIALOG_DATA) public data: [Trabajo, Trabajo[]],
@@ -31,6 +32,12 @@ export class AltaMonitorFacturacionTrabajosComponent implements OnInit {
     } else {
       this.trabajoActual = new TrabajoImp(this.data[0]);
     }
+    if (this.data[1] === undefined) {
+          this.tipo = 'factura';
+      } else {
+          this.tipo =  '' + this.data[1];
+      }
+
   }
 
   Cerrar() {
@@ -45,7 +52,11 @@ export class AltaMonitorFacturacionTrabajosComponent implements OnInit {
       this.cs.edit(this.trabajoActual).subscribe(
           (data) => {
               this.layoutService.updatePreloaderState('hide');
-              this.as.success('Número de factura asignado correctamente.', 3000);
+              if (this.tipo === 'factura') {
+                  this.as.success('Número de factura asignado correctamente.', 3000);
+              } else {
+                  this.as.success('Número de remito asignado correctamente.', 3000);
+              }
               this.dialogRef.close(1);
           },
           (error) => {

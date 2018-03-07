@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 import {Equipo} from "../_models/Equipo";
 
 @Injectable()
-export class EquipoServices {
+export class EquipoService {
 
     constructor(public http: HttpClient) {}
 
