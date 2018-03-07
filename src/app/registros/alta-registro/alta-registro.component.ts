@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Registro } from '../../_models/Registro';
 import { RegistroService } from '../../_services/registro.service';
 import { Tarea } from '../../_models/Tarea';
@@ -9,6 +9,7 @@ import { Usuario } from '../../_models/Usuario';
 import { Rubro } from '../../_models/Rubro';
 import { RegistroImp } from '../../_models/RegistroImp';
 import { DatePipe } from '@angular/common';
+import { noUndefined } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-alta-registro',
@@ -95,11 +96,10 @@ export class AltaRegistroComponent implements OnInit {
   }
 
   usuarioOnChange(u: Usuario) {
-    this.usuarioActual = u;
+    this.registroActual.usuario = u;
     this.rubroActual = {} as Rubro;
-    this.rubrosUsuario = [];
     this.rubrosUsuario = new Array();
-    this.usuarioActual.usuarioRubros.forEach(
+    this.registroActual.usuario.usuarioRubros.forEach(
         (ur) => this.rubrosUsuario.push(ur.rubro)
     );
     console.log(u);

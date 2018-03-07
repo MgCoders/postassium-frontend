@@ -27,7 +27,8 @@
       <div class="row">
         <div class="col-12">
           <mat-form-field class="full-width">
-            <mat-select [(value)]="rubroActualId" placeholder="Rubro" class="full-width">
+            <mat-select [(value)]="rubroActual.id" placeholder="Rubro" class="full-width">
+              <mat-option value="undefined">Seleccionar Rubro</mat-option>
               <mat-option *ngFor="let r of rubrosUsuario" [(value)]="r.id" >{{r.nombre}}</mat-option>
             </mat-select>
           </mat-form-field>
