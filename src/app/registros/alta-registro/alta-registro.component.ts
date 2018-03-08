@@ -21,9 +21,8 @@ export class AltaRegistroComponent implements OnInit {
   registroActual: Registro;
   rubrosUsuario: Rubro[];
   fechaActual: Date;
-  usuarioActual: Usuario;
-  rubroActual: Rubro;
   rubroActualId: number;
+  usuarioActual: Usuario;
 
   constructor(
       public dialogRef: MatDialogRef<AltaRegistroComponent>,
@@ -44,33 +43,21 @@ export class AltaRegistroComponent implements OnInit {
       this.fechaActual = new Date();
     } else {
       this.registroActual = new RegistroImp(this.data[0]);
-      this.usuarioActual = this.registroActual.usuario;
-      this.rubroActual = this.registroActual.rubro;
       this.fechaActual = this.dateFromString(this.registroActual.fecha);
     }
 
     if (this.registroActual.usuario === undefined) {
       this.usuarioActual = {} as Usuario;
+      this.usuarioActual.id = -1;
     }
     if (this.registroActual.rubro === undefined) {
-      this.rubroActual = {} as Rubro;
+      this.rubroActualId = -1;
     }
   }
 
   guardar() {
     this.layoutService.updatePreloaderState('active');
     this.registroActual.fecha = this.datePipe.transform(this.fechaActual, 'dd-MM-yyyy');
-
-    if (isNaN(this.usuarioActual.id)) {
-      this.registroActual.usuario = undefined;
-    } else {
-      this.registroActual.usuario = this.usuarioActual;
-    }
-    if (isNaN(this.rubroActual.id)) {
-      this.registroActual.rubro = undefined;
-    } else {
-      this.registroActual.rubro = this.rubroActual;
-    }
 
     if (this.data[0] === undefined) {
       this.registroService.create(this.registroActual).subscribe(
@@ -97,13 +84,16 @@ export class AltaRegistroComponent implements OnInit {
 
   usuarioOnChange(u: Usuario) {
     this.registroActual.usuario = u;
-    this.rubroActual = {} as Rubro;
+    this.registroActual.rubro = undefined;
+    this.rubroActualId = -1;
     this.rubrosUsuario = new Array();
     this.registroActual.usuario.usuarioRubros.forEach(
         (ur) => this.rubrosUsuario.push(ur.rubro)
     );
-    console.log(u);
-    console.log(this.rubrosUsuario);
+  }
+
+  rubroOnChange(evt) {
+    this.registroActual.rubro = this.rubrosUsuario.find((x) => x.id === evt.value);
   }
 
   dateFromString(str: string): Date {
