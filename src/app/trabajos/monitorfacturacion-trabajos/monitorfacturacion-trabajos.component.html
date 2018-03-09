@@ -16,6 +16,7 @@
           <th class="mdl-data-table__cell--non-numeric">Nombre Cliente</th>
           <th class="mdl-data-table__cell--non-numeric">Matrícula Equipo</th>
           <th class="mdl-data-table__cell--non-numeric">Marca/Modelo Equipo</th>
+            <th class="mdl-data-table__cell--non-numeric">Número Remito</th>
           <th></th>
         </tr>
         </thead>
@@ -30,6 +31,9 @@
           <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo !== undefined">{{x.equipo.marca}} / {{x.equipo.modelo}}</td>
           <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo === undefined">N/A</td>
           <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo === undefined">N/A</td>
+            <td class="mdl-data-table__cell--non-numeric" *ngIf="x.nroRemito !== undefined && x.nroRemito !== null">{{x.nroRemito}}</td>
+            <td class="mdl-data-table__cell--non-numeric" *ngIf="x.nroRemito === undefined || x.nroRemito === null">N/A</td>
+
           <td>
             <button mat-icon-button color="primary" matTooltip="Asignar número factura" (click)="asignarFactura(x)" *ngIf="this.estado === 'PENDIENTE_FACTURA'">
               <mat-icon class="material-icons">mode_edit</mat-icon>

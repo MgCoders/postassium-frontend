@@ -48,7 +48,13 @@ export class AltaMonitorFacturacionTrabajosComponent implements OnInit {
     this.layoutService.updatePreloaderState('active');
     console.log(this.trabajoActual);
     if (this.data[0] !== undefined) {
-      this.cs.edit(this.trabajoActual).subscribe(
+        if (this.tipo === 'factura') {
+            this.trabajoActual.estado = 'FINALIZADO';
+        } else {
+            this.trabajoActual.estado = 'PENDIENTE_FACTURA';
+        }
+
+        this.cs.edit(this.trabajoActual).subscribe(
           (data) => {
               this.layoutService.updatePreloaderState('hide');
               if (this.tipo === 'factura') {
@@ -56,7 +62,6 @@ export class AltaMonitorFacturacionTrabajosComponent implements OnInit {
                   this.as.success('Número de factura asignado correctamente.', 3000);
               } else {
                   /*this.trabajoActual.estado = 'PENDIENTE_ASIGNACION_VALORES';*/
-                  this.trabajoActual.estado = 'PENDIENTE_FACTURA';
                   this.as.success('Número de remito asignado correctamente.', 3000);
               }
               this.dialogRef.close(1);
