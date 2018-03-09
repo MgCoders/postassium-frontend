@@ -6,15 +6,19 @@
   <article class="article">
     <div class="row">
       <h2 class="article-title padding-top-30 col-6 col-sm-6">Cliente</h2>
-      <div class="padding-top-30 text-left text-sm-right col-6 col-sm-6">
-        <div class="col-12 col-sm-6">
-        <mat-input-container class=" mat-icon-left">
-          <input matInput placeholder="Buscar RUT" [(ngModel)]="rut">
-        </mat-input-container>
-          <button mat-raised-button color="accent" class="btn-w-md" (click)="buscar()">Buscar</button>
+      <div class="padding-top-30 text-left text-sm-right col-3 col-sm-3">
+        <div class="col-6 col-sm-6">
+          <mat-input-container class=" mat-icon-left">
+            <input matInput placeholder="Buscar RUT" [(ngModel)]="rut">
+          </mat-input-container>
         </div>
 
+      </div><div class="padding-top-30 text-left text-sm-right col-3 col-sm-3">
+
+      <div class="col-6 col-sm-6">
+        <button mat-raised-button color="accent" class="btn-w-md" (click)="buscar()">Buscar</button>
       </div>
+    </div>
     </div>
     <div class="box box-default">
       <div class="box-body">

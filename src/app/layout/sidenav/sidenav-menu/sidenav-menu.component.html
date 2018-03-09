@@ -15,9 +15,9 @@
   </li>
 
   <li *ngIf="isAdmin()">
-    <a mat-button [routerLink]="['/app/trabajos/detalle']">
+    <a mat-button [routerLink]="['/app/trabajos/alta']">
       <i class="nav-icon material-icons">assignment_ind</i>
-      <span class="nav-text">Detalle Trabajo</span>
+      <span class="nav-text">Nuevo Trabajo</span>
     </a>
   </li>
 
@@ -45,6 +45,27 @@
     <a mat-button [routerLink]="['/app/trabajos/monitorfacturacion/todos']">
       <i class="nav-icon material-icons">assignment_ind</i>
       <span class="nav-text">Trabajos</span>
+    </a>
+  </li>
+
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/trabajos/monitorfacturacion/remito']">
+      <i class="nav-icon material-icons">assignment_ind</i>
+      <span class="nav-text">Monitor Remito</span>
+    </a>
+  </li>
+
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/trabajos/monitorfacturacion/finalizado']">
+      <i class="nav-icon material-icons">assignment_ind</i>
+      <span class="nav-text">Historial Trabajos</span>
+    </a>
+  </li>
+
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/trabajos/monitorfacturacion/progreso']">
+      <i class="nav-icon material-icons">assignment_ind</i>
+      <span class="nav-text">Trabajos en proceso</span>
     </a>
   </li>
 

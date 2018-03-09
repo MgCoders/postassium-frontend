@@ -21,6 +21,7 @@ export class MonitorFacturacionTrabajosComponent implements OnInit {
   public listaParaFacturar: Trabajo[];
   public listaEnEspera: Trabajo[];
   public estado: string;
+  public titulo: string;
   // public trabajo: Trabajo;
 
   constructor(public dialog: MatDialog,
@@ -39,22 +40,28 @@ export class MonitorFacturacionTrabajosComponent implements OnInit {
     // this.layoutService.updatePreloaderState('active');
     this.listaParaFacturar = new Array();
     this.listaEnEspera = new Array();
+    this.titulo = '';
     this.route.params.subscribe((params) => {
         switch (params['tipo']) {
               case 'factura':
                   this.estado = 'PENDIENTE_FACTURA';
+                  this.titulo = 'Trabajos a facturar';
                   break;
               case 'remito':
                   this.estado = 'PENDIENTE_REMITO';
+                  this.titulo = 'Trabajos a remito';
                   break;
               case 'progreso':
                   this.estado = 'EN_PROCESO';
+                  this.titulo = 'Trabajos en proceso';
                   break;
               case 'finalizado':
                   this.estado = 'FINALIZADO';
+                  this.titulo = 'Trabajos finalizados';
                   break;
               case 'todos':
                   this.estado = 'TODOS';
+                  this.titulo = 'Trabajos'
                   break;
           }
         if (this.estado !== 'TODOS') {
