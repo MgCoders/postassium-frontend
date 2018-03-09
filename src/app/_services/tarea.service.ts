@@ -39,4 +39,7 @@ export class TareaService {
     return this.http.post(`${environment.apiUrl}/tareas/materiales/`, tm);
   }
 
+  editTareaMaterial(tm: TareaMaterial): Observable<any> {
+    return this.http.put(`${environment.apiUrl}/tareas/materiales/` + tm.id, tm);
+  }
 }

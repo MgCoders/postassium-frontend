@@ -6,6 +6,7 @@ import { TareaService } from '../../_services/tarea.service';
 import { MatDialog } from '@angular/material';
 import { TareaMaterial } from '../../_models/TareaMaterial';
 import { Tarea } from '../../_models/Tarea';
+import { AltaTareaMaterialComponent } from '../alta-tareamaterial/alta-tareamaterial.component';
 
 @Component({
   selector: 'app-lista-tareamateriales',
@@ -53,7 +54,7 @@ export class ListaTareaMaterialesComponent implements OnInit {
 
   loadData() {
     this.tareaMateriales = new Array();
-    this.tareaService.getAllMaterialesByTarea(this.tarea.id).subscribe(
+    this.tareaService.getAllMaterialesByTarea(this.tareaId).subscribe(
         (data) => {
           this.tareaMateriales = data;
           this.layoutService.updatePreloaderState('hide');
@@ -65,7 +66,17 @@ export class ListaTareaMaterialesComponent implements OnInit {
   }
 
   nuevo() {
+      const dialog = this.dialog.open(AltaTareaMaterialComponent, {
+          data: [undefined, this.tarea],
+          width: '600px',
+      });
 
+      dialog.afterClosed().subscribe(
+          (result) => {
+              if (result === 1) {
+                  this.loadData();
+              }
+          });
   }
 
   eliminar() {
@@ -77,7 +88,7 @@ export class ListaTareaMaterialesComponent implements OnInit {
   }
 
   verTrabajo() {
-        // this.router.navigate(['/app/registros/listaRegistros/', this.tarea.puntoControl.trabajo.id]);
+    this.router.navigate(['/app/trabajos/detalle/', this.tarea.puntoControl.trabajo.id]); // TODO pasa el id del trabajo por url
   }
 
 }

@@ -49,9 +49,13 @@ export class AltaRegistroComponent implements OnInit {
     if (this.registroActual.usuario === undefined) {
       this.usuarioActual = {} as Usuario;
       this.usuarioActual.id = -1;
+    } else {
+      this.usuarioActual = this.registroActual.usuario;
     }
     if (this.registroActual.rubro === undefined) {
       this.rubroActualId = -1;
+    } else {
+      this.rubroActualId = this.registroActual.rubro.id;
     }
   }
 

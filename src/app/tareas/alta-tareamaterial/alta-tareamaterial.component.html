@@ -1,3 +1,27 @@
-<p>
-  alta-tareamaterial works!
-</p>
+<h1 mat-dialog-title>Material para Tarea</h1>
+
+<div mat-dialog-content class="box box-default">
+  <div class="box-body">
+    <form>
+      <div class="row">
+        <div class="col-12">
+          <app-select-material [object]="materialActual" (onChange)="materialOnChange($event)" idModel="id" placeHolder="Material" id="id" desc="nombre"></app-select-material>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="tareaMaterialActual.cantidad" matInput placeholder="Cantidad" name="Cantidad">
+          </mat-input-container>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div mat-dialog-actions class="full-width">
+  <div class="full-width text-sm-right">
+    <button mat-button color="primary" class="btn-w-xs" [mat-dialog-close]="false">Cancelar</button>
+    <button mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
+  </div>
+</div>

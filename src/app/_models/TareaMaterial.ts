@@ -17,6 +17,8 @@ export interface TareaMaterial {
 
     cantidad?: number;
 
+    tarea: models.Tarea;
+
     material: models.Material;
 
 }
