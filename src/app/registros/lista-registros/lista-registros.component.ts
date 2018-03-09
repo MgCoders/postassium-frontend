@@ -82,7 +82,7 @@ export class ListaRegistrosComponent implements OnInit {
 
   editar(r: Registro) {
       const dialog = this.dialog.open(AltaRegistroComponent, {
-          data: [r, this.tarea],
+          data: [r, undefined],
           width: '600px',
       });
 

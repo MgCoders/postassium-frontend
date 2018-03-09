@@ -27,12 +27,6 @@
       <span class="nav-text">Rubros</span>
     </a>
   </li>
-  <li *ngIf="isAdmin()">
-    <a mat-button [routerLink]="['/app/puntoscontrol/listaPuntosControl']">
-      <i class="nav-icon material-icons">assignment_ind</i>
-      <span class="nav-text">Puntos Control</span>
-    </a>
-  </li>
 
   <li *ngIf="isAdmin()">
     <a mat-button [routerLink]="['/app/trabajos/monitorfacturacion/factura']">

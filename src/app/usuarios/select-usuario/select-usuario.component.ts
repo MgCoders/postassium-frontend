@@ -37,6 +37,7 @@ export class SelectUsuarioComponent implements OnInit {
   }
 
   onChangeValue(evt) {
-    this.onChange.emit(this.lista.find((x) => x.id === evt.value));
+    const u: Usuario = this.lista.find((x) => x.id === evt.value);
+    this.onChange.emit(u);
   }
 }

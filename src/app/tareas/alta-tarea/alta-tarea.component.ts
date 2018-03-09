@@ -17,11 +17,13 @@ export class AltaTareaComponent implements OnInit {
   public tareaActual: Tarea;
   public puntoControlActual: PuntoControl;
 
-  constructor(public dialogRef: MatDialogRef<AltaTareaComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: [Tarea, Tarea[], number],
-              private tareaService: TareaService,
-              private alertService: AlertService,
-              private layoutService: LayoutService) { }
+  constructor(
+      public dialogRef: MatDialogRef<AltaTareaComponent>,
+      @Inject(MAT_DIALOG_DATA) public data: [Tarea, Tarea[], number],
+      private tareaService: TareaService,
+      private alertService: AlertService,
+      private layoutService: LayoutService
+  ) { }
 
   ngOnInit() {
     if (this.data[0] === undefined) {

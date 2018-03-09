@@ -4,6 +4,10 @@
     <div class="row">
       <h2 class="article-title padding-top-30 col-12 col-sm-6">Materiales de la Tarea</h2>
       <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
+        <button mat-raised-button color="primary" (click)="verTrabajo()">
+          <mat-icon class="material-icons">keyboard_backspace</mat-icon>
+          Trabajo
+        </button>
         <button [disabled]="!loadCompleted" mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Agregar Material</button>
       </div>
     </div>
