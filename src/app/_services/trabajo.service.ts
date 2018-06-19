@@ -7,6 +7,8 @@ import { environment } from '../../environments/environment';
 import { Proyecto } from '../_models/models';
 import { Observable } from 'rxjs/Observable';
 import { Trabajo } from '../_models/Trabajo';
+import { RequestOptions, Request, ResponseContentType } from '@angular/http';
+import { open } from 'inspector';
 
 @Injectable()
 export class TrabajoService {
@@ -19,6 +21,13 @@ export class TrabajoService {
 
     get(id: number): Observable<Trabajo> {
         return this.http.get<Trabajo>(`${environment.apiUrl}/trabajos/` + id);
+    }
+
+    getPDF(id: number): Observable<Blob> {
+        return this.http
+        .get(`${environment.apiUrl}/trabajos/PDF/` + id, {
+          responseType: 'blob'
+        });
     }
 
     getByEstado(estado: string): Observable<Trabajo[]> {

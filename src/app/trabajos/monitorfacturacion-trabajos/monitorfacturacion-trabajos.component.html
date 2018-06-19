@@ -47,6 +47,9 @@
             <button mat-icon-button color="warn" matTooltip="En espera" *ngIf="this.estado === 'factura'">
               <mat-icon class="material-icons" (click)="ponerEnEspera(x)">announcement</mat-icon>
             </button>
+            <button mat-icon-button matTooltip="Ver PDF" color="success">
+              <mat-icon class="material-icons" (click)="verPDF(x)">cloud_download</mat-icon>
+            </button>
           </td>
         </tr>
         </tbody>
