@@ -25,6 +25,7 @@ const routes: Routes = [
       { path: 'registros', loadChildren: '../registros/registros.module#RegistrosModule' },
       { path: 'tiposmateriales', loadChildren: '../tiposmateriales/tiposmateriales.module#TiposMaterialesModule' },
       { path: 'materiales', loadChildren: '../materiales/materiales.module#MaterialesModule' },
+      { path: 'notificaciones', loadChildren: '../notificaciones/notificaciones.module#NotificacionesModule' },
       { path: 'chart', loadChildren: '../charts/charts.module#ChartsModule' },
       { path: 'form', loadChildren: '../forms/forms.module#MyFormsModule' },
       { path: 'page', loadChildren: '../pages/pages.module#PagesModule' },
