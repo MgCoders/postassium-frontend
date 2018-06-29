@@ -14,11 +14,15 @@ export class UsuarioImp implements Usuario {
 
     nombre: string;
 
+    apellido: string;
+
     role: string;
 
     token?: string;
 
     password: string;
+
+    login: boolean;
 
     usuarioRubros?: UsuarioRubro[];
 
@@ -26,9 +30,11 @@ export class UsuarioImp implements Usuario {
         this.id = x.id;
         this.email = x.email;
         this.nombre = x.nombre;
+        this.apellido = x.apellido;
         this.role = x.role;
         this.token = x.token;
         this.password = x.password;
+        this.login = x.login;
         this.usuarioRubros = new Array();
         x.usuarioRubros.forEach((y) => {
             this.usuarioRubros.push(new UsuarioRubroImp(y));

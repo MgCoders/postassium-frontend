@@ -14,6 +14,13 @@
       <div class="row">
         <div class="col-12">
           <mat-input-container class="full-width">
+            <input [(ngModel)]="usuarioActual.apellido" matInput placeholder="Apellido" name="Apellido" >
+          </mat-input-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-input-container class="full-width">
             <input [(ngModel)]="usuarioActual.email" matInput placeholder="E-Mail" name="Email" [formControl]="mailFC">
             <mat-error *ngIf="mailFC.hasError('email')">El mail no tiene formato correcto.</mat-error>
             <mat-error *ngIf="mailFC.hasError('required')">El mail es obligatorio.</mat-error>
@@ -28,6 +35,11 @@
               <mat-option value="USER">Usuario</mat-option>
             </mat-select>
           </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-checkbox name="tieneLogin" [(ngModel)]="usuarioActual.login">¿Inicia sesión?</mat-checkbox>
         </div>
       </div>
       <div class="row">

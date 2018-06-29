@@ -19,11 +19,15 @@ export interface Usuario {
 
     nombre: string;
 
+    apellido: string;
+
     role: string;
 
     token?: string;
 
     password: string;
+
+    login: boolean;
 
     usuarioRubros?: models.UsuarioRubro[];
 

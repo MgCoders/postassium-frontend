@@ -36,6 +36,7 @@ export class AltaUsuarioComponent implements OnInit {
       this.usuarioActual = {} as Usuario;
       this.usuarioActual.usuarioRubros = new Array();
       this.usuarioActual.role = 'USER';
+      this.usuarioActual.login = false;
     } else {
       this.usuarioActual = new UsuarioImp(this.data[0]);
     }

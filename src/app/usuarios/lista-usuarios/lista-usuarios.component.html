@@ -13,8 +13,10 @@
         <tr>
           <th>#</th>
           <th class="mdl-data-table__cell--non-numeric">Nombre</th>
+          <th class="mdl-data-table__cell--non-numeric">Apellido</th>
           <th class="mdl-data-table__cell--non-numeric">Email</th>
           <th class="mdl-data-table__cell--non-numeric">Rol</th>
+          <th class="mdl-data-table__cell--non-numeric">Login</th>
           <th class="mdl-data-table__cell--non-numeric">Rubros</th>
           <th></th>
         </tr>
@@ -23,8 +25,10 @@
         <tr *ngFor="let x of usuarios">
           <td>{{x.id}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.nombre}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{x.apellido}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.email}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.role}}</td>
+          <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.login === true">SI</span><span *ngIf="x.login === false">NO</span></td>
           <td class="mdl-data-table__cell--non-numeric">
             <mat-list dense>
               <mat-list-item *ngFor="let r of x.usuarioRubros">{{r.rubro.nombre}}</mat-list-item>
