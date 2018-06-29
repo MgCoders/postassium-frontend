@@ -61,7 +61,7 @@ export class MonitorFacturacionTrabajosComponent implements OnInit {
                   break;
               case 'todos':
                   this.estado = 'TODOS';
-                  this.titulo = 'Trabajos'
+                  this.titulo = 'Trabajos';
                   break;
           }
         if (this.estado !== 'TODOS') {
@@ -166,4 +166,16 @@ export class MonitorFacturacionTrabajosComponent implements OnInit {
       this.router.navigate(['/app/trabajos/detalle/', x.id]);
   }
 
+  verPDF(x: Trabajo) {
+    this.trabajoService.getPDF(x.id).subscribe(
+        (data) => {
+            const b: Blob = data.slice(0, data.size, 'application/pdf');
+            const url = window.URL.createObjectURL(b);
+            window.open(url);
+        },
+        (error) => {
+            this.alertService.error('ERROR al intetar obtener el PDF: ' + error, 5000);
+        },
+    );
+  }
 }
