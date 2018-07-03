@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule,
-  MatDialogModule,
   MatIconModule,
   MatInputModule,
   MatSelectModule,
   MatSnackBarModule,
   MatTooltipModule
 } from '@angular/material';
+
+import {
+  MatDialogModule
+} from '@angular/material/dialog';
 
 import { TareasComponent } from './tareas.component';
 import { TareasRoutingModule } from './tareas-routing.module';
@@ -53,7 +56,8 @@ import { MaterialesModule } from '../materiales/materiales.module';
   ],
 
   exports: [
-    SelectTareaComponent
+    SelectTareaComponent,
+      ListaTareasComponent
   ],
 
   providers: [

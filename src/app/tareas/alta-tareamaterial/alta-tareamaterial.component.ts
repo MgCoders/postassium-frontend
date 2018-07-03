@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { TareaMaterial } from '../../_models/TareaMaterial';
 import { TareaService } from '../../_services/tarea.service';
 import { Tarea } from '../../_models/Tarea';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import { Material } from '../../_models/Material';

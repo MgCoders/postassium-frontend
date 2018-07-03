@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>Información recibo</h1>
+
+<div mat-dialog-content class="box box-default">
+  <div class="box-body">
+    <form>
+      <div class="row">
+        <div class="col-12">
+          <mat-checkbox [(ngModel)]="trabajo.equipoDocumentos" name="documentos">¿Documentos?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoRadio" name="radio">¿Radio?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoExtintor" name="extintor">¿Extintor?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoBalizas" name="balizas">¿Balizas?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoLlaveRuedas" name="llaveRuedas">¿Llave ruedas?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoHerramientas" name="herramientas">¿Herramientas?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoManuales" name="manuales">¿Manuales?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoFrenteRadio" name="frenteRadio">¿Frente radio?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoMangueraCabina" name="mangueraCabina">¿Manguera cabina?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoCenicero" name="cenicero">¿Cenicero?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoGatoPalanca" name="gatoPalanca">¿Gato palanca?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoParabrisasSano" name="parabrisasSano">¿Parabrisas sano?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoVidriosLaterales" name="vidriosLaterales">¿Vidrios laterales?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoVidriosLateralesSanos" name="vidriosLateralesSanos">¿Vidrios laterales sanos?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoEspejos" name="espejos">¿Espejos?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoEspejosSanos" name="espejosSanos">¿Espejos sanos?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoSenalerosSanos" name="senalerosSanos">¿Señaleros sanos?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoLucesTraserasSanas" name="lucesTraserasSanas">¿Luces traseras sanas?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoRayones" name="rayones">¿Rayones?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoAbollones" name="abollones">¿Abollones?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoAuxiliar" name="auxiliar">¿Auxiliar?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="trabajo.equipoAuxiliarArmada" name="auxiliarArmada">¿Auxiliar armada?</mat-checkbox>
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="trabajo.equipoCantidadCombustible" matInput placeholder="Cantidad combustible" name="Cantidad combustible">
+          </mat-input-container>
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="trabajo.kmEquipoRecepcion" matInput placeholder="Cantidad de kilómetros" name="Cantidad de kilómetros">
+          </mat-input-container>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<div mat-dialog-actions class="full-width">
+  <div class="full-width text-sm-right">
+    <button mat-button color="primary" class="btn-w-xs" [mat-dialog-close]="false">Cancelar</button>
+    <button mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
+  </div>
+</div>

@@ -10,7 +10,9 @@ export class EquipoImp implements models.Equipo {
     modelo: string;
     matricula: string;
     color: string;
-    // tipoEquipo: models.TipoEquipo;
+    numeroChasis: string;
+    descripcion: string;
+    tipoEquipo: models.TipoEquipo;
     constructor(x: models.Equipo) {
         this.id = x.id;
         this.cliente = x.cliente;
@@ -18,5 +20,8 @@ export class EquipoImp implements models.Equipo {
         this.modelo = x.modelo;
         this.matricula = x.matricula;
         this.color = x.color;
+        this.numeroChasis = x.numeroChasis;
+        this.descripcion = x.descripcion;
+        this.tipoEquipo = x.tipoEquipo;
     }
 }

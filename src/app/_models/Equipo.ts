@@ -10,5 +10,7 @@ export interface Equipo {
     modelo: string;
     matricula: string;
     color: string;
-    // tipoEquipo: models.TipoEquipo;
+    numeroChasis: string;
+    descripcion: string;
+    tipoEquipo: models.TipoEquipo;
 }

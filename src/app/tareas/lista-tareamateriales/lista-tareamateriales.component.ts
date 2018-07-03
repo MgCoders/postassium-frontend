@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LayoutService } from '../../layout/layout.service';
 import { AlertService } from '../../_services/alert.service';
 import { TareaService } from '../../_services/tarea.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { TareaMaterial } from '../../_models/TareaMaterial';
 import { Tarea } from '../../_models/Tarea';
 import { AltaTareaMaterialComponent } from '../alta-tareamaterial/alta-tareamaterial.component';

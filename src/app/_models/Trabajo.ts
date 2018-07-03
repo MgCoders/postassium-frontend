@@ -22,4 +22,29 @@ export interface Trabajo {
     nroRemito: number;
     nroOrdenCompra: number;
 
+    equipoDocumentos: boolean;
+    equipoRadio: boolean;
+    equipoExtintor: boolean;
+    equipoBalizas: boolean;
+    equipoLlaveRuedas: boolean;
+    equipoHerramientas: boolean;
+    equipoManuales: boolean;
+    equipoFrenteRadio: boolean;
+    equipoMangueraCabina: boolean;
+    equipoCenicero: boolean;
+    equipoGatoPalanca: boolean;
+    equipoParabrisasSano: boolean;
+    equipoVidriosLaterales: boolean;
+    equipoVidriosLateralesSanos: boolean;
+    equipoEspejos: boolean;
+    equipoEspejosSanos: boolean;
+    equipoSenalerosSanos: boolean;
+    equipoLucesTraserasSanas: boolean;
+    equipoRayones: boolean;
+    equipoAbollones: boolean;
+    equipoAuxiliar: boolean;
+    equipoAuxiliarArmada: boolean;
+    equipoCantidadCombustible: number;
+    esReparacion: boolean;
+
 }
