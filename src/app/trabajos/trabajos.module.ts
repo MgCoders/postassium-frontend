@@ -34,6 +34,9 @@ import {InformacionReciboComponent} from './informacion-recibo/informacion-recib
 import {TareasComponent} from '../tareas/tareas.component';
 import {ListaTareasComponent} from '../tareas/lista-tareas/lista-tareas.component';
 import {TareasModule} from '../tareas/tareas.module';
+import {AltaTareaMaterialComponent} from "../tareas/alta-tareamaterial/alta-tareamaterial.component";
+import {AltaTareaComponent} from "../tareas/alta-tarea/alta-tarea.component";
+import {AltaPuntocontrolComponent} from "../puntoscontrol/alta-puntocontrol/alta-puntocontrol.component";
 
 @NgModule({
   imports: [
@@ -48,7 +51,8 @@ import {TareasModule} from '../tareas/tareas.module';
     MatTooltipModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    TareasModule
   ],
 
   declarations: [
@@ -72,7 +76,10 @@ import {TareasModule} from '../tareas/tareas.module';
   entryComponents: [
     AltaMonitorFacturacionTrabajosComponent,
     InformacionReciboComponent,
-    AltaEquipoComponent
+    AltaEquipoComponent,
+    AltaTareaComponent,
+    AltaPuntocontrolComponent,
+    AltaTareaMaterialComponent
   ],
 
 })
