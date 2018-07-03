@@ -36,4 +36,6 @@ export * from './TipoMaterial';
 export * from './TipoMaterialImp';
 export * from './TareaMaterial';
 export * from './TareaMaterialImp';
+export * from './NotificacionDestinatario';
+export * from './NotificacionDestinatarioImp';
 

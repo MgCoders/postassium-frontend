@@ -84,4 +84,11 @@
     </a>
   </li>
 
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/notificaciones/destinatarios']">
+      <i class="nav-icon material-icons">assignment_ind</i>
+      <span class="nav-text">Notificaciones</span>
+    </a>
+  </li>
+
 </ul>
