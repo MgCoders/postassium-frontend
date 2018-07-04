@@ -23,6 +23,7 @@ import {AltaMonitorFacturacionTrabajosComponent} from "./alta-monitorfacturacion
 import {MonitorFacturacionTrabajosComponent} from "./monitorfacturacion-trabajos/monitorfacturacion-trabajos.component";
 import {AltaTrabajosComponent} from "./alta-trabajos/alta-trabajos.component";
 import {ClienteService} from '../_services/cliente.service';
+import { FacturaTrabajoComponent } from './factura-trabajo/factura-trabajo.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import {ClienteService} from '../_services/cliente.service';
     DetalleTrabajosComponent,
     MonitorFacturacionTrabajosComponent,
     AltaTrabajosComponent,
-    AltaMonitorFacturacionTrabajosComponent
+    AltaMonitorFacturacionTrabajosComponent,
+    FacturaTrabajoComponent
   ],
   providers: [
     TareaService,
