@@ -68,6 +68,58 @@
 
   </article>
 
+  <article *ngIf="trabajo.equipo != undefined" class="article">
+    <h2 class="article-title">Equipo</h2>
+
+    <div class="box box-default">
+      <div class="box-body">
+
+        <form>
+          <div class="form-group row">
+            <div class="col-6">
+              <mat-input-container class="full-width">
+                <input matInput placeholder="Matrícula" disabled value="{{trabajo.equipo.matricula}}">
+              </mat-input-container>
+            </div>
+            <div class="col-6">
+              <mat-input-container class="full-width">
+                <input matInput placeholder="Marca/Modelo" disabled value="{{trabajo.equipo.marca}}/{{trabajo.equipo.modelo}}">
+              </mat-input-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-6">
+              <mat-input-container class="full-width">
+                <input matInput disabled value="{{trabajo.equipo.numeroChasis}}" placeholder="Número de chasis">
+              </mat-input-container>
+            </div>
+            <div class="col-6">
+              <mat-input-container class="full-width">
+                <input matInput disabled value="{{trabajo.equipo.color}}" placeholder="Color">
+              </mat-input-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-12">
+              <mat-input-container class="full-width">
+                <textarea matInput placeholder="Descripción" disabled value="{{trabajo.equipo.descripcion}}"></textarea>
+              </mat-input-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-6">
+              <mat-input-container class="full-width">
+                <input matInput disabled value="{{trabajo.equipo.tipoEquipo.descripcion}}" placeholder="Tipo de equipo">
+              </mat-input-container>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </article>
+
   <article class="article">
     <app-lista-tareas [trabajo]="trabajo" (onChangeParaFinalizarTrabajo)="onChangeParaFinalizarTrabajo($event)"></app-lista-tareas>
     <div class="row">

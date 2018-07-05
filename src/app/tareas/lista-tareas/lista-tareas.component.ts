@@ -36,6 +36,7 @@ export class ListaTareasComponent implements OnInit {
     this.lista = new Array();
     this.loadCompleted = false;
     this.layoutService.updatePreloaderState('active');
+    this.loadData();
   }
 
   loadData() {
