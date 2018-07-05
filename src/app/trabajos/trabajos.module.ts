@@ -8,7 +8,8 @@ import {
   MatInputModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { TrabajosComponent } from './trabajos.component';
@@ -24,6 +25,11 @@ import {MonitorFacturacionTrabajosComponent} from "./monitorfacturacion-trabajos
 import {AltaTrabajosComponent} from "./alta-trabajos/alta-trabajos.component";
 import {ClienteService} from '../_services/cliente.service';
 import { FacturaTrabajoComponent } from './factura-trabajo/factura-trabajo.component';
+import { TrabajoFacturasListaComponent } from './trabajo-facturas-lista/trabajo-facturas-lista.component';
+import { TrabajoFacturaNuevaComponent } from './trabajo-factura-nueva/trabajo-factura-nueva.component';
+import { IvafacturaSelectComponent } from './ivafactura-select/ivafactura-select.component';
+import { FormaPagoFacturaSelectComponent } from './forma-pago-factura-select/forma-pago-factura-select.component';
+import { MonedaFacturaSelectComponent } from './moneda-factura-select/moneda-factura-select.component';
 
 @NgModule({
   imports: [
@@ -36,7 +42,8 @@ import { FacturaTrabajoComponent } from './factura-trabajo/factura-trabajo.compo
     MatSnackBarModule,
     MatSelectModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
 
   declarations: [
@@ -45,7 +52,12 @@ import { FacturaTrabajoComponent } from './factura-trabajo/factura-trabajo.compo
     MonitorFacturacionTrabajosComponent,
     AltaTrabajosComponent,
     AltaMonitorFacturacionTrabajosComponent,
-    FacturaTrabajoComponent
+    FacturaTrabajoComponent,
+    TrabajoFacturasListaComponent,
+    TrabajoFacturaNuevaComponent,
+    IvafacturaSelectComponent,
+    FormaPagoFacturaSelectComponent,
+    MonedaFacturaSelectComponent
   ],
   providers: [
     TareaService,
