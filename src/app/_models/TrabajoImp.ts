@@ -46,6 +46,7 @@ export class TrabajoImp implements models.Trabajo {
     equipoCantidadCombustible: number;
 
     esReparacion: boolean;
+    paraFinalizar: boolean;
 
     public constructor(x: models.Trabajo) {
         this.id = x.id;
@@ -63,6 +64,7 @@ export class TrabajoImp implements models.Trabajo {
         this.cliente = x.cliente;
         this.equipo = x.equipo;
         this.esReparacion = x.esReparacion;
+        this.paraFinalizar = x.paraFinalizar;
 
         this.equipoDocumentos = x.equipoDocumentos;
         this.equipoRadio = x.equipoRadio;

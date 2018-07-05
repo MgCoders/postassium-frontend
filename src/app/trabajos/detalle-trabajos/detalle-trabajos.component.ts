@@ -23,6 +23,7 @@ export class DetalleTrabajosComponent implements OnInit {
   public trabajo: Trabajo;
   public success: boolean;
   public idTrabajo: number;
+  public paraFinalizarTrabajo: boolean;
 
   constructor(public dialog: MatDialog,
               private tareaService: TareaService,
@@ -76,13 +77,15 @@ export class DetalleTrabajosComponent implements OnInit {
       this.router.navigate(['/app/trabajos/monitorfacturacion/']);
   }
 
-  eliminar(x: Tarea) {
+
+  finalizarTrabajo() {
+      this.trabajo.estado = 'PENDIENTE_ASIGNACION_VALORES';
+      this.trabajoService.edit(this.trabajo).subscribe();
   }
 
-  editar(x: Tarea) {
-  }
-
-  nuevoPuntoContol() {
-  }
-
+    onChangeParaFinalizarTrabajo(paraFinalizar: boolean) {
+      console.log('PARA FINALIZAR');
+      console.log(paraFinalizar);
+      this.paraFinalizarTrabajo = paraFinalizar;
+    }
 }

@@ -8,5 +8,6 @@ export interface Tarea {
     descripcion: string;
     minutosEstimados: number;
     puntoControl: models.PuntoControl;
+    completa: boolean;
 
 }

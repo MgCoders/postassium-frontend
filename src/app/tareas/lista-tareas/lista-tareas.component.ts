@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AltaTareaComponent } from '../alta-tarea/alta-tarea.component';
 import { TareaService } from '../../_services/tarea.service';
@@ -22,6 +22,8 @@ export class ListaTareasComponent implements OnInit {
   public lista: Tarea[];
   public trabajo: Trabajo;
   public loadCompleted: boolean;
+  @Input() idTrabajo: number;
+  @Output() onChangeParaFinalizarTrabajo: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(public dialog: MatDialog,
               private tareaService: TareaService,
@@ -35,7 +37,7 @@ export class ListaTareasComponent implements OnInit {
     this.lista = new Array();
     this.loadCompleted = false;
     this.layoutService.updatePreloaderState('active');
-    this.trabajoService.get(1).subscribe(
+    this.trabajoService.get(this.idTrabajo).subscribe(
         (data) => {
           this.trabajo = data;
           console.log(this.trabajo);
@@ -48,7 +50,7 @@ export class ListaTareasComponent implements OnInit {
   }
 
   loadData() {
-      this.tareaService.getAllByTrabajo(this.trabajo.id).subscribe(
+      this.tareaService.getAllByTrabajo(this.idTrabajo).subscribe(
           (datatarea) => {
               this.lista = datatarea;
               this.layoutService.updatePreloaderState('hide');
@@ -89,7 +91,9 @@ export class ListaTareasComponent implements OnInit {
   }
 
   nuevoPuntoContol() {
-    const dialog = this.dialog.open(AltaPuntocontrolComponent, {
+      console.log('NUEVO PUNTO CONTROL');
+      console.log(this.trabajo);
+      const dialog = this.dialog.open(AltaPuntocontrolComponent, {
       data: [undefined, this.trabajo],
       width: '600px',
     });
@@ -99,6 +103,23 @@ export class ListaTareasComponent implements OnInit {
 
   }
 
+  tareaCompleta(x: Tarea) {
+      x.completa = !x.completa;
+      this.tareaService.edit(x).subscribe();
+
+      let paraFinalizar = true;
+      this.lista.forEach(
+          (element) => {
+              if (!element.completa) {
+                  paraFinalizar = false;
+              }
+          }
+      );
+      console.log('TAREA COMPLETA');
+      console.log(paraFinalizar);
+      this.onChangeParaFinalizarTrabajo.emit(paraFinalizar);
+  }
+
   verRegistros(x: Tarea) {
       this.router.navigate(['/app/registros/listaRegistros/', x.id]);
   }
@@ -106,4 +127,5 @@ export class ListaTareasComponent implements OnInit {
   verMateriales(x: Tarea) {
         this.router.navigate(['/app/tareas/listaTareaMateriales/', x.id]);
   }
+
 }

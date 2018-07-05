@@ -17,11 +17,14 @@ export class PuntoControlImp implements PuntoControl {
 
     tareas?: Tarea[];
 
+    verificado: boolean;
+
     constructor(x: PuntoControl) {
         this.nombre = x.nombre;
         this.responsable = x.responsable;
         this.orden = x.orden;
         this.trabajo = x.trabajo;
+        this.verificado = x.verificado;
         this.tareas = new Array();
         x.tareas.forEach(
             (y) => {

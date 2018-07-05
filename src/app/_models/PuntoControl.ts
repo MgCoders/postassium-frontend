@@ -14,4 +14,6 @@ export interface PuntoControl {
 
     tareas?: models.Tarea[];
 
+    verificado: boolean;
+
 }

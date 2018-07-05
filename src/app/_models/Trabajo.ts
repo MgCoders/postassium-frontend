@@ -46,5 +46,6 @@ export interface Trabajo {
     equipoAuxiliarArmada: boolean;
     equipoCantidadCombustible: number;
     esReparacion: boolean;
+    paraFinalizar: boolean;
 
 }

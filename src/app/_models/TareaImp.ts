@@ -6,6 +6,7 @@ export class TareaImp implements models.Tarea {
     descripcion: string;
     minutosEstimados: number;
     puntoControl: models.PuntoControl;
+    completa: boolean;
 
     public constructor(x: models.Tarea) {
         this.id = x.id;
@@ -13,6 +14,7 @@ export class TareaImp implements models.Tarea {
         this.descripcion = x.descripcion;
         this.minutosEstimados = x.minutosEstimados;
         this.puntoControl = x.puntoControl;
+        this.completa = x.completa;
     }
 
 }
