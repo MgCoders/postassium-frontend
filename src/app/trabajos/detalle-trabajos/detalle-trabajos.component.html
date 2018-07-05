@@ -69,69 +69,7 @@
   </article>
 
   <article class="article">
-    <h2 class="article-title">Cliente</h2>
-
-    <div class="box box-default">
-      <div class="box-body">
-
-        <form>
-          <div class="form-group row">
-            <div class="col-6">
-              <mat-input-container class="full-width">
-                <input matInput placeholder="Nombre Empresa" disabled value="{{trabajo.cliente.nombreEmpresa}}">
-              </mat-input-container>
-            </div>
-            <div class="col-6">
-              <mat-input-container class="full-width">
-                <input matInput placeholder="RUT" disabled value="{{trabajo.cliente.rut}}">
-              </mat-input-container>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-6">
-              <mat-input-container class="full-width mat-icon-left">
-                <mat-icon class="material-icons">email</mat-icon>
-                <input matInput disabled value="{{trabajo.cliente.emailEmpresa}}" placeholder="Email">
-              </mat-input-container>
-            </div>
-            <div class="col-6">
-              <mat-input-container class="full-width mat-icon-left">
-                <mat-icon class="material-icons">settings_phone</mat-icon>
-                <input matInput disabled value="{{trabajo.cliente.telefono}}" placeholder="Teléfono">
-              </mat-input-container>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-12">
-              <mat-input-container class="full-width mat-icon-left">
-                <mat-icon class="material-icons">map</mat-icon>
-                <textarea matInput placeholder="Dirección" disabled value="{{trabajo.cliente.direccion}}"></textarea>
-              </mat-input-container>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-6">
-              <mat-input-container class="full-width mat-icon-left">
-                <mat-icon class="material-icons">perm_identity</mat-icon>
-                <input matInput disabled value="{{trabajo.cliente.personaContacto}}" placeholder="Persona de contacto">
-              </mat-input-container>
-            </div>
-            <div class="col-6">
-              <mat-input-container class="full-width mat-icon-left">
-                <mat-icon class="material-icons">settings_phone</mat-icon>
-                <input matInput disabled value="{{trabajo.cliente.telefonoContacto}}" placeholder="Teléfono contacto">
-              </mat-input-container>
-            </div>
-          </div>
-        </form>
-
-      </div>
-    </div>
-
-  </article>
-
-  <article class="article">
-    <app-lista-tareas [idTrabajo]="trabajo.id" (onChangeParaFinalizarTrabajo)="onChangeParaFinalizarTrabajo($event)"></app-lista-tareas>
+    <app-lista-tareas [trabajo]="trabajo" (onChangeParaFinalizarTrabajo)="onChangeParaFinalizarTrabajo($event)"></app-lista-tareas>
     <div class="row">
       <div class="article-title padding-top-30 col-12 col-sm-6"></div>
       <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">

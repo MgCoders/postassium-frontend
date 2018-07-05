@@ -20,9 +20,8 @@ import { PuntoControl } from '../../_models/PuntoControl';
 export class ListaTareasComponent implements OnInit {
 
   public lista: Tarea[];
-  public trabajo: Trabajo;
   public loadCompleted: boolean;
-  @Input() idTrabajo: number;
+  @Input() trabajo: Trabajo;
   @Output() onChangeParaFinalizarTrabajo: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(public dialog: MatDialog,
@@ -37,20 +36,10 @@ export class ListaTareasComponent implements OnInit {
     this.lista = new Array();
     this.loadCompleted = false;
     this.layoutService.updatePreloaderState('active');
-    this.trabajoService.get(this.idTrabajo).subscribe(
-        (data) => {
-          this.trabajo = data;
-          console.log(this.trabajo);
-          this.loadData();
-        },
-        (error) => {
-          this.alertService.error(error, 5000);
-        }
-    );
   }
 
   loadData() {
-      this.tareaService.getAllByTrabajo(this.idTrabajo).subscribe(
+      this.tareaService.getAllByTrabajo(this.trabajo.id).subscribe(
           (datatarea) => {
               this.lista = datatarea;
               this.layoutService.updatePreloaderState('hide');
