@@ -37,6 +37,7 @@ import {TareasModule} from '../tareas/tareas.module';
 import {AltaTareaMaterialComponent} from "../tareas/alta-tareamaterial/alta-tareamaterial.component";
 import {AltaTareaComponent} from "../tareas/alta-tarea/alta-tarea.component";
 import {AltaPuntocontrolComponent} from "../puntoscontrol/alta-puntocontrol/alta-puntocontrol.component";
+import {TiposEquiposModule} from "../tipoequipo/tiposequipos.module";
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import {AltaPuntocontrolComponent} from "../puntoscontrol/alta-puntocontrol/alta
     MatDialogModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    TareasModule
+    TareasModule,
+    TiposEquiposModule
   ],
 
   declarations: [

@@ -45,6 +45,11 @@
           </mat-input-container>
         </div>
       </div>
+      <div class="row">
+        <div class="col-12">
+          <app-select-tipoequipo [object]="tipoEquipoActual" (onChange)="tipoEquipoOnChange($event)" idModel="id" placeHolder="Tipo de Equipo" id="id" desc="descripcion"></app-select-tipoequipo>
+        </div>
+      </div>
     </form>
   </div>
 </div>

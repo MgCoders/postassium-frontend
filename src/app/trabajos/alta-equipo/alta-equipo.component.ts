@@ -22,6 +22,7 @@ export class AltaEquipoComponent implements OnInit {
 
   public equipoActual: Equipo;
   public cliente: Cliente;
+  tipoEquipoActual: TipoEquipo;
 
   constructor(
       public dialogRef: MatDialogRef<AltaEquipoComponent>,
@@ -36,12 +37,11 @@ export class AltaEquipoComponent implements OnInit {
       this.equipoActual = {} as Equipo;
     } else {
       this.equipoActual = new EquipoImp(this.data[0]);
+      this.tipoEquipoActual = this.equipoActual.tipoEquipo;
     }
     this.equipoActual.cliente = this.data[1];
     this.equipoActual.tipoEquipo = {} as TipoEquipo;
-    this.equipoActual.tipoEquipo.id = 1;
-    this.equipoActual.tipoEquipo.descripcion = 'Camion';
-    this.equipoActual.tipoEquipo.dibujo = 'Camion';
+    this.tipoEquipoActual = this.equipoActual.tipoEquipo;
   }
 
   cerrar() {
@@ -50,6 +50,11 @@ export class AltaEquipoComponent implements OnInit {
 
   guardar() {
     this.layoutService.updatePreloaderState('active');
+    if (isNaN(this.tipoEquipoActual.id)) {
+      this.equipoActual.tipoEquipo = undefined;
+    } else {
+      this.equipoActual.tipoEquipo = this.tipoEquipoActual;
+    }
     if (this.data[0] === undefined) {
       this.equipoService.create(this.equipoActual).subscribe(
         (data) => {
@@ -78,4 +83,7 @@ export class AltaEquipoComponent implements OnInit {
     }
   }
 
+  tipoEquipoOnChange(tp: TipoEquipo) {
+    this.tipoEquipoActual = tp;
+  }
 }
