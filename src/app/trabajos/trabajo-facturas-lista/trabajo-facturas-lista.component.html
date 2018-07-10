@@ -1,0 +1,50 @@
+<section class="container-fluid with-maxwidth chapter">
+  <article class="article">
+    <div class="row">
+      <h2 class="article-title padding-top-30 col-12 col-sm-6">Facturas trabajo</h2>
+      <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
+        <button [disabled]="loading > 0" mat-raised-button color="accent" class="btn-w-md" (click)="Nuevo()">Nueva Factura</button>
+      </div>
+    </div>
+
+    <div class="box box-default table-box table-responsive mdl-shadow--2dp">
+      <table class="mdl-data-table">
+        <thead>
+          <tr>
+            <th>Nro.</th>
+            <th class="mdl-data-table__cell--non-numeric">Fecha</th>
+            <th class="mdl-data-table__cell--non-numeric">IVA</th>
+            <th class="mdl-data-table__cell--non-numeric">F. Pago</th>
+            <th class="mdl-data-table__cell--non-numeric">Moneda</th>
+            <th>Importe</th>
+            <th>Nro. Remito</th>
+            <th class="mdl-data-table__cell--non-numeric">Observaciones</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of lista">
+            <td>{{x.nroFactura | number:'1.0-0'}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{x.fecha}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{x.iva}}%</td>
+            <td class="mdl-data-table__cell--non-numeric">{{x.formaPago}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{x.moneda}}</td>
+            <td>{{GetImporte(x) | number:'1.2-2'}}</td>
+            <td>{{x.nroRemito | number:'1.0-0'}}</td>
+            <td class="mdl-data-table__cell--non-numeric">
+              <button *ngIf="x.observaciones !== undefined && x.observaciones !== ''" matTooltipPosition="above" matTooltip="Ver Observaciones."
+                mat-icon-button (click)="VerObservaciones(x.observaciones)">
+                <mat-icon class="material-icons">visibility</mat-icon>
+              </button>
+            </td>
+            <td>
+              <button [disabled]="loading > 0" matTooltipPosition="above" matTooltip="Editar Cargo" mat-icon-button color="primary" (click)="Editar(x)">
+                <mat-icon class="material-icons">mode_edit</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>

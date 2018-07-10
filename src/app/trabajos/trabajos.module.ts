@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import {CommonModule, DatePipe} from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { CommonModule, DatePipe } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatIconModule,
@@ -9,7 +9,8 @@ import {
   MatSnackBarModule,
   MatTooltipModule,
   MatCheckboxModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatProgressSpinnerModule,
 } from '@angular/material';
 
 import {
@@ -28,16 +29,23 @@ import { AltaMonitorFacturacionTrabajosComponent } from './alta-monitorfacturaci
 import { MonitorFacturacionTrabajosComponent } from './monitorfacturacion-trabajos/monitorfacturacion-trabajos.component';
 import { AltaTrabajosComponent } from './alta-trabajos/alta-trabajos.component';
 import { ClienteService } from '../_services/cliente.service';
-import {EquipoService} from '../_services/equipo.service';
-import {AltaEquipoComponent} from './alta-equipo/alta-equipo.component';
-import {InformacionReciboComponent} from './informacion-recibo/informacion-recibo.component';
-import {TareasComponent} from '../tareas/tareas.component';
-import {ListaTareasComponent} from '../tareas/lista-tareas/lista-tareas.component';
-import {TareasModule} from '../tareas/tareas.module';
-import {AltaTareaMaterialComponent} from "../tareas/alta-tareamaterial/alta-tareamaterial.component";
-import {AltaTareaComponent} from "../tareas/alta-tarea/alta-tarea.component";
-import {AltaPuntocontrolComponent} from "../puntoscontrol/alta-puntocontrol/alta-puntocontrol.component";
-import {TiposEquiposModule} from "../tipoequipo/tiposequipos.module";
+import { EquipoService } from '../_services/equipo.service';
+import { AltaEquipoComponent } from './alta-equipo/alta-equipo.component';
+import { InformacionReciboComponent } from './informacion-recibo/informacion-recibo.component';
+import { TareasComponent } from '../tareas/tareas.component';
+import { ListaTareasComponent } from '../tareas/lista-tareas/lista-tareas.component';
+import { TareasModule } from '../tareas/tareas.module';
+import { AltaTareaMaterialComponent } from '../tareas/alta-tareamaterial/alta-tareamaterial.component';
+import { AltaTareaComponent } from '../tareas/alta-tarea/alta-tarea.component';
+import { AltaPuntocontrolComponent } from '../puntoscontrol/alta-puntocontrol/alta-puntocontrol.component';
+import { TiposEquiposModule } from '../tipoequipo/tiposequipos.module';
+import { CustomDatePipe } from '../_pipes/customDate.pipe';
+import { FacturaService } from '../_services/factura.service';
+import { TrabajoFacturaNuevaComponent } from './trabajo-factura-nueva/trabajo-factura-nueva.component';
+import { TrabajoFacturasListaComponent } from './trabajo-facturas-lista/trabajo-facturas-lista.component';
+import { IvafacturaSelectComponent } from './ivafactura-select/ivafactura-select.component';
+import { FormaPagoFacturaSelectComponent } from './forma-pago-factura-select/forma-pago-factura-select.component';
+import { MonedaFacturaSelectComponent } from './moneda-factura-select/moneda-factura-select.component';
 
 @NgModule({
   imports: [
@@ -54,7 +62,9 @@ import {TiposEquiposModule} from "../tipoequipo/tiposequipos.module";
     MatCheckboxModule,
     MatDatepickerModule,
     TareasModule,
-    TiposEquiposModule
+    TiposEquiposModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule
   ],
 
   declarations: [
@@ -64,7 +74,12 @@ import {TiposEquiposModule} from "../tipoequipo/tiposequipos.module";
     AltaTrabajosComponent,
     AltaMonitorFacturacionTrabajosComponent,
     InformacionReciboComponent,
-    AltaEquipoComponent
+    AltaEquipoComponent,
+    TrabajoFacturasListaComponent,
+    TrabajoFacturaNuevaComponent,
+    IvafacturaSelectComponent,
+    FormaPagoFacturaSelectComponent,
+    MonedaFacturaSelectComponent
   ],
   providers: [
     TareaService,
@@ -73,7 +88,9 @@ import {TiposEquiposModule} from "../tipoequipo/tiposequipos.module";
     AlertService,
     LayoutService,
     EquipoService,
-    DatePipe
+    DatePipe,
+    CustomDatePipe,
+    FacturaService
   ],
   entryComponents: [
     AltaMonitorFacturacionTrabajosComponent,
@@ -81,7 +98,8 @@ import {TiposEquiposModule} from "../tipoequipo/tiposequipos.module";
     AltaEquipoComponent,
     AltaTareaComponent,
     AltaPuntocontrolComponent,
-    AltaTareaMaterialComponent
+    AltaTareaMaterialComponent,
+    TrabajoFacturaNuevaComponent
   ],
 
 })

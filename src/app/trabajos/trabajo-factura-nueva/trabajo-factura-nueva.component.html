@@ -1,0 +1,130 @@
+<h1 mat-dialog-title>
+  <div class="row">
+    <div class="col-11 text-left">
+      Factura
+    </div>
+    <div class="col-1 text-rigth">
+      <mat-spinner *ngIf="loading" [diameter]="20" [strokeWidth]="5"></mat-spinner>
+    </div>
+  </div>
+</h1>
+
+<div mat-dialog-content class="box box-default">
+  <div class="box-body">
+    <form>
+      <div class="row">
+        <div class="col-3">
+          <app-ivafactura-select [object]="facturaActual" placeHolder="Tasa de IVA" addEmptyOption="true" id="iva" desc="desc" required="true"></app-ivafactura-select>
+        </div>
+        <div class="col-3">
+          <app-moneda-factura-select [object]="facturaActual" placeHolder="Moneda" addEmptyOption="true" id="moneda" desc="desc" required="true"></app-moneda-factura-select>
+        </div>
+        <div class="col-3">
+          <app-forma-pago-factura-select [object]="facturaActual" placeHolder="Forma de Pago" addEmptyOption="true" id="formaPago"
+            desc="desc" required="true"></app-forma-pago-factura-select>
+        </div>
+        <div class="col-3">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="fechaFactura" name="fecha" class="full-width" matInput [matDatepicker]="picker" placeholder="FECHA" [formControl]="facturaForm.controls['fechaFacturaFC']">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="facturaForm.controls['fechaFacturaFC'].invalid">La fecha es requerida.</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="facturaActual.nroFactura" name="nroFactura" class="full-width" matInput placeholder="Nro. Factura" [formControl]="facturaForm.controls['nroFacturaFC']">
+            <mat-error *ngIf="facturaForm.controls['nroFacturaFC'].invalid">Debe ser numérico.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="facturaActual.nroRemito" name="nroRemito" class="full-width" matInput placeholder="Nro. Remito" [formControl]="facturaForm.controls['nroRemitoFC']">
+            <mat-error *ngIf="facturaForm.controls['nroRemitoFC'].invalid">Debe ser numérico.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="facturaActual.observaciones" name="observaciones" class="full-width" matInput placeholder="Observaciones"
+              [formControl]="facturaForm.controls['observacionesFC']">
+            <mat-hint align="end">{{facturaActual.observaciones.length}} / 256</mat-hint>
+            <mat-error *ngIf="facturaForm.controls['observacionesFC'].invalid">Las observaciónes no pueden superar los 256 caracteres.</mat-error>
+          </mat-input-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="facturaLineaActual.descripcion" name="descripcion" class="full-width" matInput placeholder="Descripción"
+              [formControl]="facturaLineaForm.controls['lineaDescripcionFC']">
+            <mat-error *ngIf="facturaLineaForm.controls['lineaDescripcionFC'].invalid">Debe ingresar la descripción.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-2">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="facturaLineaActual.cantidad" name="cantidad" class="full-width" matInput placeholder="Cantidad" [formControl]="facturaLineaForm.controls['lineaCantidadFC']">
+            <mat-error *ngIf="facturaLineaForm.controls['lineaCantidadFC'].invalid">Debe ser numérico.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-2">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="facturaLineaActual.precioUnitario" name="precioUnitario" class="full-width" matInput placeholder="Precio Unitario"
+              [formControl]="facturaLineaForm.controls['lineaPrecioUnitarioFC']">
+            <mat-error *ngIf="facturaLineaForm.controls['lineaPrecioUnitarioFC'].invalid">Debe ser numérico.</mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <button matTooltipPosition="above" matTooltip="Agregar" [disabled]="facturaLineaForm.invalid" (click)="AgregarLineaOnClick()"
+            mat-raised-button color="primary">
+            Agregar
+          </button>
+        </div>
+      </div>
+      <table class="full-width mdl-data-table">
+        <thead>
+          <tr>
+            <th>#<br/></th>
+            <th class="mdl-data-table__cell--non-numeric">Descripción<br/></th>
+            <th>Cant.<br/></th>
+            <th>Precio Unit.<br/></th>
+            <th><span class="badge badge-light">{{GetSubTotal() | number:'1.2-2'}}</span><br/>
+              Sub-Tot. Lin.              
+            </th>
+            <th><span class="badge badge-primary">{{GetIVA() | number:'1.2-2'}}</span><br/>
+              IVA Lin.              
+            </th>
+            <th><span class="badge badge-success">{{GetTotal() | number:'1.2-2'}}</span><br/>
+              Total Lin.
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of facturaActual.lineas">
+            <td>{{x.id}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{x.descripcion}}</td>
+            <td>{{x.cantidad | number:'1.2-2'}}</td>
+            <td>{{x.precioUnitario | number:'1.2-2'}}</td>
+            <td>{{x.precioUnitario * x.cantidad | number:'1.2-2'}}</td>
+            <td>{{(x.precioUnitario * x.cantidad) * (facturaActual.iva / 100) | number:'1.2-2'}}</td>
+            <td>{{(x.precioUnitario * x.cantidad) + ((x.precioUnitario * x.cantidad) * (facturaActual.iva / 100)) | number:'1.2-2'}}</td>
+            <td>
+              <button class="full-width" mat-icon-button color="warn">
+                <mat-icon class="material-icons" (click)="EliminarLinea(x)">delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+
+<div mat-dialog-actions class="full-width">
+  <div class="full-width text-sm-right">
+    <button mat-button color="info" class="btn-w-xs" [mat-dialog-close]="false">Cancelar</button>
+    <button [disabled]="loading > 0 || facturaForm.invalid" mat-button color="primary" class="btn-w-md" (click)="Guardar()">Guardar</button>
+  </div>
+</div>

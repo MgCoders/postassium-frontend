@@ -1,6 +1,7 @@
 import {
     ApplicationRef,
-    NgModule
+    NgModule,
+    LOCALE_ID
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -39,7 +40,9 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MAT_DATE_LOCALE,
+    DateAdapter
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -87,6 +90,7 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { AuthService } from './_services/auth.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { AdminGuard } from './_guards/admin.guard';
+import { CustomDateAdapter } from './_helpers/CustomDateAdapter';
 
 @NgModule({
     imports: [
@@ -164,6 +168,9 @@ import { AdminGuard } from './_guards/admin.guard';
     ],
     bootstrap: [AppComponent],
     providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'es_UY' },
+        { provide: DateAdapter, useClass: CustomDateAdapter },
+        { provide: LOCALE_ID, useValue: 'es_UY' },
         AuthService,
         ColaboradorService,
         AuthGuard,
@@ -182,7 +189,8 @@ import { AdminGuard } from './_guards/admin.guard';
 })
 
 export class AppModule {
-    constructor(public appRef: ApplicationRef) {
+    constructor(public appRef: ApplicationRef, private dateAdapter: DateAdapter<Date>) {
+        this.dateAdapter.setLocale('es');
     }
 
     hmrOnInit(store) {

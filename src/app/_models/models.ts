@@ -38,4 +38,7 @@ export * from './TareaMaterial';
 export * from './TareaMaterialImp';
 export * from './NotificacionDestinatario';
 export * from './NotificacionDestinatarioImp';
-
+export * from './Factura';
+export * from './FacturaImp';
+export * from './FacturaLinea';
+export * from './FacturaLineaImp';
