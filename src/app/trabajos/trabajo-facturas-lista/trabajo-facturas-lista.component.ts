@@ -4,6 +4,12 @@ import { DialogConfirmComponent } from '../../shared/dialog-confirm/dialog-confi
 import { MatDialog } from '@angular/material';
 import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
+import { TrabajoFacturaNuevaComponent } from '../trabajo-factura-nueva/trabajo-factura-nueva.component';
+import { DialogInfoComponent } from '../../shared/dialog-info/dialog-info.component';
+import { TrabajoService } from '../../_services/trabajo.service';
+import { FacturaService } from '../../_services/factura.service';
+import { ActivatedRoute } from '@angular/router';
+import { Trabajo } from '../../_models/models';
 
 @Component({
   selector: 'app-trabajo-facturas-lista',
@@ -14,59 +20,54 @@ export class TrabajoFacturasListaComponent implements OnInit {
 
   public lista: Factura[];
   public loading: number = 0;
+  public trabajoActual: Trabajo;
+  public idTrabajoActual: number;
 
   constructor(public dialog: MatDialog,
-              //private service: ProyectoService,
               private as: AlertService,
-              private layoutService: LayoutService) { }
+              private layoutService: LayoutService,
+              private route: ActivatedRoute,
+              private service: FacturaService,
+              private trabajoService: TrabajoService) { }
 
   ngOnInit() {
     this.lista = new Array();
 
-    const f1: Factura = {} as Factura;
-    f1.id = 1;
-    f1.fecha = '01-07-2018';
-    f1.formaPago = 'CONTADO';
-    f1.iva = 22;
-    f1.moneda = '$';
-    f1.nroFactura = 125033;
-    f1.nroRemito = undefined;
-    f1.observaciones = 'Prueba Obs.';
-    f1.lineas = new Array();
+    this.route.params.subscribe((params) => {
+      this.idTrabajoActual = +params['id'];
 
-    this.lista.push(f1);
-
-/*    this.layoutService.updatePreloaderState('active');
-    this.loading++;
-     this.service.getAll().subscribe(
-      (data) => {
-        this.loading--;
-        this.lista = data;
-        this.lista.sort((a: Factura, b: Factura) => {
-          return b.id - a.id;
-        });
-        this.layoutService.updatePreloaderState('hide');
-      },
-      (error) => {
-        this.loading--;
-        this.layoutService.updatePreloaderState('hide');
-        this.as.error(error, 5000);
-      }); */
+      this.loading++;
+      this.layoutService.updatePreloaderState('active');
+      this.trabajoService.get(this.idTrabajoActual).subscribe(
+        (data) => {
+          this.trabajoActual = data;
+          this.service.getByTrabajo(this.idTrabajoActual).subscribe(
+            (dataF) => {
+              this.loading--;
+              this.layoutService.updatePreloaderState('hide');
+              this.lista = dataF;
+            },
+            (errorF) => {
+              this.loading--;
+              this.layoutService.updatePreloaderState('hide');
+              this.as.error('Error al cargar la lista de facturas: ' + errorF, 5000);
+            }
+          );
+        },
+        (error) => {
+          this.loading--;
+          this.layoutService.updatePreloaderState('hide');
+          this.as.error('Error al cargar el trabajo: ' + error, 5000);
+        }
+      );
+    });
   }
 
   Nuevo() {
-/*     const dialog = this.dialog.open(AltaProyectoComponent, {
-      data: [undefined, this.lista],
-      width: '600px',
+    this.dialog.open(TrabajoFacturaNuevaComponent, {
+      data: [undefined, this.lista, this.trabajoActual],
+      width: '1000px',
     });
-
-    dialog.afterClosed().subscribe(
-      (result) => {
-        if (result) {
-          // TODO
-          this.as.success('Proyecto eliminado correctamente.', 3000);
-        }
-      }); */
   }
 
   Eliminar(x: Factura) {
@@ -83,27 +84,28 @@ export class TrabajoFacturasListaComponent implements OnInit {
   }
 
   Editar(x: Factura) {
-/*     const dialog = this.dialog.open(AltaProyectoComponent, {
+    const dialog = this.dialog.open(TrabajoFacturaNuevaComponent, {
       data: [x, this.lista],
-      width: '600px',
+      width: '1000px',
     });
 
     dialog.afterClosed().subscribe(
-      (result) => {
-        this.lista.sort((a: Factura, b: Factura) => {
-          return b.id - a.id;
-        });
-      }); */
+    (result) => {
+      this.lista.sort((a: Factura, b: Factura) => {
+        return b.id - a.id;
+      });
+    });
   }
 
-/*   VerObservaciones(x: string) {
+  VerObservaciones(x: string) {
     const dialogRef = this.dialog.open(DialogInfoComponent, {
       data: ['Observaciones', x],
       width: '600px',
     });
-  } */
+  }
 
   GetImporte(x: Factura) {
-    return x.lineas.map((y) => y.precioUnitario * y.cantidad).reduce((k, l) => k + l, 0);
+    const subTotal: number = x.lineas.map((y) => y.precioUnitario * y.cantidad).reduce((k, l) => k + l, 0);
+    return subTotal + (subTotal * (x.iva / 100));
   }
 }

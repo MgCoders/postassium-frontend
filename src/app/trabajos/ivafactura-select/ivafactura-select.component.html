@@ -1,9 +1,9 @@
 <mat-form-field class="full-width">
-  <mat-select [(ngModel)]="Model" [placeholder]="placeHolder" class="full-width" (change)="onChangeValue($event)">
+  <mat-select [(ngModel)]="object[id]" [placeholder]="placeHolder" class="full-width" (change)="onChangeValue($event)" [formControl]="fc">
       <mat-option *ngIf="addEmptyOption" [value]="undefined">
       </mat-option>
-      <mat-option matTooltipPosition="above" *ngFor="let x of lista" [value]="x[id]">
-          {{x[desc]}}
+      <mat-option matTooltipPosition="above" *ngFor="let x of lista" [value]="x.id">
+          {{x.desc}}
       </mat-option>
   </mat-select>
 </mat-form-field>

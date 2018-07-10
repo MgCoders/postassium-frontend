@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-ivafactura-select',
@@ -7,15 +8,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class IvafacturaSelectComponent implements OnInit {
 
-  @Input() Model: any;
+  @Input() object: any;
   @Input() placeHolder: string;
   @Input() id: string;
   @Input() desc: string;
   @Input() addEmptyOption: boolean;
+  @Input() required: boolean;
 
   @Output() onChange: EventEmitter<{id: number, desc: string}> = new EventEmitter<{id: number, desc: string}>();
 
   public lista: Array<{id: number, desc: string}>;
+  public fc: FormControl = new FormControl();
 
   constructor() {
     this.lista = new Array();
@@ -28,6 +31,9 @@ export class IvafacturaSelectComponent implements OnInit {
    }
 
   ngOnInit() {
+    if (this.required) {
+      this.fc.setValidators([Validators.required]);
+    }
   }
 
   onChangeValue(evt) {
