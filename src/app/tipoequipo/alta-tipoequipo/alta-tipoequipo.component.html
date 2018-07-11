@@ -6,8 +6,8 @@
       <div class="row">
         <div class="col-12">
           <mat-input-container class="full-width">
-            <input [(ngModel)]="tipoEquipoActual.descripcion" matInput placeholder="Descripcion" name="Descripcion" [formControl]="descripcionFC">
-            <mat-error *ngIf="nombreFC.hasError('required')">El nombre es obligatorio.</mat-error>
+            <input [(ngModel)]="tipoEquipoActual.descripcion" matInput placeholder="Descripcion" name="Descripcion">
+            <mat-error>El nombre es obligatorio.</mat-error>
           </mat-input-container>
         </div>
       </div>

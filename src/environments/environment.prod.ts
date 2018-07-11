@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://sulfur.mgcoders.com/api',
+  apiUrl: 'https://remotesando.ddns.net/backend/api',
   hmr: false
 };

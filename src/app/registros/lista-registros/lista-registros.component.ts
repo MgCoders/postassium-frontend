@@ -66,7 +66,7 @@ export class ListaRegistrosComponent implements OnInit {
     );
   }
 
-  nuevo(r: Registro) {
+  nuevo() {
       const dialog = this.dialog.open(AltaRegistroComponent, {
           data: [undefined, this.tarea],
           width: '600px',

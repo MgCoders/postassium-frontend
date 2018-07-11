@@ -145,7 +145,7 @@ export class AltaTrabajosComponent implements OnInit {
             });
     }
 
-  informacionRecibo(x: Trabajo) {
+  informacionRecibo() {
         const dialog = this.dialog.open(InformacionReciboComponent, {
             data: [this.trabajo],
             width: '600px',
