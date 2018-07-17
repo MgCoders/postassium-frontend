@@ -10,6 +10,7 @@ import { TrabajoService } from '../../_services/trabajo.service';
 import { FacturaService } from '../../_services/factura.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Trabajo } from '../../_models/models';
+import { TrabajoFacturaViewComponent } from '../trabajo-factura-view/trabajo-factura-view.component';
 
 @Component({
   selector: 'app-trabajo-facturas-lista',
@@ -96,7 +97,7 @@ export class TrabajoFacturasListaComponent implements OnInit {
 
   Editar(x: Factura) {
     const dialog = this.dialog.open(TrabajoFacturaNuevaComponent, {
-      data: [x, this.lista],
+      data: [x, this.lista, this.trabajoActual],
       width: '1000px',
     });
 
@@ -125,5 +126,19 @@ export class TrabajoFacturasListaComponent implements OnInit {
     this.trabajoService.edit(this.trabajoActual).subscribe();
     this.router.navigate(['/app/trabajos/monitorfacturacion/valores/']);
     //this.ngOnInit();
+  }
+
+  VerFactura(x: Factura) {
+    const dialogRef = this.dialog.open(TrabajoFacturaViewComponent, {
+      data: [x, this.trabajoActual],
+      width: '1000px',
+    });
+
+    dialogRef.afterClosed().subscribe(
+    (result) => {
+      this.lista.sort((a: Factura, b: Factura) => {
+        return b.id - a.id;
+      });
+    });
   }
 }

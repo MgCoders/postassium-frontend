@@ -25,6 +25,8 @@ export class FacturaImp implements Factura {
 
     lineas: FacturaLinea[];
 
+    borrado: number;
+
     constructor(x: Factura) {
         this.id = x.id;
         this.trabajo = x.trabajo;
@@ -35,6 +37,7 @@ export class FacturaImp implements Factura {
         this.observaciones = x.observaciones;
         this.nroFactura = x.nroFactura;
         this.nroRemito = x.nroRemito;
+        this.borrado = x.borrado;
 
         this.lineas = new Array();
         x.lineas.forEach((y) => {

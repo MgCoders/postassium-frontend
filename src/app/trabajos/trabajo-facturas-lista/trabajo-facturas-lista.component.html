@@ -37,7 +37,14 @@
                 <mat-icon class="material-icons">visibility</mat-icon>
               </button>
             </td>
+            <td class="mdl-data-table__cell--non-numeric">{{x.moneda}}</td>
+            <td>{{GetImporte(x) | number:'1.2-2'}}</td>
+            <td>{{x.nroRemito | number:'1.0-0'}}</td>
             <td>
+              <button matTooltipPosition="above" matTooltip="Ver Factura."
+                mat-icon-button (click)="VerFactura(x)">
+                <mat-icon class="material-icons">visibility</mat-icon>
+              </button>
               <button [disabled]="loading > 0" matTooltipPosition="above" matTooltip="Editar Cargo" mat-icon-button color="primary" (click)="Editar(x)">
                 <mat-icon class="material-icons">mode_edit</mat-icon>
               </button>

@@ -14,11 +14,11 @@ import { FacturaLineaImp } from '../../_models/FacturaLineaImp';
 import { FacturaService } from '../../_services/factura.service';
 
 @Component({
-  selector: 'app-trabajo-factura-nueva',
-  templateUrl: './trabajo-factura-nueva.component.html',
-  styleUrls: ['./trabajo-factura-nueva.component.scss']
+  selector: 'app-trabajo-factura-view',
+  templateUrl: './trabajo-factura-view.component.html',
+  styleUrls: ['./trabajo-factura-view.component.scss']
 })
-export class TrabajoFacturaNuevaComponent implements OnInit {
+export class TrabajoFacturaViewComponent implements OnInit {
 
   public facturaActual: Factura;
   public fechaFactura: Date;
@@ -29,10 +29,8 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
 
   public loading: boolean;
 
-
-
-  constructor(public dialogRef: MatDialogRef<TrabajoFacturaNuevaComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: [Factura, Factura[], Trabajo],
+  constructor(public dialogRef: MatDialogRef<TrabajoFacturaViewComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: [Factura, Trabajo],
               private as: AlertService,
               private datePipe: DatePipe,
               private customDatePipe: CustomDatePipe,
@@ -57,8 +55,6 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
     });
 
     this.facturaLineaActual = {} as FacturaLinea;
-    this.facturaLineaActual.borrado = 0;
-
 
     this.loading = false;
     if (this.data[0] === undefined) {
@@ -66,7 +62,7 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
       this.facturaActual.lineas = new Array();
       this.facturaActual.observaciones = '';
       this.fechaFactura = new Date();
-      this.facturaActual.trabajo = this.data[2];
+      this.facturaActual.trabajo = this.data[1];
       this.facturaActual.borrado = 0;
     } else {
       this.facturaActual = new FacturaImp(this.data[0]);
@@ -74,7 +70,6 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
         this.facturaActual.observaciones = '';
       }
       this.fechaFactura = this.customDatePipe.transform(this.data[0].fecha, ['dd-mm-yyyy']);
-      this.facturaActual.trabajo = this.data[2];
     }
   }
 
@@ -85,8 +80,7 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
   Guardar() {
     this.loading = true;
     this.facturaActual.fecha = this.datePipe.transform(this.fechaFactura, 'dd-MM-yyyy');
-    this.facturaActual.trabajo = this.data[2];
-    console.log(this.facturaActual);
+    this.facturaActual.trabajo = this.data[1];
 
     this.layoutService.updatePreloaderState('active');
     if (this.data[0] === undefined) {
@@ -95,13 +89,12 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
           this.layoutService.updatePreloaderState('hide');
           this.loading = false;
           this.as.success('Factura agregada correctamente.', 3000);
-          this.data[1].push(data);
+          //this.data[0].push(data);
           this.dialogRef.close();
         },
         (error) => {
           this.layoutService.updatePreloaderState('hide');
           this.loading = false;
-          console.log(error);
           this.as.error(error, 5000);
         });
     } else {
@@ -110,8 +103,8 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
           this.layoutService.updatePreloaderState('hide');
           this.loading = false;
           this.as.success('Factura actualizada correctamente.', 3000);
-          const index: number = this.data[1].indexOf(this.data[0]);
-          this.data[1][index] = data;
+          //const index: number = this.data[1].indexOf(this.data[0]); 
+          //this.data[1][index] = data;
           this.dialogRef.close();
         },
         (error) => {
@@ -130,7 +123,7 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       (result) => {
         if (result) {
-          x.borrado = 1;
+          this.facturaActual.lineas.splice(this.facturaActual.lineas.indexOf(x), 1);
         }
       });
   }
@@ -138,9 +131,7 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
   AgregarLineaOnClick() {
     this.facturaActual.lineas.push(new FacturaLineaImp(this.facturaLineaActual));
     this.facturaLineaActual = {} as FacturaLinea;
-    this.facturaLineaActual.borrado = 0;
     this.facturaLineaForm.markAsUntouched();
-
   }
 
   GetSubTotal() {
@@ -155,9 +146,5 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
 
   GetTotal() {
     return this.GetIVA() + this.GetSubTotal();
-  }
-
-  GetLineas() {
-    return this.facturaActual.lineas.filter((l) => l.borrado === 0);
   }
 }

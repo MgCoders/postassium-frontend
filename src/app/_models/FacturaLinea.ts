@@ -1,4 +1,3 @@
-import {Factura} from "./Factura";
 export interface FacturaLinea {
 
     id?: number;
@@ -8,6 +7,8 @@ export interface FacturaLinea {
     cantidad: number;
 
     precioUnitario: number;
+
+    borrado: number;
 
     //factura: Factura;
 }
