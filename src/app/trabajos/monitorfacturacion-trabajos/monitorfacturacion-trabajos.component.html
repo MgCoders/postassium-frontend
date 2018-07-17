@@ -37,10 +37,10 @@
             <td class="mdl-data-table__cell--non-numeric" *ngIf="x.nroRemito === undefined || x.nroRemito === null">N/A</td>
 
           <td>
-            <a matTooltipPosition="above" matTooltip="Facturas" mat-icon-button color="secondary" *ngIf="this.estado === 'PENDIENTE_ASIGNACION_VALORES,PENDIENTE_REMITO'" [routerLink]="['/app/trabajos/facturas/', x.id]">
+            <a matTooltipPosition="above" matTooltip="Facturas" mat-icon-button color="secondary"  *ngIf="this.estado === 'PENDIENTE_ASIGNACION_VALORES,PENDIENTE_REMITO'" [routerLink]="['/app/trabajos/facturas/', x.id]">
               <mat-icon class="material-icons">monetization_on</mat-icon>
             </a>
-            <button mat-icon-button color="primary" matTooltip="Asignar número factura" (click)="asignarFactura(x)" *ngIf="this.estado === 'PENDIENTE_FACTURA'">
+            <button mat-icon-button color="primary" matTooltip="Ver facturas" *ngIf="this.estado === 'PENDIENTE_FACTURA'" [routerLink]="['/app/trabajos/facturas/', x.id]">
               <mat-icon class="material-icons">mode_edit</mat-icon>
             </button>
               <button mat-icon-button color="primary" matTooltip="Asignar número remito" (click)="asignarRemito(x)" *ngIf="this.estado === 'PENDIENTE_REMITO'">

@@ -11,6 +11,7 @@ import { FacturaService } from '../../_services/factura.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Trabajo } from '../../_models/models';
 import { TrabajoFacturaViewComponent } from '../trabajo-factura-view/trabajo-factura-view.component';
+import {AltaMonitorFacturacionTrabajosComponent} from '../alta-monitorfacturacion-trabajos/alta-monitorfacturacion-trabajos.component';
 
 @Component({
   selector: 'app-trabajo-facturas-lista',
@@ -25,6 +26,7 @@ export class TrabajoFacturasListaComponent implements OnInit {
   public idTrabajoActual: number;
 
   public paraFinalizar: boolean;
+  public paraFinalizarFacturacion: boolean;
 
   constructor(public dialog: MatDialog,
               private as: AlertService,
@@ -51,6 +53,15 @@ export class TrabajoFacturasListaComponent implements OnInit {
               this.layoutService.updatePreloaderState('hide');
               this.lista = dataF;
               this.paraFinalizar = this.trabajoActual.estado === 'PENDIENTE_ASIGNACION_VALORES' && this.lista.length > 0;
+              this.paraFinalizarFacturacion = true;
+              this.lista.forEach(
+                  (factura) => {
+                    if (factura.nroFactura === undefined) {
+                      this.paraFinalizarFacturacion = false;
+                    }
+                  }
+              );
+
               console.log(this.paraFinalizar);
             },
             (errorF) => {
@@ -109,6 +120,26 @@ export class TrabajoFacturasListaComponent implements OnInit {
     });
   }
 
+  AsignarNroFactura(x: Factura) {
+    const dialog = this.dialog.open(AltaMonitorFacturacionTrabajosComponent, {
+      data: [this.trabajoActual, 'factura', x],
+      width: '600px',
+    });
+
+    dialog.afterClosed().subscribe(
+        (result) => {
+          this.paraFinalizarFacturacion = true;
+          this.lista.forEach(
+              (factura) => {
+                if (factura.nroFactura === undefined) {
+                  this.paraFinalizarFacturacion = false;
+                }
+              }
+          );
+        });
+
+  }
+
   VerObservaciones(x: string) {
     const dialogRef = this.dialog.open(DialogInfoComponent, {
       data: ['Observaciones', x],
@@ -125,7 +156,12 @@ export class TrabajoFacturasListaComponent implements OnInit {
     this.trabajoActual.estado = 'PENDIENTE_FACTURA';
     this.trabajoService.edit(this.trabajoActual).subscribe();
     this.router.navigate(['/app/trabajos/monitorfacturacion/valores/']);
-    //this.ngOnInit();
+  }
+
+  finalizarFacturacion() {
+    this.trabajoActual.estado = 'FINALIZADO';
+    this.trabajoService.edit(this.trabajoActual).subscribe();
+    this.router.navigate(['/app/trabajos/monitorfacturacion/factura/']);
   }
 
   VerFactura(x: Factura) {

@@ -81,7 +81,7 @@ import { TrabajoFacturaViewComponent } from './trabajo-factura-view/trabajo-fact
     IvafacturaSelectComponent,
     FormaPagoFacturaSelectComponent,
     MonedaFacturaSelectComponent,
-    CustomDatePipe
+    CustomDatePipe,
     MonedaFacturaSelectComponent,
     TrabajoFacturaViewComponent
   ],

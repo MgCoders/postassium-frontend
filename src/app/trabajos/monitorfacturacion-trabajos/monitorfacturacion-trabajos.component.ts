@@ -97,6 +97,17 @@ export class MonitorFacturacionTrabajosComponent implements OnInit {
     // this.layoutService.updatePreloaderState('hide');
   }
 
+
+  asignarValores(x: Trabajo){
+      console.log(x.id);
+      this.router.navigate(['/app/trabajos/facturas/', x]);
+  }
+
+  verFacturas(x: Trabajo) {
+      console.log(x.id);
+      this.router.navigate(['/app/trabajos/facturas/', x]);
+  }
+
   asignarFactura(x: Trabajo) {
     const dialog = this.dialog.open(AltaMonitorFacturacionTrabajosComponent, {
     data: [x, 'factura', this.listaParaFacturar],
@@ -113,7 +124,7 @@ export class MonitorFacturacionTrabajosComponent implements OnInit {
 
     asignarRemito(x: Trabajo) {
         const dialog = this.dialog.open(AltaMonitorFacturacionTrabajosComponent, {
-            data: [x, 'remito', this.listaParaFacturar],
+            data: [x, 'remito'],
             width: '600px',
         });
         dialog.afterClosed().subscribe(
