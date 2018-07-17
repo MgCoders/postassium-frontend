@@ -8,6 +8,8 @@ import { TareaImp } from '../../_models/TareaImp';
 import {TrabajoService} from '../../_services/trabajo.service';
 import {Trabajo} from '../../_models/Trabajo';
 import {TrabajoImp} from '../../_models/TrabajoImp';
+import {Factura} from "../../_models/Factura";
+import {FacturaService} from "../../_services/factura.service";
 
 @Component({
   selector: 'app-alta-monitorfacturacion',
@@ -51,7 +53,7 @@ export class AltaMonitorFacturacionTrabajosComponent implements OnInit {
         if (this.tipo === 'factura') {
             this.trabajoActual.estado = 'FINALIZADO';
         } else {
-            this.trabajoActual.estado = 'PENDIENTE_FACTURA';
+            this.trabajoActual.estado = 'PENDIENTE_ASIGNACION_VALORES';
         }
 
         this.cs.edit(this.trabajoActual).subscribe(

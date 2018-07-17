@@ -8,7 +8,7 @@ import { TrabajoFacturaNuevaComponent } from '../trabajo-factura-nueva/trabajo-f
 import { DialogInfoComponent } from '../../shared/dialog-info/dialog-info.component';
 import { TrabajoService } from '../../_services/trabajo.service';
 import { FacturaService } from '../../_services/factura.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Trabajo } from '../../_models/models';
 
 @Component({
@@ -23,10 +23,13 @@ export class TrabajoFacturasListaComponent implements OnInit {
   public trabajoActual: Trabajo;
   public idTrabajoActual: number;
 
+  public paraFinalizar: boolean;
+
   constructor(public dialog: MatDialog,
               private as: AlertService,
               private layoutService: LayoutService,
               private route: ActivatedRoute,
+              private router: Router,
               private service: FacturaService,
               private trabajoService: TrabajoService) { }
 
@@ -46,6 +49,8 @@ export class TrabajoFacturasListaComponent implements OnInit {
               this.loading--;
               this.layoutService.updatePreloaderState('hide');
               this.lista = dataF;
+              this.paraFinalizar = this.trabajoActual.estado === 'PENDIENTE_ASIGNACION_VALORES' && this.lista.length > 0;
+              console.log(this.paraFinalizar);
             },
             (errorF) => {
               this.loading--;
@@ -61,13 +66,19 @@ export class TrabajoFacturasListaComponent implements OnInit {
         }
       );
     });
+    console.log(this.trabajoActual);
   }
 
   Nuevo() {
-    this.dialog.open(TrabajoFacturaNuevaComponent, {
+    const dialogRef = this.dialog.open(TrabajoFacturaNuevaComponent, {
       data: [undefined, this.lista, this.trabajoActual],
       width: '1000px',
     });
+
+    dialogRef.afterClosed().subscribe(
+        (result) => {
+          this.paraFinalizar = this.trabajoActual.estado === 'PENDIENTE_ASIGNACION_VALORES' && this.lista.length > 0;
+        });
   }
 
   Eliminar(x: Factura) {
@@ -107,5 +118,12 @@ export class TrabajoFacturasListaComponent implements OnInit {
   GetImporte(x: Factura) {
     const subTotal: number = x.lineas.map((y) => y.precioUnitario * y.cantidad).reduce((k, l) => k + l, 0);
     return subTotal + (subTotal * (x.iva / 100));
+  }
+
+  finalizarAsignacionValores() {
+    this.trabajoActual.estado = 'PENDIENTE_FACTURA';
+    this.trabajoService.edit(this.trabajoActual).subscribe();
+    this.router.navigate(['/app/trabajos/monitorfacturacion/valores/']);
+    //this.ngOnInit();
   }
 }

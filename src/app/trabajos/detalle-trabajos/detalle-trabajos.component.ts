@@ -24,6 +24,7 @@ export class DetalleTrabajosComponent implements OnInit {
   public success: boolean;
   public idTrabajo: number;
   public paraFinalizarTrabajo: boolean;
+  public remito: boolean;
 
   constructor(public dialog: MatDialog,
               private tareaService: TareaService,
@@ -77,9 +78,13 @@ export class DetalleTrabajosComponent implements OnInit {
       this.router.navigate(['/app/trabajos/monitorfacturacion/']);
   }
 
-
   finalizarTrabajo() {
-      this.trabajo.estado = 'PENDIENTE_ASIGNACION_VALORES';
+      if (!this.remito) {
+          this.trabajo.estado = 'PENDIENTE_ASIGNACION_VALORES';
+      } else {
+          this.trabajo.estado = 'PENDIENTE_REMITO';
+      }
+
       this.trabajoService.edit(this.trabajo).subscribe();
   }
 

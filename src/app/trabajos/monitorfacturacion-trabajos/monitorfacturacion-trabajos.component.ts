@@ -59,13 +59,17 @@ export class MonitorFacturacionTrabajosComponent implements OnInit {
                   this.estado = 'FINALIZADO';
                   this.titulo = 'Trabajos finalizados';
                   break;
+            case 'valores':
+                this.estado = 'PENDIENTE_ASIGNACION_VALORES,PENDIENTE_REMITO';
+                this.titulo = 'Trabajos para asignar valores';
+                break;
               case 'todos':
                   this.estado = 'TODOS';
                   this.titulo = 'Trabajos';
                   break;
           }
         if (this.estado !== 'TODOS') {
-            this.trabajoService.getByEstado(this.estado).subscribe(
+            this.trabajoService.getByEstados(this.estado).subscribe(
                 (data) => {
                     this.listaParaFacturar = data;
                 },

@@ -34,6 +34,10 @@ export class TrabajoService {
         return this.http.get<Trabajo[]>(`${environment.apiUrl}/trabajos/estado/` + estado);
     }
 
+    getByEstados(estado: string): Observable<Trabajo[]> {
+        return this.http.get<Trabajo[]>(`${environment.apiUrl}/trabajos/estados/` + estado);
+    }
+
     getByCliente(idCliente: number): Observable<Trabajo[]> {
         return this.http.get<Trabajo[]>(`${environment.apiUrl}/trabajos/cliente/` + idCliente);
     }

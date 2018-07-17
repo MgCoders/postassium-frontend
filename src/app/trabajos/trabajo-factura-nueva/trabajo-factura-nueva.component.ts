@@ -29,6 +29,8 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
 
   public loading: boolean;
 
+
+
   constructor(public dialogRef: MatDialogRef<TrabajoFacturaNuevaComponent>,
               @Inject(MAT_DIALOG_DATA) public data: [Factura, Factura[], Trabajo],
               private as: AlertService,
@@ -56,6 +58,7 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
 
     this.facturaLineaActual = {} as FacturaLinea;
 
+
     this.loading = false;
     if (this.data[0] === undefined) {
       this.facturaActual = {} as Factura;
@@ -80,6 +83,7 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
     this.loading = true;
     this.facturaActual.fecha = this.datePipe.transform(this.fechaFactura, 'dd-MM-yyyy');
     this.facturaActual.trabajo = this.data[2];
+    console.log(this.facturaActual);
 
     this.layoutService.updatePreloaderState('active');
     if (this.data[0] === undefined) {
@@ -94,6 +98,7 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
         (error) => {
           this.layoutService.updatePreloaderState('hide');
           this.loading = false;
+          console.log(error);
           this.as.error(error, 5000);
         });
     } else {
@@ -131,6 +136,7 @@ export class TrabajoFacturaNuevaComponent implements OnInit {
     this.facturaActual.lineas.push(new FacturaLineaImp(this.facturaLineaActual));
     this.facturaLineaActual = {} as FacturaLinea;
     this.facturaLineaForm.markAsUntouched();
+
   }
 
   GetSubTotal() {

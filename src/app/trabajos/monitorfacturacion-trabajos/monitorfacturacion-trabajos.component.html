@@ -14,6 +14,7 @@
           <th class="mdl-data-table__cell--non-numeric">Motivo Visita</th>
           <th class="mdl-data-table__cell--non-numeric">RUT Cliente</th>
           <th class="mdl-data-table__cell--non-numeric">Nombre Cliente</th>
+            <th class="mdl-data-table__cell--non-numeric">Estado</th>
           <th class="mdl-data-table__cell--non-numeric">Matrícula Equipo</th>
           <th class="mdl-data-table__cell--non-numeric">Marca/Modelo Equipo</th>
             <th class="mdl-data-table__cell--non-numeric">Número Remito</th>
@@ -27,6 +28,7 @@
           <td class="mdl-data-table__cell--non-numeric">{{x.motivoVisita}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.cliente.rut}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.cliente.nombreEmpresa}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{x.estado}}</td>
           <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo !== undefined">{{x.equipo.matricula}}</td>
           <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo !== undefined">{{x.equipo.marca}} / {{x.equipo.modelo}}</td>
           <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo === undefined">N/A</td>
@@ -35,7 +37,7 @@
             <td class="mdl-data-table__cell--non-numeric" *ngIf="x.nroRemito === undefined || x.nroRemito === null">N/A</td>
 
           <td>
-            <a matTooltipPosition="above" matTooltip="Facturas" mat-icon-button color="secondary" [routerLink]="['/app/trabajos/facturas/', x.id]">
+            <a matTooltipPosition="above" matTooltip="Facturas" mat-icon-button color="secondary" *ngIf="this.estado === 'PENDIENTE_ASIGNACION_VALORES,PENDIENTE_REMITO'" [routerLink]="['/app/trabajos/facturas/', x.id]">
               <mat-icon class="material-icons">monetization_on</mat-icon>
             </a>
             <button mat-icon-button color="primary" matTooltip="Asignar número factura" (click)="asignarFactura(x)" *ngIf="this.estado === 'PENDIENTE_FACTURA'">

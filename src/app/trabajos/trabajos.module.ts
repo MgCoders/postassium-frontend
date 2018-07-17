@@ -79,7 +79,8 @@ import { MonedaFacturaSelectComponent } from './moneda-factura-select/moneda-fac
     TrabajoFacturaNuevaComponent,
     IvafacturaSelectComponent,
     FormaPagoFacturaSelectComponent,
-    MonedaFacturaSelectComponent
+    MonedaFacturaSelectComponent,
+    CustomDatePipe
   ],
   providers: [
     TareaService,

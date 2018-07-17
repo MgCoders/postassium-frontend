@@ -125,6 +125,6 @@
 <div mat-dialog-actions class="full-width">
   <div class="full-width text-sm-right">
     <button mat-button color="info" class="btn-w-xs" [mat-dialog-close]="false">Cancelar</button>
-    <button [disabled]="loading > 0 || facturaForm.invalid" mat-button color="primary" class="btn-w-md" (click)="Guardar()">Guardar</button>
+    <button [disabled]="loading || facturaForm.invalid" mat-button color="primary" class="btn-w-md" (click)="Guardar()">Guardar</button>
   </div>
 </div>

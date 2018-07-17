@@ -30,7 +30,7 @@
             <td class="mdl-data-table__cell--non-numeric">{{x.formaPago}}</td>
             <td class="mdl-data-table__cell--non-numeric">{{x.moneda}}</td>
             <td>{{GetImporte(x) | number:'1.2-2'}}</td>
-            <td>{{x.nroRemito | number:'1.0-0'}}</td>
+            <td>{{trabajoActual.nroRemito | number:'1.0-0'}}</td>
             <td class="mdl-data-table__cell--non-numeric">
               <button *ngIf="x.observaciones !== undefined && x.observaciones !== ''" matTooltipPosition="above" matTooltip="Ver Observaciones."
                 mat-icon-button (click)="VerObservaciones(x.observaciones)">
@@ -45,6 +45,12 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="row">
+      <div class="article-title padding-top-30 col-12 col-sm-6"></div>
+      <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
+        <button [disabled]="!paraFinalizar" mat-raised-button color="accent" class="btn-w-md" (click)="finalizarAsignacionValores()">Finalizar asignación valores</button>
+      </div>
     </div>
   </article>
 </section>
