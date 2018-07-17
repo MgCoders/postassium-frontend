@@ -10,6 +10,7 @@ import { TrabajoService } from '../../_services/trabajo.service';
 import { FacturaService } from '../../_services/factura.service';
 import { ActivatedRoute } from '@angular/router';
 import { Trabajo } from '../../_models/models';
+import { TrabajoFacturaViewComponent } from '../trabajo-factura-view/trabajo-factura-view.component';
 
 @Component({
   selector: 'app-trabajo-facturas-lista',
@@ -107,5 +108,19 @@ export class TrabajoFacturasListaComponent implements OnInit {
   GetImporte(x: Factura) {
     const subTotal: number = x.lineas.map((y) => y.precioUnitario * y.cantidad).reduce((k, l) => k + l, 0);
     return subTotal + (subTotal * (x.iva / 100));
+  }
+
+  VerFactura(x: Factura) {
+    const dialogRef = this.dialog.open(TrabajoFacturaViewComponent, {
+      data: [x, this.trabajoActual],
+      width: '1000px',
+    });
+
+    dialogRef.afterClosed().subscribe(
+    (result) => {
+      this.lista.sort((a: Factura, b: Factura) => {
+        return b.id - a.id;
+      });
+    });
   }
 }

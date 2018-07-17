@@ -13,26 +13,33 @@
   <div class="box-body">
     <form>
       <div class="row">
-        <div class="col-3">
-          <app-ivafactura-select [object]="facturaActual" placeHolder="Tasa de IVA" addEmptyOption="true" id="iva" desc="desc" required="true"></app-ivafactura-select>
+        <div class="col-6">
+          <p>
+            <b>Cliente</b>
+          </p>
+          <h6 class="tl-tile text-danger">{{data[1].cliente.nombreEmpresa}}</h6>
         </div>
-        <div class="col-3">
-          <app-moneda-factura-select [object]="facturaActual" placeHolder="Moneda" addEmptyOption="true" id="moneda" desc="desc" required="true"></app-moneda-factura-select>
+        <div class="col-2">
+          <p>
+            <b>Fecha</b>
+          </p>
+          <h6 class="tl-tile text-warning">{{data[0].fecha}}</h6>
         </div>
-        <div class="col-3">
-          <app-forma-pago-factura-select [object]="facturaActual" placeHolder="Forma de Pago" addEmptyOption="true" id="formaPago"
-            desc="desc" required="true"></app-forma-pago-factura-select>
+
+        <div class="col-2">
+          <p>
+            <b>Moneda</b>
+          </p>
+          <h6 class="tl-tile text-success">{{data[0].moneda}}</h6>
         </div>
-        <div class="col-3">
-          <mat-form-field class="full-width">
-            <input [(ngModel)]="fechaFactura" name="fecha" class="full-width" matInput [matDatepicker]="picker" placeholder="FECHA" [formControl]="facturaForm.controls['fechaFacturaFC']">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="facturaForm.controls['fechaFacturaFC'].invalid">La fecha es requerida.</mat-error>
-          </mat-form-field>
+        <div class="col-2">
+          <p>
+            <b>Forma de Pago</b>
+          </p>
+          <h6 class="tl-tile text-info">{{data[0].formaPago}}</h6>
         </div>
       </div>
-      <div class="row">
+      <!--       <div class="row">
         <div class="col-3">
           <mat-form-field class="full-width">
             <input [(ngModel)]="facturaActual.nroFactura" name="nroFactura" class="full-width" matInput placeholder="Nro. Factura" [formControl]="facturaForm.controls['nroFacturaFC']">
@@ -81,24 +88,27 @@
             Agregar
           </button>
         </div>
-      </div>
+      </div> -->
       <table class="full-width mdl-data-table">
         <thead>
           <tr>
-            <th>#<br/></th>
-            <th class="mdl-data-table__cell--non-numeric">Descripción<br/></th>
-            <th>Cant.<br/></th>
-            <th>Precio Unit.<br/></th>
-            <th><span class="badge badge-light">{{GetSubTotal() | number:'1.2-2'}}</span><br/>
-              Sub-Tot. Lin.              
+            <th>#
             </th>
-            <th><span class="badge badge-primary">{{GetIVA() | number:'1.2-2'}}</span><br/>
-              IVA Lin.              
+            <th class="mdl-data-table__cell--non-numeric">Descripción
             </th>
-            <th><span class="badge badge-success">{{GetTotal() | number:'1.2-2'}}</span><br/>
+            <th>Cant.
+            </th>
+            <th>Precio Unit.
+            </th>
+            <th>
+              Sub-Tot. Lin.
+            </th>
+            <th>
+              IVA Lin.
+            </th>
+            <th>
               Total Lin.
             </th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -110,21 +120,48 @@
             <td>{{x.precioUnitario * x.cantidad | number:'1.2-2'}}</td>
             <td>{{(x.precioUnitario * x.cantidad) * (facturaActual.iva / 100) | number:'1.2-2'}}</td>
             <td>{{(x.precioUnitario * x.cantidad) + ((x.precioUnitario * x.cantidad) * (facturaActual.iva / 100)) | number:'1.2-2'}}</td>
-            <td>
-              <button class="full-width" mat-icon-button color="warn">
-                <mat-icon class="material-icons" (click)="EliminarLinea(x)">delete</mat-icon>
-              </button>
-            </td>
           </tr>
         </tbody>
       </table>
-    </form>
-  </div>
-</div>
 
-<div mat-dialog-actions class="full-width">
-  <div class="full-width text-sm-right">
-    <button mat-button color="info" class="btn-w-xs" [mat-dialog-close]="false">Cancelar</button>
-    <button [disabled]="loading > 0 || facturaForm.invalid" mat-button color="primary" class="btn-w-md" (click)="Guardar()">Guardar</button>
+      <div class="row">
+        <div class="col-6">
+          <div class="card bg-color-white">
+            <div class="card-content">
+              <span class="card-title">Observaciones</span>
+              <p>{{data[0].observaciones}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card bg-color-white">
+            <div class="card-content">
+              <table class="full-width mdl-data-table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <b>Sub-Total:</b>
+                    </td>
+                    <td>{{GetSubTotal() | number:'1.2-2'}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <b>IVA ({{data[0].iva}} %):</b>
+                    </td>
+                    <td>{{GetIVA() | number:'1.2-2'}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tl-tile text-danger">
+                      <b>TOTAL:</b>
+                    </td>
+                    <td>{{GetTotal() | number:'1.2-2'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
