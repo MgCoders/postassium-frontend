@@ -10,10 +10,13 @@ export class FacturaLineaImp implements FacturaLinea {
 
     precioUnitario: number;
 
+    borrado: number;
+
     constructor(x: FacturaLinea) {
         this.id = x.id;
         this.descripcion = x.descripcion;
         this.cantidad = x.cantidad;
         this.precioUnitario = x.precioUnitario;
+        this.borrado = x.borrado;
     }
 }

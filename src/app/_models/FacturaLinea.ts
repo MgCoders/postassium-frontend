@@ -7,4 +7,6 @@ export interface FacturaLinea {
     cantidad: number;
 
     precioUnitario: number;
+
+    borrado: number;
 }

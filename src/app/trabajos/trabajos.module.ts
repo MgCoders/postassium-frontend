@@ -46,6 +46,7 @@ import { TrabajoFacturasListaComponent } from './trabajo-facturas-lista/trabajo-
 import { IvafacturaSelectComponent } from './ivafactura-select/ivafactura-select.component';
 import { FormaPagoFacturaSelectComponent } from './forma-pago-factura-select/forma-pago-factura-select.component';
 import { MonedaFacturaSelectComponent } from './moneda-factura-select/moneda-factura-select.component';
+import { TrabajoFacturaViewComponent } from './trabajo-factura-view/trabajo-factura-view.component';
 
 @NgModule({
   imports: [
@@ -79,7 +80,8 @@ import { MonedaFacturaSelectComponent } from './moneda-factura-select/moneda-fac
     TrabajoFacturaNuevaComponent,
     IvafacturaSelectComponent,
     FormaPagoFacturaSelectComponent,
-    MonedaFacturaSelectComponent
+    MonedaFacturaSelectComponent,
+    TrabajoFacturaViewComponent
   ],
   providers: [
     TareaService,
@@ -99,7 +101,8 @@ import { MonedaFacturaSelectComponent } from './moneda-factura-select/moneda-fac
     AltaTareaComponent,
     AltaPuntocontrolComponent,
     AltaTareaMaterialComponent,
-    TrabajoFacturaNuevaComponent
+    TrabajoFacturaNuevaComponent,
+    TrabajoFacturaViewComponent
   ],
 
 })

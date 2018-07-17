@@ -22,4 +22,6 @@ export interface Factura {
     nroRemito: number;
 
     lineas: FacturaLinea[];
+
+    borrado: number;
 }

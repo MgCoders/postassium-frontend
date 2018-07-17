@@ -85,7 +85,7 @@ export class TrabajoFacturasListaComponent implements OnInit {
 
   Editar(x: Factura) {
     const dialog = this.dialog.open(TrabajoFacturaNuevaComponent, {
-      data: [x, this.lista],
+      data: [x, this.lista, this.trabajoActual],
       width: '1000px',
     });
 
