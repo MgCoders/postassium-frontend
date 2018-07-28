@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  MatButtonModule,
+  MatButtonModule, MatCheckboxModule,
   MatIconModule,
   MatInputModule,
   MatSelectModule,
@@ -43,7 +43,8 @@ import { MaterialesModule } from '../materiales/materiales.module';
     MatTooltipModule,
     MatDialogModule,
     PuntosControlModule,
-    MaterialesModule
+    MaterialesModule,
+    MatCheckboxModule
   ],
 
   declarations: [

@@ -33,19 +33,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-3">
-          <mat-form-field class="full-width">
-            <input [(ngModel)]="facturaActual.nroFactura" name="nroFactura" class="full-width" matInput placeholder="Nro. Factura" [formControl]="facturaForm.controls['nroFacturaFC']">
-            <mat-error *ngIf="facturaForm.controls['nroFacturaFC'].invalid">Debe ser numérico.</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-3">
-          <mat-form-field class="full-width">
-            <input [(ngModel)]="facturaActual.nroRemito" name="nroRemito" class="full-width" matInput placeholder="Nro. Remito" [formControl]="facturaForm.controls['nroRemitoFC']">
-            <mat-error *ngIf="facturaForm.controls['nroRemitoFC'].invalid">Debe ser numérico.</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-6">
+        <div class="col-12">
           <mat-input-container class="full-width">
             <input [(ngModel)]="facturaActual.observaciones" name="observaciones" class="full-width" matInput placeholder="Observaciones"
               [formControl]="facturaForm.controls['observacionesFC']">

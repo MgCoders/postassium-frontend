@@ -32,7 +32,13 @@
               <button *ngIf="!x.completa" mat-icon-button color="primary" (click)="tareaCompleta(x)" matTooltip="Finalizar tarea">
                 <mat-icon  class="material-icons">check</mat-icon>
               </button>
-              <button [disabled]="trabajo.estado != 'EN_PROCESO'" *ngIf="x.completa" mat-icon-button color="warn" (click)="tareaCompleta(x)" matTooltip="Volver a editar tarea">
+              <button *ngIf="x.completa && x.necesitaVerificacion && !x.verificada" mat-icon-button color="success" (click)="tareaVerificada(x)" matTooltip="Verificar tarea">
+                <mat-icon  class="material-icons">check</mat-icon>
+              </button>
+              <button [disabled]="trabajo.estado != 'EN_PROCESO'" *ngIf="(x.completa && !x.verificada)" mat-icon-button color="warn" (click)="tareaCompleta(x)" matTooltip="Volver a editar tarea">
+                <mat-icon  class="material-icons">close</mat-icon>
+              </button>
+              <button [disabled]="trabajo.estado != 'EN_PROCESO'" *ngIf="x.verificada" mat-icon-button color="warn" (click)="tareaVerificada(x)" matTooltip="Volver a verificar tarea">
                 <mat-icon  class="material-icons">close</mat-icon>
               </button>
               <button [disabled]="x.completa" mat-icon-button color="primary" (click)="verMateriales(x)" matTooltip="Materiales">

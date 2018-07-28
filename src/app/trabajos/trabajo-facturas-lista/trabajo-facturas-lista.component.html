@@ -2,7 +2,7 @@
   <article class="article"  *ngIf="trabajoActual !== undefined">
     <div class="row">
       <h2 class="article-title padding-top-30 col-12 col-sm-6">Facturas trabajo</h2>
-      <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6" *ngIf="trabajoActual.estado !== 'PENDIENTE_FACTURA'">
+      <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6" *ngIf="trabajoActual.estado === 'PENDIENTE_ASIGNACION_VALORES' || trabajoActual.estado === 'PENDIENTE_REMITO'">
         <button [disabled]="loading > 0" mat-raised-button color="accent" class="btn-w-md" (click)="Nuevo()">Nueva Factura</button>
       </div>
     </div>
@@ -56,7 +56,7 @@
         </tbody>
       </table>
     </div>
-    <div class="row" *ngIf="trabajoActual.estado !== 'PENDIENTE_FACTURA'">
+    <div class="row" *ngIf="trabajoActual.estado === 'PENDIENTE_ASIGNACION_VALORES' || trabajoActual.estado === 'PENDIENTE_REMITO'">
       <div class="article-title padding-top-30 col-12 col-sm-6"></div>
       <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
         <button [disabled]="!paraFinalizar" mat-raised-button color="accent" class="btn-w-md" (click)="finalizarAsignacionValores()">Finalizar asignación valores</button>

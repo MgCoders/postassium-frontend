@@ -100,7 +100,7 @@ export class ListaTareasComponent implements OnInit {
       let paraFinalizar = true;
       this.lista.forEach(
           (element) => {
-              if (!element.completa) {
+              if ((!element.completa) || (element.necesitaVerificacion && !element.verificada)) {
                   paraFinalizar = false;
               }
           }
@@ -109,6 +109,23 @@ export class ListaTareasComponent implements OnInit {
       console.log(paraFinalizar);
       this.onChangeParaFinalizarTrabajo.emit(paraFinalizar);
   }
+
+    tareaVerificada(x: Tarea) {
+        x.verificada = !x.verificada;
+        this.tareaService.edit(x).subscribe();
+
+        let paraFinalizar = true;
+        this.lista.forEach(
+            (element) => {
+                if ((!element.completa) || (element.necesitaVerificacion && !element.verificada)) {
+                    paraFinalizar = false;
+                }
+            }
+        );
+        console.log('TAREA COMPLETA');
+        console.log(paraFinalizar);
+        this.onChangeParaFinalizarTrabajo.emit(paraFinalizar);
+    }
 
   verRegistros(x: Tarea) {
       this.router.navigate(['/app/registros/listaRegistros/', x.id]);

@@ -25,6 +25,11 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-3">
+          <mat-checkbox [(ngModel)]="tareaActual.necesitaVerificacion" name="documentos">¿Necesita verificación individual?</mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-12">
           <app-select-puntocontrol [object]="puntoControlActual" [trabajoId]="data[2]" (onChange)="puntoControlOnChange($event)" idModel="id" placeHolder="Punto de Control" id="id" desc="nombre"></app-select-puntocontrol>
         </div>
@@ -39,3 +44,5 @@
     <button mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
   </div>
 </div>
+
+

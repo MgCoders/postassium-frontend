@@ -40,7 +40,7 @@
             <a matTooltipPosition="above" matTooltip="Facturas" mat-icon-button color="secondary"  *ngIf="this.estado === 'PENDIENTE_ASIGNACION_VALORES,PENDIENTE_REMITO'" [routerLink]="['/app/trabajos/facturas/', x.id]">
               <mat-icon class="material-icons">monetization_on</mat-icon>
             </a>
-            <button mat-icon-button color="primary" matTooltip="Ver facturas" *ngIf="this.estado === 'PENDIENTE_FACTURA'" [routerLink]="['/app/trabajos/facturas/', x.id]">
+            <button mat-icon-button color="primary" matTooltip="Ver facturas" *ngIf="this.estado !== 'PENDIENTE_ASIGNACION_VALORES,PENDIENTE_REMITO' && this.estado !== 'EN_PROCESO'" [routerLink]="['/app/trabajos/facturas/', x.id]">
               <mat-icon class="material-icons">monetization_on</mat-icon>
             </button>
               <button mat-icon-button color="primary" matTooltip="Asignar número remito" (click)="asignarRemito(x)" *ngIf="this.estado === 'PENDIENTE_REMITO'">
