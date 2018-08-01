@@ -11,6 +11,7 @@ import { Trabajo } from '../../_models/Trabajo';
 import { TrabajoService } from '../../_services/trabajo.service';
 import { Router } from '@angular/router';
 import { PuntoControl } from '../../_models/PuntoControl';
+import {PuntoControlService} from '../../_services/punto-control.services';
 
 @Component({
   selector: 'app-lista-tareas',
@@ -19,7 +20,7 @@ import { PuntoControl } from '../../_models/PuntoControl';
 })
 export class ListaTareasComponent implements OnInit {
 
-  public lista: Tarea[];
+  @Input() lista: Tarea[];
   public loadCompleted: boolean;
   @Input() trabajo: Trabajo;
   @Output() onChangeParaFinalizarTrabajo: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -27,6 +28,7 @@ export class ListaTareasComponent implements OnInit {
   constructor(public dialog: MatDialog,
               private tareaService: TareaService,
               private trabajoService: TrabajoService,
+              private puntoControlService: PuntoControlService,
               private alertService: AlertService,
               private layoutService: LayoutService,
               private router: Router,
@@ -95,36 +97,55 @@ export class ListaTareasComponent implements OnInit {
 
   tareaCompleta(x: Tarea) {
       x.completa = !x.completa;
-      this.tareaService.edit(x).subscribe();
 
-      let paraFinalizar = true;
+      x.puntoControl.paraVerificar = true;
       this.lista.forEach(
           (element) => {
-              if ((!element.completa) || (element.necesitaVerificacion && !element.verificada)) {
-                  paraFinalizar = false;
+              if ((element.puntoControl.id === x.puntoControl.id) && ((!element.completa) || (element.necesitaVerificacion && !element.verificada))) {
+                  console.log(element.puntoControl);
+                  console.log(x.puntoControl);
+                  x.puntoControl.paraVerificar = false;
               }
           }
       );
+
       console.log('TAREA COMPLETA');
-      console.log(paraFinalizar);
-      this.onChangeParaFinalizarTrabajo.emit(paraFinalizar);
+      console.log(x.puntoControl);
+      this.puntoControlService.edit(x.puntoControl).subscribe();
+      this.tareaService.edit(x).subscribe(
+          (data) => {
+              this.onChangeParaFinalizarTrabajo.emit(x.puntoControl.paraVerificar);
+          },
+      (error) => {
+          this.layoutService.updatePreloaderState('hide');
+          this.alertService.error(error, 5000);
+      });
+      //console.log(paraFinalizar);
   }
 
     tareaVerificada(x: Tarea) {
         x.verificada = !x.verificada;
-        this.tareaService.edit(x).subscribe();
 
-        let paraFinalizar = true;
+        x.puntoControl.paraVerificar = true;
         this.lista.forEach(
             (element) => {
-                if ((!element.completa) || (element.necesitaVerificacion && !element.verificada)) {
-                    paraFinalizar = false;
+                if ((element.puntoControl === x.puntoControl) &&  ((!element.completa) || (element.necesitaVerificacion && !element.verificada))) {
+                    element.puntoControl.paraVerificar = false;
                 }
             }
         );
+
         console.log('TAREA COMPLETA');
-        console.log(paraFinalizar);
-        this.onChangeParaFinalizarTrabajo.emit(paraFinalizar);
+        console.log(x.puntoControl);
+        this.puntoControlService.edit(x.puntoControl).subscribe();
+        this.tareaService.edit(x).subscribe(
+            (data) => {
+                this.onChangeParaFinalizarTrabajo.emit(x.puntoControl.paraVerificar);
+            },
+            (error) => {
+                this.layoutService.updatePreloaderState('hide');
+                this.alertService.error(error, 5000);
+            });
     }
 
   verRegistros(x: Tarea) {

@@ -11,6 +11,7 @@ import { PuntoControl } from '../../_models/PuntoControl';
 import { TrabajoService } from '../../_services/trabajo.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import {PuntoControlService} from '../../_services/punto-control.services';
 
 @Component({
   selector: 'app-detalle-trabajos',
@@ -25,10 +26,13 @@ export class DetalleTrabajosComponent implements OnInit {
   public idTrabajo: number;
   public paraFinalizarTrabajo: boolean;
   public remito: boolean;
+  public paraVerificarPuntoControl: boolean;
+  public puntosControl: PuntoControl[];
 
   constructor(public dialog: MatDialog,
               private tareaService: TareaService,
               private trabajoService: TrabajoService,
+              private puntoControlService: PuntoControlService,
               private alertService: AlertService,
               private route: ActivatedRoute,
               private router: Router,
@@ -72,6 +76,15 @@ export class DetalleTrabajosComponent implements OnInit {
         this.layoutService.updatePreloaderState('hide');
         this.alertService.error(error, 5000);
       });
+
+    this.puntoControlService.getByTrabajo(this.idTrabajo).subscribe( // TODO Pasar el id de trabaja actual.
+          (data) => {
+              this.puntosControl = data;
+          },
+          (error) => {
+              this.alertService.error(error, 5000);
+          });
+
   }
 
   monitorFacturacion() {
@@ -92,5 +105,28 @@ export class DetalleTrabajosComponent implements OnInit {
       console.log('PARA FINALIZAR');
       console.log(paraFinalizar);
       this.paraFinalizarTrabajo = paraFinalizar;
+      this.tareaService.getAllByTrabajo(this.idTrabajo).subscribe(
+            (data) => {
+                this.lista = data;
+                this.layoutService.updatePreloaderState('hide');
+            },
+            (error) => {
+                this.layoutService.updatePreloaderState('hide');
+                this.alertService.error(error, 5000);
+            });
+    }
+
+    onChangeParaVerificarPuntoControl(paraFinalizar: boolean) {
+        console.log('ANTES');
+        console.log(this.puntosControl);
+        this.puntoControlService.getByTrabajo(this.trabajo.id).subscribe( // TODO Pasar el id de trabaja actual.
+            (data) => {
+                this.puntosControl = data;
+            },
+            (error) => {
+                this.alertService.error(error, 5000);
+            });
+        console.log('DESPUES');
+        console.log(this.puntosControl);
     }
 }

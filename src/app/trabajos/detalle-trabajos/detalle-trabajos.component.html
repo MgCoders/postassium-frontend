@@ -121,7 +121,11 @@
   </article>
 
   <article class="article">
-    <app-lista-tareas [trabajo]="trabajo" (onChangeParaFinalizarTrabajo)="onChangeParaFinalizarTrabajo($event)"></app-lista-tareas>
+    <app-lista-puntoscontrol [trabajo]="trabajo" [puntosControl]="puntosControl" (onChangeParaFinalizarTrabajo)="onChangeParaFinalizarTrabajo($event)"></app-lista-puntoscontrol>
+  </article>
+
+  <article class="article">
+    <app-lista-tareas [trabajo]="trabajo" [lista]="lista" (onChangeParaFinalizarTrabajo)="onChangeParaVerificarPuntoControl($event)"></app-lista-tareas>
     <div class="row">
       <div class="article-title padding-top-30 col-12 col-sm-6"></div>
       <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
@@ -130,4 +134,6 @@
       </div>
     </div>
   </article>
+
+
 </section>

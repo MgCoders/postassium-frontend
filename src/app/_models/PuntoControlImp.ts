@@ -19,12 +19,15 @@ export class PuntoControlImp implements PuntoControl {
 
     verificado: boolean;
 
+    paraVerificar: boolean;
+
     constructor(x: PuntoControl) {
         this.nombre = x.nombre;
         this.responsable = x.responsable;
         this.orden = x.orden;
         this.trabajo = x.trabajo;
         this.verificado = x.verificado;
+        this.paraVerificar = x.paraVerificar;
         this.tareas = new Array();
         x.tareas.forEach(
             (y) => {

@@ -4,7 +4,7 @@
     <div class="row">
       <h2 class="article-title padding-top-30 col-12 col-sm-6">Tareas</h2>
       <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
-        <button [disabled]="!loadCompleted" *ngIf="trabajo.estado == 'EN_PROCESO'" mat-raised-button color="accent" class="btn-w-md" (click)="nuevoPuntoContol()">Crear Punto de Control</button>
+        <!--<button [disabled]="!loadCompleted" *ngIf="trabajo.estado == 'EN_PROCESO'" mat-raised-button color="accent" class="btn-w-md" (click)="nuevoPuntoContol()">Crear Punto de Control</button>-->
         <button [disabled]="!loadCompleted" *ngIf="trabajo.estado == 'EN_PROCESO'" mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Tarea</button>
       </div>
     </div>
@@ -35,10 +35,10 @@
               <button *ngIf="x.completa && x.necesitaVerificacion && !x.verificada" mat-icon-button color="success" (click)="tareaVerificada(x)" matTooltip="Verificar tarea">
                 <mat-icon  class="material-icons">check</mat-icon>
               </button>
-              <button [disabled]="trabajo.estado != 'EN_PROCESO'" *ngIf="(x.completa && !x.verificada)" mat-icon-button color="warn" (click)="tareaCompleta(x)" matTooltip="Volver a editar tarea">
+              <button [disabled]="((trabajo.estado != 'EN_PROCESO') || (trabajo.estado == 'EN_PROCESO' && x.puntoControl.verificado))" *ngIf="(x.completa && !x.verificada)" mat-icon-button color="warn" (click)="tareaCompleta(x)" matTooltip="Volver a editar tarea">
                 <mat-icon  class="material-icons">close</mat-icon>
               </button>
-              <button [disabled]="trabajo.estado != 'EN_PROCESO'" *ngIf="x.verificada" mat-icon-button color="warn" (click)="tareaVerificada(x)" matTooltip="Volver a verificar tarea">
+              <button [disabled]="((trabajo.estado != 'EN_PROCESO') || (trabajo.estado == 'EN_PROCESO' && x.puntoControl.verificado))" *ngIf="x.verificada" mat-icon-button color="warn" (click)="tareaVerificada(x)" matTooltip="Volver a verificar tarea">
                 <mat-icon  class="material-icons">close</mat-icon>
               </button>
               <button [disabled]="x.completa" mat-icon-button color="primary" (click)="verMateriales(x)" matTooltip="Materiales">

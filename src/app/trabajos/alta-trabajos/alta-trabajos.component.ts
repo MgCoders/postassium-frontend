@@ -217,6 +217,7 @@ export class AltaTrabajosComponent implements OnInit {
             this.clienteService.create(this.cliente).subscribe(
                 (data) => {
                     this.cliente = data;
+                    this.alertService.success('Cliente agregado correctamente.', 3000);
                     console.log('CCC');
                     console.log(data);
                 });
@@ -240,6 +241,7 @@ export class AltaTrabajosComponent implements OnInit {
       console.log(this.trabajo);
       this.trabajoService.create(this.trabajo).subscribe(
           (data) => {
+              this.alertService.success('Trabajo agregado correctamente.', 3000);
               this.ngOnInit();
       });
     }

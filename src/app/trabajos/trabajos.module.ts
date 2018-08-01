@@ -47,6 +47,7 @@ import { IvafacturaSelectComponent } from './ivafactura-select/ivafactura-select
 import { FormaPagoFacturaSelectComponent } from './forma-pago-factura-select/forma-pago-factura-select.component';
 import { MonedaFacturaSelectComponent } from './moneda-factura-select/moneda-factura-select.component';
 import { TrabajoFacturaViewComponent } from './trabajo-factura-view/trabajo-factura-view.component';
+import {PuntosControlModule} from "../puntoscontrol/puntoscontrol.module";
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { TrabajoFacturaViewComponent } from './trabajo-factura-view/trabajo-fact
     MatCheckboxModule,
     MatDatepickerModule,
     TareasModule,
+    PuntosControlModule,
     TiposEquiposModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule

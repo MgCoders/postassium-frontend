@@ -39,7 +39,7 @@ import {
   providers: [PuntoControlService, AlertService, LayoutService],
   declarations: [ListaPuntosControlComponent, PuntosControlComponent, AltaPuntocontrolComponent, SelectPuntoControlComponent],
   entryComponents: [AltaPuntocontrolComponent, SelectPuntoControlComponent],
-  exports: [SelectPuntoControlComponent]
+  exports: [SelectPuntoControlComponent, ListaPuntosControlComponent]
 })
 
 export class PuntosControlModule { }
