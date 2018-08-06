@@ -1,3 +1,104 @@
 <div class="container-fluid no-breadcrumbs page-dashboard">
 
+    <div class="row">
+        <!-- Stats -->
+        <div class="col-xl-4 col-sm-6">
+            <div class="box box-default">
+                <div class="box-top">
+                    <i class="material-icons color-success">build</i>
+                </div>
+                <div class="box-info">
+                    <span>Trabajos</span>
+                </div>
+                <div class="box-bottom">
+                    <span>{{total}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-6">
+            <div class="box box-default">
+                <div class="box-top">
+                    <i class="material-icons color-success">cached</i>
+                </div>
+                <div class="box-info">
+                    <span>Trabajos en proceso</span>
+                </div>
+                <div class="box-bottom">
+                    <span>{{totalEnProceso}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-6">
+            <div class="box box-default">
+                <div class="box-top">
+                    <i class="material-icons color-success">done_all</i>
+                </div>
+                <div class="box-info">
+                    <span>Trabajos finalizados</span>
+                </div>
+                <div class="box-bottom">
+                    <span>{{totalFinalizados}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- end stats -->
+    </div>
+    <div class="row">
+        <!-- Stats -->
+        <div class="col-xl-3 col-sm-6">
+            <div class="box box-default">
+                <div class="box-top">
+                    <i class="material-icons color-success">done</i>
+                </div>
+                <div class="box-info">
+                    <span>Trabajos para asignar valores</span>
+                </div>
+                <div class="box-bottom">
+                    <span>{{totalAsignacionValores}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="box box-default">
+                <div class="box-top">
+                    <i class="material-icons color-success">monetization_on</i>
+                </div>
+                <div class="box-info">
+                    <span>Trabajos para facturar</span>
+                </div>
+                <div class="box-bottom">
+                    <span>{{totalParaFacturar}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="box box-default">
+                <div class="box-top">
+                    <i class="material-icons color-success">monetization_on</i>
+                </div>
+                <div class="box-info">
+                    <span>Trabajos para remito</span>
+                </div>
+                <div class="box-bottom">
+                    <span>{{totalParaRemito}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-sm-6">
+            <div class="box box-default">
+                <div class="box-top">
+                    <i class="material-icons color-success">pause</i>
+                </div>
+                <div class="box-info">
+                    <span>Trabajos en espera</span>
+                </div>
+                <div class="box-bottom">
+                    <span>{{totalEnEspera}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- end stats -->
+    </div>
+
 </div>

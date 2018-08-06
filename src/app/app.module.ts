@@ -91,6 +91,9 @@ import { AuthService } from './_services/auth.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { AdminGuard } from './_guards/admin.guard';
 import { CustomDateAdapter } from './_helpers/CustomDateAdapter';
+import {TrabajoService} from "./_services/trabajo.service";
+import {AlertService} from "./_services/alert.service";
+import {LayoutService} from "./layout/layout.service";
 
 @NgModule({
     imports: [
@@ -173,6 +176,9 @@ import { CustomDateAdapter } from './_helpers/CustomDateAdapter';
         { provide: LOCALE_ID, useValue: 'es_UY' },
         AuthService,
         ColaboradorService,
+        TrabajoService,
+        AlertService,
+        LayoutService,
         AuthGuard,
         AdminGuard,
         {

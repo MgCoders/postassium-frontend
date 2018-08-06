@@ -53,4 +53,12 @@ export class TrabajoService {
     edit(x: Trabajo): Observable<any> {
         return this.http.put(`${environment.apiUrl}/trabajos/` + x.id, x);
     }
+
+    countByEstados(estado: string): Observable<number> {
+        return this.http.get<number>(`${environment.apiUrl}/trabajos/countEstados/` + estado);
+    }
+
+    countAll(): Observable<number> {
+        return this.http.get<number>(`${environment.apiUrl}/trabajos/count/`);
+    }
 }
