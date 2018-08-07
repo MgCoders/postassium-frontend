@@ -3,7 +3,7 @@ import { TipoMaterial } from '../_models/TipoMaterial';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import {TipoEquipo} from '../_models/TipoEquipo';
+import { TipoEquipo } from '../_models/TipoEquipo';
 /**
  * Created by pablo on 04/03/18.
  */
@@ -14,6 +14,14 @@ export class TipoEquipoService {
 
     getAll(): Observable<TipoEquipo[]> {
         return this.http.get<TipoEquipo[]>(`${environment.apiUrl}/tiposequipos/`);
+    }
+
+    create(x: TipoEquipo): Observable<any> {
+        return this.http.post(`${environment.apiUrl}/tiposequipos/`, x);
+    }
+
+    edit(x: TipoEquipo): Observable<any> {
+        return this.http.put(`${environment.apiUrl}/tiposequipos/` + x.id, x);
     }
 
 }

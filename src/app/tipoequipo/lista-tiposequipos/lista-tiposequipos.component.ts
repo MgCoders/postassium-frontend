@@ -5,8 +5,8 @@ import { MatDialog } from '@angular/material';
 import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import { AltaTipoEquipoComponent } from '../alta-tipoequipo/alta-tipoequipo.component';
-import {TipoEquipo} from "../../_models/TipoEquipo";
-import {TipoEquipoService} from "../../_services/tipoequipo.service";
+import { TipoEquipo } from '../../_models/TipoEquipo';
+import { TipoEquipoService } from '../../_services/tipoequipo.service';
 
 @Component({
   selector: 'app-lista-tiposmateriales',
