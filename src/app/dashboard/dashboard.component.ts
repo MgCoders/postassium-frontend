@@ -36,8 +36,9 @@ export class DashboardComponent implements OnInit {
     this.layoutService.updatePreloaderState('active');
     this.trabajoService.countAll().subscribe(
         (data) => {
-          this.total = data;
-          console.log(data);
+            if (data != null) {
+                this.total = data;
+            }
         },
         (error) => {
           this.alertService.error(error, 5000);

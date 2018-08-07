@@ -40,6 +40,8 @@ export class AltaTrabajosComponent implements OnInit {
   public fechaPrevistaEntrega: Date;
   public horaActual: string;
 
+  public conEquipo: boolean;
+
   constructor(public dialog: MatDialog,
               private tareaService: TareaService,
               private trabajoService: TrabajoService,
@@ -88,6 +90,7 @@ export class AltaTrabajosComponent implements OnInit {
     this.trabajo.equipoAuxiliar = false;
     this.trabajo.equipoAuxiliarArmada = false;
 
+    this.conEquipo = false;
     console.log(this.cliente);
     this.layoutService.updatePreloaderState('active');
     this.layoutService.updatePreloaderState('hide');
@@ -234,7 +237,9 @@ export class AltaTrabajosComponent implements OnInit {
 
     guardar() {
       this.trabajo.cliente = this.cliente;
-      this.trabajo.equipo = this.equipo;
+      if(this.conEquipo) {
+          this.trabajo.equipo = this.equipo;
+      }
       this.trabajo.estado = 'EN_PROCESO';
       this.trabajo.fechaRecepcion = this.datePipe.transform(this.fechaRecepcion, 'dd-MM-yyyy') + ' ' + this.horaActual;
       this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy')
@@ -244,6 +249,22 @@ export class AltaTrabajosComponent implements OnInit {
               this.alertService.success('Trabajo agregado correctamente.', 3000);
               this.ngOnInit();
       });
+    }
+
+    crear(){
+        this.trabajo.cliente = this.cliente;
+        if(this.conEquipo) {
+            this.trabajo.equipo = this.equipo;
+        }
+        this.trabajo.estado = 'CREADO';
+        this.trabajo.fechaRecepcion = this.datePipe.transform(this.fechaRecepcion, 'dd-MM-yyyy') + ' ' + this.horaActual;
+        this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy')
+        console.log(this.trabajo);
+        this.trabajoService.create(this.trabajo).subscribe(
+            (data) => {
+                this.alertService.success('Trabajo para continuar luego agregado correctamente.', 3000);
+                this.ngOnInit();
+            });
     }
 
     dateFromString(str: string): Date {
