@@ -32,6 +32,7 @@ const routes: Routes = [
       { path: 'pglayout', loadChildren: '../page-layouts/page-layouts.module#PageLayoutsModule' },
       { path: 'table', loadChildren: '../tables/tables.module#MyTablesModule' },
       { path: 'ui', loadChildren: '../ui/ui.module#UIModule' },
+      { path: 'tiposequipos', loadChildren: '../tipoequipo/tiposequipos.module#TiposEquiposModule' },
     ]
   }
 ];

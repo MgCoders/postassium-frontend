@@ -70,7 +70,5 @@ export class ListaTiposEquiposComponent implements OnInit {
   }
 
   eliminar(tp: TipoEquipo) {
-
   }
-
 }

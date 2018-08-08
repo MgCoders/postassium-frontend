@@ -92,4 +92,11 @@
     </a>
   </li>
 
+  <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/tiposequipos/listaTiposDeEquipos']">
+      <i class="nav-icon material-icons">assignment_ind</i>
+      <span class="nav-text">Tipos de Equipo</span>
+    </a>
+  </li>
+
 </ul>

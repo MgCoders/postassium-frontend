@@ -11,7 +11,7 @@ export const TiposEquiposRoutes: Routes = [
         component: TiposEquiposComponent,
         children: [
             { path: '', redirectTo: '/app/dashboard', pathMatch: 'full' },
-            { path: 'listaTiposEquipos', component: ListaTiposEquiposComponent },
+            { path: 'listaTiposDeEquipos', component: ListaTiposEquiposComponent },
         ]
     }
 ];

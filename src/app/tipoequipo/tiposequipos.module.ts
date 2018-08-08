@@ -18,6 +18,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TiposEquiposRoutingModule } from './tiposequipos-routing.module';
 import { TipoEquipoService } from '../_services/tipoequipo.service';
+import { BoolPipe } from '../_pipes/bool.pipe';
 
 @NgModule({
   imports: [
@@ -37,12 +38,14 @@ import { TipoEquipoService } from '../_services/tipoequipo.service';
     AltaTipoEquipoComponent,
     ListaTiposEquiposComponent,
     SelectTipoEquipoComponent,
-    TiposEquiposComponent
+    TiposEquiposComponent,
+    BoolPipe
   ],
   providers: [
     AlertService,
     LayoutService,
-    TipoEquipoService
+    TipoEquipoService,
+    BoolPipe
   ],
   exports: [
     SelectTipoEquipoComponent
