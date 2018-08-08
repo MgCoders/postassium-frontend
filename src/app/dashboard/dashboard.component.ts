@@ -17,13 +17,13 @@ export class DashboardComponent implements OnInit {
               private alertService: AlertService,
               private layoutService: LayoutService) { }
 
-  private total: number;
-  private totalEnProceso: number;
-  private totalFinalizados: number;
-  private totalParaFacturar: number;
-  private totalParaRemito: number;
-  private totalAsignacionValores: number;
-  private totalEnEspera: number;
+    public total: number;
+    public totalEnProceso: number;
+    public totalFinalizados: number;
+    public totalParaFacturar: number;
+    public totalParaRemito: number;
+    public totalAsignacionValores: number;
+    public totalEnEspera: number;
 
   ngOnInit() {
     this.total = 0;

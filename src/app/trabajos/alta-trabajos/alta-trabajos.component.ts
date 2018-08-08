@@ -237,7 +237,7 @@ export class AltaTrabajosComponent implements OnInit {
 
     guardar() {
       this.trabajo.cliente = this.cliente;
-      if(this.conEquipo) {
+      if (this.conEquipo) {
           this.trabajo.equipo = this.equipo;
       }
       this.trabajo.estado = 'EN_PROCESO';
