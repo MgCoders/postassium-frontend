@@ -13,7 +13,9 @@ import {
   MatInputModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatCheckboxModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TiposEquiposRoutingModule } from './tiposequipos-routing.module';
@@ -32,7 +34,9 @@ import { BoolPipe } from '../_pipes/bool.pipe';
     MatDialogModule,
     FormsModule,
     TiposEquiposRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     AltaTipoEquipoComponent,

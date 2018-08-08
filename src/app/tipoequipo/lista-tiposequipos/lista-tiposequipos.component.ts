@@ -16,6 +16,7 @@ import { TipoEquipoService } from '../../_services/tipoequipo.service';
 export class ListaTiposEquiposComponent implements OnInit {
 
   tiposEquipos: TipoEquipo[];
+  loading: boolean;
 
   constructor(
       public dialog: MatDialog,
@@ -25,50 +26,38 @@ export class ListaTiposEquiposComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = false;
     this.layoutService.updatePreloaderState('active');
     this.loadData();
   }
 
   loadData() {
+    this.loading = true;
     this.tiposEquipos = new Array();
     this.tipoEquipoService.getAll().subscribe(
         (data) => {
           this.tiposEquipos = data;
           this.layoutService.updatePreloaderState('hide');
+          this.loading = false;
         },
         (error) => {
           this.layoutService.updatePreloaderState('hide');
           this.alertService.error(error, 5000);
+          this.loading = false;
         });
   }
 
   nuevo() {
     const dialog = this.dialog.open(AltaTipoEquipoComponent, {
-      data: {},
+      data: [undefined, this.tiposEquipos],
       width: '600px',
     });
-
-    dialog.afterClosed().subscribe(
-        (result) => {
-          if (result === 1) {
-            this.loadData();
-          }
-        });
   }
 
-  editar(tp: TipoMaterial) {
+  Editar(te: TipoEquipo) {
     const dialog = this.dialog.open(AltaTipoEquipoComponent, {
-      data: tp,
+      data: [te, this.tiposEquipos],
       width: '600px',
     });
-    dialog.afterClosed().subscribe(
-        (result) => {
-          if (result === 1) {
-            this.loadData();
-          }
-        });
-  }
-
-  eliminar(tp: TipoEquipo) {
   }
 }
