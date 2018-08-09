@@ -153,7 +153,8 @@
 
     <div class="row">
         <h2 class="article-title padding-top-30 col-12 col-sm-6">Equipos</h2>
-        <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
+        <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
+            <mat-checkbox [disabled]="this.cliente.id === undefined" [(ngModel)]="conEquipo" name="conEquipo">¿Equipo?</mat-checkbox>
             <button [disabled]="this.cliente.id === undefined" mat-raised-button color="accent" class="btn-w-md" (click)="nuevoEquipo()">Crear Equipo</button>
         </div>
     </div>
@@ -176,12 +177,14 @@
           <td class="mdl-data-table__cell--non-numeric">{{x.modelo}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.matricula}}</td>
           <td class="mdl-data-table__cell--non-numeric">
-              <button mat-icon-button color="primary" matTooltip="Seleccionar">
-                  <mat-icon *ngIf="x.id !== equipoSelected" class="material-icons" (click)="seleccionarEquipo(x)">check</mat-icon>
-                  <mat-icon *ngIf="x.id === equipoSelected" class="material-icons" style="color: red;" (click)="seleccionarEquipo(x)">close</mat-icon>
+              <button  [disabled]="!conEquipo" *ngIf="x.id !== equipoSelected"  mat-icon-button color="primary" matTooltip="Seleccionar" (click)="seleccionarEquipo(x)">
+                  <mat-icon class="material-icons" >check</mat-icon>
               </button>
-              <button mat-icon-button color="primary" matTooltip="Editar">
-                  <mat-icon class="material-icons" (click)="editarEquipo(x)">mode_edit</mat-icon>
+              <button  [disabled]="!conEquipo" *ngIf="x.id === equipoSelected"  mat-icon-button color="primary" matTooltip="Seleccionar" (click)="seleccionarEquipo(x)">
+                  <mat-icon *ngIf="x.id === equipoSelected" class="material-icons" style="color: red;">close</mat-icon>
+              </button>
+              <button [disabled]="!conEquipo"  mat-icon-button color="primary" matTooltip="Editar" (click)="editarEquipo(x)">
+                  <mat-icon class="material-icons">mode_edit</mat-icon>
               </button>
           </td>
         </tr>
@@ -191,7 +194,7 @@
       <div class="row">
           <div class="article-title padding-top-30 col-12 col-sm-6"></div>
           <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
-              <button [disabled]="this.equipoSelected === 0" mat-raised-button color="accent" class="btn-w-md" (click)="informacionRecibo()">Información recibo</button>
+              <button [disabled]="this.equipoSelected === 0 || !equipo.tipoEquipo.requiereInfoRecibo" mat-raised-button color="accent" class="btn-w-md" (click)="informacionRecibo()">Información recibo</button>
           </div>
       </div>
   </article>
