@@ -1,0 +1,8 @@
+<mat-form-field class="full-width">
+  <mat-select [(ngModel)]="object" [placeholder]="placeHolder" class="full-width" (change)="onChangeValue($event)">
+    <mat-option [value]="-1">Seleccionar Marca</mat-option>
+    <mat-option *ngFor="let x of lista" [value]="x.id">
+      {{x.nombre}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

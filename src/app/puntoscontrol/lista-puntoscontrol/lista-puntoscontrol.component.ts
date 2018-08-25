@@ -6,6 +6,7 @@ import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import {Trabajo} from '../../_models/Trabajo';
 import {AltaPuntocontrolComponent} from '../alta-puntocontrol/alta-puntocontrol.component';
+import {VerificarPuntocontrolComponent} from "../verificar-puntocontrol/verificar-puntocontrol.component";
 
 @Component({
   selector: 'app-lista-puntoscontrol',
@@ -80,8 +81,25 @@ export class ListaPuntosControlComponent implements OnInit {
 
   eliminar(x: PuntoControl) { }
 
+    verificarDialog(x: PuntoControl) {
+        console.log('VERIFICAR PUNTO CONTROL');
+        console.log(x);
+        const dialog = this.dialog.open(VerificarPuntocontrolComponent, {
+            data: [x, this.trabajo],
+            width: '600px',
+        });
+
+        dialog.afterClosed().subscribe(
+            (result) => {
+                if (result) {
+                    this.loadData();
+                }
+            });
+    }
+
   verificar(x: PuntoControl) {
     x.verificado = !x.verificado;
+    x.verificado2 = !x.verificado2;
 
     let paraFinalizar = true;
     this.puntosControl.forEach(

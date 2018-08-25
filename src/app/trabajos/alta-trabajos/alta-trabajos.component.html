@@ -35,9 +35,14 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 <mat-input-container class="full-width">
                                     <input matInput [(ngModel)]="trabajo.nroOrdenCompra" placeholder="Número orden de compra" name="nroOrdenCompra">
+                                </mat-input-container>
+                            </div>
+                            <div class="col-3">
+                                <mat-input-container class="full-width">
+                                    <input matInput [(ngModel)]="trabajo.cotizacion" placeholder="Cotización" name="cotizacion">
                                 </mat-input-container>
                             </div>
                             <div class="col-3">
@@ -173,7 +178,7 @@
         <tbody>
         <tr *ngFor="let x of equiposCliente">
           <td>{{x.id}}</td>
-          <td class="mdl-data-table__cell--non-numeric">{{x.marca}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{x.marca.nombre}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.modelo}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.matricula}}</td>
           <td class="mdl-data-table__cell--non-numeric">

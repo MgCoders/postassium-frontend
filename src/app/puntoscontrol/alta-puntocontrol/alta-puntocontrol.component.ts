@@ -17,6 +17,7 @@ export class AltaPuntocontrolComponent implements OnInit {
 
   public puntoControlActual: PuntoControl;
   public responsableActual: Usuario;
+  public responsable2Actual: Usuario;
 
   constructor(
       public dialogRef: MatDialogRef<AltaPuntocontrolComponent>,
@@ -30,11 +31,13 @@ export class AltaPuntocontrolComponent implements OnInit {
     if (this.data[0] === undefined) {
       this.puntoControlActual = {} as PuntoControl;
       this.responsableActual = {} as Usuario;
+      this.responsable2Actual = {} as Usuario;
       this.puntoControlActual.trabajo = this.data[1];
       this.puntoControlActual.orden = 2;
     } else {
       this.puntoControlActual = new PuntoControlImp(this.data[0]);
       this.responsableActual = this.data[0].responsable;
+      this.responsable2Actual = this.data[0].responsable;
     }
   }
 
@@ -68,4 +71,8 @@ export class AltaPuntocontrolComponent implements OnInit {
   resposableOnChange(x: Usuario) {
     this.puntoControlActual.responsable = x;
   }
+
+    resposable2OnChange(x: Usuario) {
+        this.puntoControlActual.responsable2 = x;
+    }
 }

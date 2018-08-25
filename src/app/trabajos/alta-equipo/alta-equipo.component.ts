@@ -12,6 +12,7 @@ import {EquipoService} from '../../_services/equipo.service';
 import {EquipoImp} from '../../_models/EquipoImp';
 import {TipoEquipoImp} from '../../_models/TipoEquipoImp';
 import {TipoEquipo} from '../../_models/TipoEquipo';
+import {MarcaEquipo} from '../../_models/MarcaEquipo';
 
 @Component({
   selector: 'app-alta-equipo',
@@ -22,7 +23,8 @@ export class AltaEquipoComponent implements OnInit {
 
   public equipoActual: Equipo;
   public cliente: Cliente;
-  tipoEquipoActual: TipoEquipo;
+  public tipoEquipoActual: TipoEquipo;
+  public marcaActual: MarcaEquipo;
 
   constructor(
       public dialogRef: MatDialogRef<AltaEquipoComponent>,
@@ -38,10 +40,12 @@ export class AltaEquipoComponent implements OnInit {
     } else {
       this.equipoActual = new EquipoImp(this.data[0]);
       this.tipoEquipoActual = this.equipoActual.tipoEquipo;
+      this.marcaActual = this.equipoActual.marca;
     }
     this.equipoActual.cliente = this.data[1];
     this.equipoActual.tipoEquipo = {} as TipoEquipo;
     this.tipoEquipoActual = this.equipoActual.tipoEquipo;
+    this.marcaActual = this.equipoActual.marca;
   }
 
   cerrar() {
@@ -54,6 +58,11 @@ export class AltaEquipoComponent implements OnInit {
       this.equipoActual.tipoEquipo = undefined;
     } else {
       this.equipoActual.tipoEquipo = this.tipoEquipoActual;
+    }
+    if (isNaN(this.marcaActual.id)) {
+      this.equipoActual.marca = undefined;
+    } else {
+      this.equipoActual.marca = this.marcaActual;
     }
     if (this.data[0] === undefined) {
       this.equipoService.create(this.equipoActual).subscribe(
@@ -85,5 +94,10 @@ export class AltaEquipoComponent implements OnInit {
 
   tipoEquipoOnChange(tp: TipoEquipo) {
     this.tipoEquipoActual = tp;
+  }
+
+  marcaOnChange(x: MarcaEquipo) {
+    this.marcaActual = x;
+    this.equipoActual.marca = x;
   }
 }

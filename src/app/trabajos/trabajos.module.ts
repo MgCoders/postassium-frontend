@@ -48,6 +48,9 @@ import { FormaPagoFacturaSelectComponent } from './forma-pago-factura-select/for
 import { MonedaFacturaSelectComponent } from './moneda-factura-select/moneda-factura-select.component';
 import { TrabajoFacturaViewComponent } from './trabajo-factura-view/trabajo-factura-view.component';
 import { PuntosControlModule } from '../puntoscontrol/puntoscontrol.module';
+import {VerificarPuntocontrolComponent} from "../puntoscontrol/verificar-puntocontrol/verificar-puntocontrol.component";
+import {MarcasModule} from "../marcas/marcas.module";
+import {UsuariosModule} from "../usuarios/usuarios.module";
 
 @NgModule({
   imports: [
@@ -66,6 +69,8 @@ import { PuntosControlModule } from '../puntoscontrol/puntoscontrol.module';
     TareasModule,
     PuntosControlModule,
     TiposEquiposModule,
+    MarcasModule,
+      UsuariosModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule
   ],
@@ -104,6 +109,7 @@ import { PuntosControlModule } from '../puntoscontrol/puntoscontrol.module';
     AltaEquipoComponent,
     AltaTareaComponent,
     AltaPuntocontrolComponent,
+    VerificarPuntocontrolComponent,
     AltaTareaMaterialComponent,
     TrabajoFacturaNuevaComponent,
     TrabajoFacturaViewComponent

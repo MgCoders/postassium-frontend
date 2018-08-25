@@ -98,20 +98,9 @@ export class ListaTareasComponent implements OnInit {
   tareaCompleta(x: Tarea) {
       x.completa = !x.completa;
 
-      x.puntoControl.paraVerificar = true;
-      this.lista.forEach(
-          (element) => {
-              if ((element.puntoControl.id === x.puntoControl.id) && ((!element.completa) || (element.necesitaVerificacion && !element.verificada))) {
-                  console.log(element.puntoControl);
-                  console.log(x.puntoControl);
-                  x.puntoControl.paraVerificar = false;
-              }
-          }
-      );
-
       console.log('TAREA COMPLETA');
       console.log(x.puntoControl);
-      this.puntoControlService.edit(x.puntoControl).subscribe();
+      //this.puntoControlService.edit(x.puntoControl).subscribe();
       this.tareaService.edit(x).subscribe(
           (data) => {
               this.onChangeParaFinalizarTrabajo.emit(x.puntoControl.paraVerificar);
@@ -126,18 +115,9 @@ export class ListaTareasComponent implements OnInit {
     tareaVerificada(x: Tarea) {
         x.verificada = !x.verificada;
 
-        x.puntoControl.paraVerificar = true;
-        this.lista.forEach(
-            (element) => {
-                if ((element.puntoControl === x.puntoControl) &&  ((!element.completa) || (element.necesitaVerificacion && !element.verificada))) {
-                    element.puntoControl.paraVerificar = false;
-                }
-            }
-        );
-
         console.log('TAREA COMPLETA');
         console.log(x.puntoControl);
-        this.puntoControlService.edit(x.puntoControl).subscribe();
+        //this.puntoControlService.edit(x.puntoControl).subscribe();
         this.tareaService.edit(x).subscribe(
             (data) => {
                 this.onChangeParaFinalizarTrabajo.emit(x.puntoControl.paraVerificar);

@@ -20,7 +20,7 @@ export interface Trabajo {
     nombreClienteRecepcion: string;
     nroFactura: number;
     nroRemito: number;
-    nroOrdenCompra: number;
+    nroOrdenCompra: string;
 
     equipoDocumentos: boolean;
     equipoRadio: boolean;
@@ -47,5 +47,8 @@ export interface Trabajo {
     equipoCantidadCombustible: number;
     esReparacion: boolean;
     paraFinalizar: boolean;
+
+    numeroTrabajo: string;
+    cotizacion: string;
 
 }

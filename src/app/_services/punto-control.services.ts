@@ -24,4 +24,10 @@ export class PuntoControlService {
     delete(id: number): Observable<any> {
         return this.http.delete(`${environment.apiUrl}/puntoscontrol/` + id);
     }
+
+    verificar(x: PuntoControl, pin: string, verificacion: number): Observable<any> {
+        console.log('%%%%%%%%%%%');
+        console.log(x);
+        return this.http.put(`${environment.apiUrl}/puntoscontrol/verificar/` + x.id + '/' + pin + '/' + verificacion, x);
+    }
 }

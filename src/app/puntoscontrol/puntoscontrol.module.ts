@@ -21,6 +21,7 @@ import { UsuariosModule } from '../usuarios/usuarios.module';
 import {
   SelectPuntoControlComponent
 } from './select-puntocontrol/select-puntocontrol.component';
+import {VerificarPuntocontrolComponent} from "./verificar-puntocontrol/verificar-puntocontrol.component";
 
 @NgModule({
   imports: [
@@ -37,8 +38,8 @@ import {
     UsuariosModule
   ],
   providers: [PuntoControlService, AlertService, LayoutService],
-  declarations: [ListaPuntosControlComponent, PuntosControlComponent, AltaPuntocontrolComponent, SelectPuntoControlComponent],
-  entryComponents: [AltaPuntocontrolComponent, SelectPuntoControlComponent],
+  declarations: [ListaPuntosControlComponent, PuntosControlComponent, AltaPuntocontrolComponent, VerificarPuntocontrolComponent, SelectPuntoControlComponent],
+  entryComponents: [AltaPuntocontrolComponent, SelectPuntoControlComponent, VerificarPuntocontrolComponent],
   exports: [SelectPuntoControlComponent, ListaPuntosControlComponent]
 })
 

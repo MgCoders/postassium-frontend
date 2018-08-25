@@ -1,10 +1,9 @@
 <section class="container-fluid with-maxwidth chapter">
   <article class="article">
-
     <div class="row">
-      <h2 class="article-title padding-top-30 col-12 col-sm-6">Puntos Control</h2>
+      <h2 class="article-title padding-top-30 col-12 col-sm-6">Usuarios</h2>
       <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
-        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Punto de Control</button>
+        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Marca</button>
       </div>
     </div>
 
@@ -18,16 +17,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let x of puntosControl">
+        <tr *ngFor="let x of marcas">
           <td>{{x.id}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.nombre}}</td>
           <td>
-            <button [disabled]="!x.paraVerificar" *ngIf="!(x.verificado && x.verificado2)" mat-icon-button color="primary" (click)="verificarDialog(x)" matTooltip="Verificar punto de control">
-              <mat-icon  class="material-icons">check</mat-icon>
-            </button>
-            <button [disabled]="trabajo.estado != 'EN_PROCESO'" *ngIf="(x.verificado)" mat-icon-button color="warn" (click)="verificar(x)" matTooltip="Volver a verificar punto de control">
-              <mat-icon  class="material-icons">close</mat-icon>
-            </button>
             <button mat-icon-button color="primary" (click)="editar(x)">
               <mat-icon class="material-icons">mode_edit</mat-icon>
             </button>

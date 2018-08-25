@@ -5,9 +5,8 @@
     <form>
       <div class="row">
         <div class="col-12">
-          <mat-input-container class="full-width">
-            <input [(ngModel)]="equipoActual.marca" matInput placeholder="Marca" name="Marca">
-          </mat-input-container>
+            <app-select-marcas [object]="equipoActual.marca" (onChange)="marcaOnChange($event)" idModel="id"  placeHolder="Marca" desc="nombre" ></app-select-marcas>
+            <!--<input [(ngModel)]="equipoActual.marca" matInput placeholder="Marca" name="Marca">-->
         </div>
       </div>
       <div class="row">

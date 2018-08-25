@@ -6,7 +6,7 @@ import * as models from './models';
 export interface Equipo {
     id?: number;
     cliente: models.Cliente;
-    marca: string;
+    marca: models.MarcaEquipo;
     modelo: string;
     matricula: string;
     color: string;

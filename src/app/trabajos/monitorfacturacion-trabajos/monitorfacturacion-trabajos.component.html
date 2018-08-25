@@ -10,7 +10,7 @@
         <thead>
         <tr>
           <th>#</th>
-          <th class="mdl-data-table__cell--non-numeric">Id. Trabajo</th>
+          <th class="mdl-data-table__cell--non-numeric">Número Trabajo</th>
           <th class="mdl-data-table__cell--non-numeric">Motivo Visita</th>
           <th class="mdl-data-table__cell--non-numeric">RUT Cliente</th>
           <th class="mdl-data-table__cell--non-numeric">Nombre Cliente</th>
@@ -24,13 +24,13 @@
         <tbody>
         <tr *ngFor="let x of listaParaFacturar">
           <td>{{x.id}}</td>
-          <td class="mdl-data-table__cell--non-numeric">{{x.id}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{x.numeroTrabajo}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.motivoVisita}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.cliente.rut}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.cliente.nombreEmpresa}}</td>
             <td class="mdl-data-table__cell--non-numeric">{{x.estado}}</td>
           <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo !== undefined">{{x.equipo.matricula}}</td>
-          <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo !== undefined">{{x.equipo.marca}} / {{x.equipo.modelo}}</td>
+          <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo !== undefined">{{x.equipo.marca.nombre}} / {{x.equipo.modelo}}</td>
           <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo === undefined">N/A</td>
           <td class="mdl-data-table__cell--non-numeric" *ngIf="x.equipo === undefined">N/A</td>
             <td class="mdl-data-table__cell--non-numeric" *ngIf="x.nroRemito !== undefined && x.nroRemito !== null">{{x.nroRemito}}</td>

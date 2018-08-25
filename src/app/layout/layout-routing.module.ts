@@ -22,6 +22,7 @@ const routes: Routes = [
       { path: 'puntoscontrol', loadChildren: '../puntoscontrol/puntoscontrol.module#PuntosControlModule' },
       { path: 'trabajos', loadChildren: '../trabajos/trabajos.module#TrabajosModule' },
       { path: 'usuarios', loadChildren: '../usuarios/usuarios.module#UsuariosModule' },
+      { path: 'marcas', loadChildren: '../marcas/marcas.module#MarcasModule' },
       { path: 'registros', loadChildren: '../registros/registros.module#RegistrosModule' },
       { path: 'tiposmateriales', loadChildren: '../tiposmateriales/tiposmateriales.module#TiposMaterialesModule' },
       { path: 'materiales', loadChildren: '../materiales/materiales.module#MaterialesModule' },

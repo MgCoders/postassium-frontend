@@ -42,3 +42,5 @@ export * from './Factura';
 export * from './FacturaImp';
 export * from './FacturaLinea';
 export * from './FacturaLineaImp';
+export * from './MarcaEquipo';
+export * from './MarcaEquipoImp';
