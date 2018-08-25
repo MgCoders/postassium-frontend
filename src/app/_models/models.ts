@@ -44,3 +44,5 @@ export * from './FacturaLinea';
 export * from './FacturaLineaImp';
 export * from './MarcaEquipo';
 export * from './MarcaEquipoImp';
+export * from './UnidadMedida';
+export * from './NucleoMaterial';

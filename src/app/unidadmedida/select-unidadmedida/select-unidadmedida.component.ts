@@ -1,35 +1,33 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TipoMaterialService } from '../../_services/tipomaterial.service';
-import { TipoMaterial } from '../../_models/TipoMaterial';
+import { UnidadMedida } from '../../_models/UnidadMedida';
+import { UnidadMedidaService } from '../../_services/unidadmedida.service';
 import { AlertService } from '../../_services/alert.service';
 
 @Component({
-  selector: 'app-select-tipomaterial',
-  templateUrl: './select-tipomaterial.component.html',
-  styleUrls: ['./select-tipomaterial.component.scss']
+  selector: 'app-select-unidadmedida',
+  templateUrl: './select-unidadmedida.component.html',
+  styleUrls: ['./select-unidadmedida.component.scss']
 })
-export class SelectTipoMaterialComponent implements OnInit {
+export class SelectUnidadMedidaComponent implements OnInit {
 
   @Input() object: any;
   @Input() idModel: string;
   @Input() placeHolder: string;
   @Input() id: string;
   @Input() desc: string;
-  @Input() desc2: string;
-  @Input() desc3: string;
 
-  @Output() onChange: EventEmitter<TipoMaterial> = new EventEmitter<TipoMaterial>();
+  @Output() onChange: EventEmitter<UnidadMedida> = new EventEmitter<UnidadMedida>();
 
-  lista: TipoMaterial[];
+  lista: UnidadMedida[];
 
   constructor(
-      private tipoMaterialService: TipoMaterialService,
+      private unidadMedidaService: UnidadMedidaService,
       private alertService: AlertService
   ) { }
 
   ngOnInit() {
     this.lista = new Array();
-    this.tipoMaterialService.getAll().subscribe(
+    this.unidadMedidaService.getAll().subscribe(
         (data) => {
           this.lista = data;
         },
@@ -41,4 +39,5 @@ export class SelectTipoMaterialComponent implements OnInit {
   onChangeValue(evt) {
     this.onChange.emit(this.lista.find((x) => x.id === evt.value));
   }
+
 }

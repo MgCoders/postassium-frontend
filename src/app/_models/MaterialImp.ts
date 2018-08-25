@@ -12,20 +12,46 @@
 
 import * as models from './models';
 import { Material } from './Material';
+import { UnidadMedida } from './UnidadMedida';
 
 export class MaterialImp implements Material {
     id?: number;
 
-    nombre: string;
+    codigo: string;
+
+    nombre?: string;
 
     descripcion?: string;
 
+    codigoAlternativo: string;
+
+    stock: boolean;
+
+    medida1: UnidadMedida;
+
+    medida2: UnidadMedida;
+
+    factorConversion2: number;
+
+    medida3: UnidadMedida;
+
+    factorConversion3: number;
+
     tipoMaterial?: models.TipoMaterial;
+
 
     public constructor(m: Material) {
         this.id = m.id;
+        this.codigo = m.codigo;
         this.nombre = m.nombre;
         this.descripcion = m.descripcion;
+        this.codigoAlternativo = m.codigoAlternativo;
+        this.stock = m.stock;
+        this.medida1 = m.medida1;
+        this.medida2 = m.medida2;
+        this.factorConversion2 = m.factorConversion2;
+        this.factorConversion3 = m.factorConversion3;
+        this.medida3 = m.medida3;
         this.tipoMaterial = m.tipoMaterial;
     }
 }

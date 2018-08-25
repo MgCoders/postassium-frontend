@@ -18,6 +18,7 @@ export class AltaTipoMaterialComponent implements OnInit {
 
   public nombreFC = new FormControl('', [Validators.required]);
   public codigoFC = new FormControl('', [Validators.required]);
+  public subgrupoFC = new FormControl('', [Validators.required]);
 
   constructor(
       public dialogRef: MatDialogRef<AltaTipoMaterialComponent>,

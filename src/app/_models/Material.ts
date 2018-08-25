@@ -11,14 +11,32 @@
  */
 
 import * as models from './models';
+import { UnidadMedida } from './UnidadMedida';
 
 export interface Material {
     id?: number;
 
-    nombre: string;
+    codigo: string;
+
+    nombre?: string;
 
     descripcion?: string;
 
+    codigoAlternativo: string;
+
+    stock: boolean;
+
+    medida1: UnidadMedida;
+
+    medida2: UnidadMedida;
+
+    factorConversion2: number;
+
+    medida3: UnidadMedida;
+
+    factorConversion3: number;
+
     tipoMaterial?: models.TipoMaterial;
 
+    nucleoMaterial?: models.NucleoMaterial;
 }

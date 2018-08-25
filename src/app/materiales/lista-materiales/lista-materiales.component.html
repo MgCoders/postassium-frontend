@@ -11,7 +11,9 @@
       <table class="mdl-data-table">
         <thead>
         <tr>
+
           <th>#</th>
+          <th class="mdl-data-table__cell--non-numeric">Código</th>
           <th class="mdl-data-table__cell--non-numeric">Nombre</th>
           <th class="mdl-data-table__cell--non-numeric">Descripción</th>
           <th class="mdl-data-table__cell--non-numeric">Tipo de Material</th>
@@ -21,15 +23,14 @@
         <tbody>
         <tr *ngFor="let x of materiales">
           <td>{{x.id}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{x.codigo}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.nombre}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.descripcion}}</td>
-          <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.tipoMaterial !== undefined">{{x.tipoMaterial.nombre}}</span></td>
+          <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.tipoMaterial !== undefined">
+            {{x.tipoMaterial.familia}}-{{x.tipoMaterial.grupo}}-{{x.tipoMaterial.subgrupo}}</span></td>
           <td>
             <button mat-icon-button color="primary" (click)="editar(x)">
               <mat-icon class="material-icons">mode_edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn">
-              <mat-icon class="material-icons" (click)="eliminar(x)">delete</mat-icon>
             </button>
           </td>
         </tr>

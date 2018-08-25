@@ -15,8 +15,12 @@ import * as models from './models';
 export interface TipoMaterial {
     id?: number;
 
-    nombre: string;
+    familia: string;
 
-    codigo: string;
+    grupo: string;
+
+    subgrupo: string;
+
+    descripcion: string;
 
 }

@@ -6,11 +6,20 @@
       <div class="row">
         <div class="col-12">
           <mat-input-container class="full-width">
-            <input [(ngModel)]="materialActual.nombre" matInput placeholder="Nombre" name="Nombre" [formControl]="nombreFC">
-            <mat-error *ngIf="nombreFC.hasError('required')">El nombre es obligatorio.</mat-error>
+            <input [(ngModel)]="materialActual.codigo" matInput placeholder="Código" name="Codigo" [formControl]="nombreFC">
+            <mat-error *ngIf="nombreFC.hasError('required')">El código es obligatorio.</mat-error>
           </mat-input-container>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-12">
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="materialActual.nombre" matInput placeholder="Nombre" name="Nombre">
+          </mat-input-container>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-12">
           <mat-input-container class="full-width">
@@ -18,9 +27,71 @@
           </mat-input-container>
         </div>
       </div>
+
       <div class="row">
         <div class="col-12">
-          <app-select-tipomaterial [object]="tipoMaterialActual" (onChange)="tipoMaterialOnChange($event)" idModel="id" placeHolder="Tipo de Material" id="id" desc="nombre"></app-select-tipomaterial>
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="materialActual.codigoAlternativo" matInput placeholder="Código Alternativo" name="CodigoAlternativo">
+          </mat-input-container>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3">
+          <mat-checkbox [(ngModel)]="materialActual.stock" name="documentos">¿Necesita control stock?</mat-checkbox>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <app-select-tipomaterial [object]="tipoMaterialActual"
+                                   (onChange)="tipoMaterialOnChange($event)" idModel="id"
+                                   placeHolder="Tipo de Material" id="id"
+                                   desc="familia" desc2="grupo" desc3="subgrupo" ></app-select-tipomaterial>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <app-select-unidadmedida [object]="medidaActual1"
+                                   (onChange)="medida1OnChange($event)" idModel="id"
+                                   placeHolder="Unidad 1" id="id"
+                                   desc="codigo"></app-select-unidadmedida>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <app-select-unidadmedida [object]="medidaActual2"
+                                   (onChange)="medida2OnChange($event)" idModel="id"
+                                   placeHolder="Unidad 2" id="id"
+                                   desc="codigo"></app-select-unidadmedida>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="materialActual.factorConversion2" matInput
+                   placeholder="Factor Conversión 2" name="FactorConversion2">
+          </mat-input-container>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <app-select-unidadmedida [object]="medidaActual3"
+                                   (onChange)="medida3OnChange($event)" idModel="id"
+                                   placeHolder="Unidad 3" id="id"
+                                   desc="codigo"></app-select-unidadmedida>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="materialActual.factorConversion3" matInput
+                   placeholder="Factor Conversión 3" name="FactorConversion3">
+          </mat-input-container>
         </div>
       </div>
     </form>
@@ -30,6 +101,8 @@
 <div mat-dialog-actions class="full-width">
   <div class="full-width text-sm-right">
     <button mat-button color="primary" class="btn-w-xs" [mat-dialog-close]="false">Cancelar</button>
-    <button [disabled]="nombreFC.invalid" mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
+
+    <button [disabled]="nombreFC.invalid" mat-button color="primary"
+            class="btn-w-md" (click)="guardar()">Guardar</button>
   </div>
 </div>

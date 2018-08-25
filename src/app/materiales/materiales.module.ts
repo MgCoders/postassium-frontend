@@ -15,6 +15,7 @@ import { MaterialesComponent } from './materiales.component';
 import { MaterialService } from '../_services/material.service';
 import { LayoutService } from '../layout/layout.service';
 import { AlertService } from '../_services/alert.service';
+import { UnidadMedidaModule } from '../unidadmedida/unidadmedida.module';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { AlertService } from '../_services/alert.service';
     MaterialesRoutingModule,
     ReactiveFormsModule,
     TiposMaterialesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UnidadMedidaModule
   ],
   declarations: [
     AltaMaterialComponent,

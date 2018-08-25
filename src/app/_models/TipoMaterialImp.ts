@@ -15,13 +15,19 @@ import { TipoMaterial } from './TipoMaterial';
 export class TipoMaterialImp implements TipoMaterial {
     id?: number;
 
-    nombre: string;
+    familia: string;
 
-    codigo: string;
+    grupo: string;
+
+    subgrupo: string;
+
+    descripcion: string;
 
     public constructor(tm: TipoMaterial) {
         this.id = tm.id;
-        this.nombre = tm.nombre;
-        this.codigo = tm.codigo;
+        this.familia = tm.familia;
+        this.grupo = tm.grupo;
+        this.subgrupo = tm.subgrupo;
+        this.descripcion = tm.descripcion;
     }
 }

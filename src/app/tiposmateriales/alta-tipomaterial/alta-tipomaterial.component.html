@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Tipo de Material</h1>
+<h1 mat-dialog-title>Tipo de Articulo</h1>
 
 <div mat-dialog-content class="box box-default">
   <div class="box-body">
@@ -6,16 +6,31 @@
       <div class="row">
         <div class="col-12">
           <mat-input-container class="full-width">
-            <input [(ngModel)]="tipoMaterialActual.nombre" matInput placeholder="Nombre" name="Nombre" [formControl]="nombreFC">
-            <mat-error *ngIf="nombreFC.hasError('required')">El nombre es obligatorio.</mat-error>
+            <input [(ngModel)]="tipoMaterialActual.familia" matInput placeholder="Familia" name="Familia" [formControl]="nombreFC">
+            <mat-error *ngIf="nombreFC.hasError('required')">La familia es obligatoria.</mat-error>
           </mat-input-container>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
           <mat-input-container class="full-width">
-            <input [(ngModel)]="tipoMaterialActual.codigo" matInput placeholder="Código" name="Código" [formControl]="codigoFC">
-            <mat-error *ngIf="codigoFC.hasError('required')">El código es obligatorio.</mat-error>
+            <input [(ngModel)]="tipoMaterialActual.grupo" matInput placeholder="Grupo" name="Grupo" [formControl]="codigoFC">
+            <mat-error *ngIf="codigoFC.hasError('required')">El grupo es obligatorio.</mat-error>
+          </mat-input-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="tipoMaterialActual.subgrupo" matInput placeholder="Subgrupo" name="Subgrupo" [formControl]="subgrupoFC">
+            <mat-error *ngIf="subgrupoFC.hasError('required')">El subgrupo es obligatorio.</mat-error>
+          </mat-input-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="tipoMaterialActual.descripcion" matInput placeholder="Descripción" name="Descripcion">
           </mat-input-container>
         </div>
       </div>
@@ -26,6 +41,6 @@
 <div mat-dialog-actions class="full-width">
   <div class="full-width text-sm-right">
     <button mat-button color="primary" class="btn-w-xs" [mat-dialog-close]="false">Cancelar</button>
-    <button [disabled]="nombreFC.invalid || codigoFC.invalid" mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
+    <button [disabled]="nombreFC.invalid || codigoFC.invalid || subgrupoFC.invalid" mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
   </div>
 </div>
