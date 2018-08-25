@@ -10,6 +10,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { UnidadMedida } from '../../_models/UnidadMedida';
 import { noUndefined } from '@angular/compiler/src/util';
 import { NucleoMaterial } from '../../_models/NucleoMaterial';
+import { NucleoMaterialService } from '../../_services/nucleomaterial.service';
 
 @Component({
   selector: 'app-alta-material',
@@ -24,15 +25,19 @@ export class AltaMaterialComponent implements OnInit {
   medidaActual2: UnidadMedida;
   medidaActual3: UnidadMedida;
   nucleoActual: NucleoMaterial;
+  nucleoActualId: number;
+  nucleos: NucleoMaterial[];
 
   public nombreFC = new FormControl('', [Validators.required]);
+  public codigoFC = new FormControl('', [Validators.required]);
 
   constructor(
       public dialogRef: MatDialogRef<AltaMaterialComponent>,
       @Inject(MAT_DIALOG_DATA) public material: Material,
       private materialService: MaterialService,
       private alertService: AlertService,
-      private layoutService: LayoutService
+      private layoutService: LayoutService,
+      private nucleoMaterialService: NucleoMaterialService
   ) { }
 
   ngOnInit() {
@@ -117,7 +122,16 @@ export class AltaMaterialComponent implements OnInit {
 
   tipoMaterialOnChange(tp: TipoMaterial) {
     this.tipoMaterialActual = tp;
-
+    this.nucleoActualId = -1;
+    this.nucleoActual = {} as NucleoMaterial;
+    this.nucleoMaterialService.getAllByTipoMaterial(tp.id).subscribe(
+        (data) => {
+          this.nucleos = data;
+        },
+        (error) => {
+          this.layoutService.updatePreloaderState('hide');
+          this.alertService.error(error, 5000);
+        });
   }
 
   nucleoOnChange(n: NucleoMaterial) {

@@ -7,7 +7,7 @@ import { TiposMaterialesModule } from '../tiposmateriales/tiposmateriales.module
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialesRoutingModule } from './materiales-routing.module';
 import {
-  MatButtonModule,
+  MatButtonModule, MatCheckboxModule,
   MatDialogModule, MatIconModule, MatInputModule, MatSelectModule, MatSnackBarModule,
   MatTooltipModule
 } from '@angular/material';
@@ -16,6 +16,7 @@ import { MaterialService } from '../_services/material.service';
 import { LayoutService } from '../layout/layout.service';
 import { AlertService } from '../_services/alert.service';
 import { UnidadMedidaModule } from '../unidadmedida/unidadmedida.module';
+import { NucleoMaterialService } from '../_services/nucleomaterial.service';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { UnidadMedidaModule } from '../unidadmedida/unidadmedida.module';
     ReactiveFormsModule,
     TiposMaterialesModule,
     ReactiveFormsModule,
-    UnidadMedidaModule
+    UnidadMedidaModule,
+    MatCheckboxModule
   ],
   declarations: [
     AltaMaterialComponent,
@@ -46,7 +48,8 @@ import { UnidadMedidaModule } from '../unidadmedida/unidadmedida.module';
   providers: [
     AlertService,
     LayoutService,
-    MaterialService
+    MaterialService,
+    NucleoMaterialService
   ],
   entryComponents: [
       AltaMaterialComponent

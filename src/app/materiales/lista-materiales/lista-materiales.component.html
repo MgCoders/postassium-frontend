@@ -1,9 +1,9 @@
 <section class="container-fluid with-maxwidth chapter">
   <article class="article">
     <div class="row">
-      <h2 class="article-title padding-top-30 col-12 col-sm-6">Materiales</h2>
+      <h2 class="article-title padding-top-30 col-12 col-sm-6">Artículos</h2>
       <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
-        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Material</button>
+        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Artículo</button>
       </div>
     </div>
 
@@ -16,7 +16,13 @@
           <th class="mdl-data-table__cell--non-numeric">Código</th>
           <th class="mdl-data-table__cell--non-numeric">Nombre</th>
           <th class="mdl-data-table__cell--non-numeric">Descripción</th>
+          <th class="mdl-data-table__cell--non-numeric">Código Alternativo</th>
           <th class="mdl-data-table__cell--non-numeric">Tipo de Material</th>
+          <th class="mdl-data-table__cell--non-numeric">Unidad 1</th>
+          <th class="mdl-data-table__cell--non-numeric">Unidad 2</th>
+          <th class="mdl-data-table__cell--non-numeric">F. C. 2</th>
+          <th class="mdl-data-table__cell--non-numeric">Unidad 3</th>
+          <th class="mdl-data-table__cell--non-numeric">F. C. 3</th>
           <th></th>
         </tr>
         </thead>
@@ -26,12 +32,25 @@
           <td class="mdl-data-table__cell--non-numeric">{{x.codigo}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.nombre}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.descripcion}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{x.codigoAlternativo}}</td>
           <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.tipoMaterial !== undefined">
             {{x.tipoMaterial.familia}}-{{x.tipoMaterial.grupo}}-{{x.tipoMaterial.subgrupo}}</span></td>
+
+          <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.medida1 !== undefined">
+            {{x.medida1.codigo}}</span></td>
+
+          <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.medida2 !== undefined">
+            {{x.medida2.codigo}}</span></td>
+
+          <td class="mdl-data-table__cell--non-numeric">{{x.factorConversion2}}</td>
+          <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.medida3 !== undefined">
+            {{x.medida3.codigo}}</span></td>
+
+          <td class="mdl-data-table__cell--non-numeric">{{x.factorConversion3}}</td>
           <td>
-            <button mat-icon-button color="primary" (click)="editar(x)">
+          <button mat-icon-button color="primary" (click)="editar(x)">
               <mat-icon class="material-icons">mode_edit</mat-icon>
-            </button>
+          </button>
           </td>
         </tr>
         </tbody>
