@@ -3,11 +3,11 @@
     <div class="row">
       <h2 class="article-title padding-top-30 col-12 col-sm-6">Registros</h2>
       <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
-        <button mat-raised-button color="primary" (click)="verTrabajo()">
-          <mat-icon class="material-icons">keyboard_backspace</mat-icon>
-          Trabajo
-        </button>
-        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Registro</button>
+        <!--<button mat-raised-button color="primary" (click)="verTrabajo()">-->
+          <!--<mat-icon class="material-icons">keyboard_backspace</mat-icon>-->
+          <!--Trabajo-->
+        <!--</button>-->
+        <button [disabled]="tarea.completa || (tarea.necesitaVerificacion && tarea.verificada)" mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Registro</button>
       </div>
     </div>
 
@@ -31,10 +31,10 @@
           <td class="mdl-data-table__cell--non-numeric"><span *ngIf="r.usuario != undefined">{{r.usuario.nombre}}</span></td>
           <td class="mdl-data-table__cell--non-numeric"><span *ngIf="r.rubro != undefined">{{r.rubro.nombre}}</span></td>
           <td>
-            <button mat-icon-button color="primary" (click)="editar(r)">
+            <button [disabled]="tarea.completa || (tarea.necesitaVerificacion && tarea.verificada)" mat-icon-button color="primary" (click)="editar(r)">
               <mat-icon class="material-icons">mode_edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn">
+            <button [disabled]="tarea.completa || (tarea.necesitaVerificacion && tarea.verificada)" mat-icon-button color="warn">
               <mat-icon class="material-icons" (click)="eliminar(r)">delete</mat-icon>
             </button>
           </td>

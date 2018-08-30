@@ -28,10 +28,10 @@
             <button [disabled]="trabajo.estado != 'EN_PROCESO'" *ngIf="(x.verificado)" mat-icon-button color="warn" (click)="verificar(x)" matTooltip="Volver a verificar punto de control">
               <mat-icon  class="material-icons">close</mat-icon>
             </button>
-            <button mat-icon-button color="primary" (click)="editar(x)">
+            <button [disabled]="x.verificado || x.verificado2" mat-icon-button color="primary" (click)="editar(x)">
               <mat-icon class="material-icons">mode_edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn">
+            <button [disabled]="x.verificado || x.verificado2" mat-icon-button color="warn">
               <mat-icon class="material-icons" (click)="eliminar(x)">delete</mat-icon>
             </button>
           </td>
