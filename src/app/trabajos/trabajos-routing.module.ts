@@ -14,7 +14,7 @@ export const TrabajosRoutes: Routes = [
       { path: '', redirectTo: '/app/dashboard', pathMatch: 'full' },
       { path: 'detalle/:id', component: DetalleTrabajosComponent },
       { path: 'facturas/:id', component: TrabajoFacturasListaComponent },
-      { path: 'alta', component: AltaTrabajosComponent },
+      { path: 'altaTrabajo', component: AltaTrabajosComponent },
       {path: 'monitorfacturacion/:tipo', component: MonitorFacturacionTrabajosComponent}
     ]
   }
