@@ -3,7 +3,7 @@
     <div class="row">
       <h2 class="article-title padding-top-30 col-12 col-sm-6">Artículos</h2>
       <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
-        <button mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Artículo</button>
+        <button [disabled]="tarea.completa || (tarea.necesitaVerificacion && tarea.verificada)" mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Artículo</button>
       </div>
     </div>
 
@@ -48,7 +48,7 @@
 
           <td class="mdl-data-table__cell--non-numeric">{{x.factorConversion3}}</td>
           <td>
-          <button mat-icon-button color="primary" (click)="editar(x)">
+          <button [disabled]="tarea.completa || (tarea.necesitaVerificacion && tarea.verificada)" mat-icon-button color="primary" (click)="editar(x)">
               <mat-icon class="material-icons">mode_edit</mat-icon>
           </button>
           </td>

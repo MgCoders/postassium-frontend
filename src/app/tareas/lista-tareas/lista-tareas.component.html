@@ -41,16 +41,16 @@
               <button [disabled]="((trabajo.estado != 'EN_PROCESO') || (trabajo.estado == 'EN_PROCESO' && x.puntoControl.verificado))" *ngIf="x.verificada" mat-icon-button color="warn" (click)="tareaVerificada(x)" matTooltip="Volver a verificar tarea">
                 <mat-icon  class="material-icons">close</mat-icon>
               </button>
-              <button [disabled]="x.completa" mat-icon-button color="primary" (click)="verMateriales(x)" matTooltip="Materiales">
+              <button mat-icon-button color="primary" (click)="verMateriales(x)" matTooltip="Materiales">
                 <mat-icon  class="material-icons" >format_paint</mat-icon>
               </button>
-              <button [disabled]="x.completa" mat-icon-button color="primary" (click)="verRegistros(x)" matTooltip="Registro de Horas">
+              <button mat-icon-button color="primary" (click)="verRegistros(x)" matTooltip="Registro de Horas">
                 <mat-icon  class="material-icons" >access_time</mat-icon>
               </button>
-              <button [disabled]="x.completa" mat-icon-button color="primary" (click)="editar(x)" matTooltip="Editar">
+              <button [disabled]="tarea.completa || (tarea.necesitaVerificacion && tarea.verificada)" mat-icon-button color="primary" (click)="editar(x)" matTooltip="Editar">
                 <mat-icon class="material-icons">mode_edit</mat-icon>
               </button>
-              <button [disabled]="x.completa" mat-icon-button color="warn" matTooltip="Eliminar">
+              <button [disabled]="tarea.completa || (tarea.necesitaVerificacion && tarea.verificada)" mat-icon-button color="warn" matTooltip="Eliminar">
                 <mat-icon class="material-icons" (click)="eliminar(x)">delete</mat-icon>
               </button>
             </td>

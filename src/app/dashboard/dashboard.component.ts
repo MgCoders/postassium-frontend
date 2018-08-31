@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CHARTCONFIG } from '../charts/charts.config';
-import {TrabajoService} from "../_services/trabajo.service";
-import {LayoutService} from "../layout/layout.service";
-import {AlertService} from "../_services/alert.service";
-import {APPCONFIG} from "../config";
+import {TrabajoService} from '../_services/trabajo.service';
+import {LayoutService} from '../layout/layout.service';
+import {AlertService} from '../_services/alert.service';
+import {APPCONFIG} from '../config';
 
 @Component({
   selector: 'my-dashboard',
@@ -11,7 +11,6 @@ import {APPCONFIG} from "../config";
 })
 export class DashboardComponent implements OnInit {
   config = CHARTCONFIG;
-
 
   constructor(private trabajoService: TrabajoService,
               private alertService: AlertService,
@@ -24,6 +23,8 @@ export class DashboardComponent implements OnInit {
     public totalParaRemito: number;
     public totalAsignacionValores: number;
     public totalEnEspera: number;
+    public totalReparaciones: number;
+    public totalProducciones: number;
 
   ngOnInit() {
     this.total = 0;
@@ -33,6 +34,8 @@ export class DashboardComponent implements OnInit {
     this.totalParaRemito = 0;
     this.totalAsignacionValores = 0;
     this.totalEnEspera = 0;
+    this.totalReparaciones = 0;
+    this.totalProducciones = 0;
     this.layoutService.updatePreloaderState('active');
     this.trabajoService.countAll().subscribe(
         (data) => {
@@ -43,7 +46,7 @@ export class DashboardComponent implements OnInit {
         (error) => {
           this.alertService.error(error, 5000);
         });
-    this.trabajoService.countByEstados('EN_PROCESO').subscribe(
+    this.trabajoService.countByCampo('estado', 'EN_PROCESO').subscribe(
         (data) => {
           if (data != null) {
             this.totalEnProceso = data;
@@ -52,7 +55,7 @@ export class DashboardComponent implements OnInit {
         (error) => {
           this.alertService.error(error, 5000);
         });
-    this.trabajoService.countByEstados('FINALIZADO').subscribe(
+    this.trabajoService.countByCampo('estado', 'FINALIZADO').subscribe(
         (data) => {
           if (data != null) {
             this.totalFinalizados = data;
@@ -61,7 +64,7 @@ export class DashboardComponent implements OnInit {
         (error) => {
           this.alertService.error(error, 5000);
         });
-    this.trabajoService.countByEstados('PENDIENTE_FACTURA').subscribe(
+    this.trabajoService.countByCampo('estado', 'PENDIENTE_FACTURA').subscribe(
         (data) => {
           if (data != null) {
             this.totalParaFacturar = data;
@@ -70,7 +73,7 @@ export class DashboardComponent implements OnInit {
         (error) => {
           this.alertService.error(error, 5000);
         });
-    this.trabajoService.countByEstados('PENDIENTE_REMITO').subscribe(
+    this.trabajoService.countByCampo('estado', 'PENDIENTE_REMITO').subscribe(
         (data) => {
           if (data != null) {
             this.totalParaRemito = data;
@@ -79,7 +82,7 @@ export class DashboardComponent implements OnInit {
         (error) => {
           this.alertService.error(error, 5000);
         });
-    this.trabajoService.countByEstados('PENDIENTE_ASIGNACION_VALORES,PENDIENTE_REMITO').subscribe(
+    this.trabajoService.countByCampo('estado', 'PENDIENTE_ASIGNACION_VALORES,PENDIENTE_REMITO').subscribe(
         (data) => {
           if (data != null) {
             this.totalAsignacionValores = data;
@@ -88,7 +91,7 @@ export class DashboardComponent implements OnInit {
         (error) => {
           this.alertService.error(error, 5000);
         });
-    this.trabajoService.countByEstados('EN_ESPERA').subscribe(
+    this.trabajoService.countByCampo('estado', 'EN_ESPERA').subscribe(
         (data) => {
           if (data != null) {
             this.totalEnEspera = data;
@@ -97,8 +100,27 @@ export class DashboardComponent implements OnInit {
         (error) => {
           this.alertService.error(error, 5000);
         });
+    this.trabajoService.countByCampo('esReparacion', 'true').subscribe(
+          (data) => {
+              if (data != null) {
+                  this.totalReparaciones = data;
+              }
+          },
+          (error) => {
+              this.alertService.error(error, 5000);
+          });
+
+    this.trabajoService.countByCampo('esReparacion', 'false').subscribe(
+          (data) => {
+              if (data != null) {
+                  this.totalReparaciones = data;
+              }
+          },
+          (error) => {
+              this.alertService.error(error, 5000);
+          });
+
     this.layoutService.updatePreloaderState('hide');
   }
-
 
 }
