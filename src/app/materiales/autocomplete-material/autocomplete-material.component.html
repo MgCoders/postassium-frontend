@@ -1,0 +1,19 @@
+<form class="example-form" [formGroup]='materialForm'>
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Elija el material.." [matAutocomplete]="auto" formControlName='materialInput'>
+    </mat-form-field>
+    <span>Material Elegido: {{getDesc()}}</span>
+  
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngIf="isLoading"><mat-spinner [diameter]="20" [strokeWidth]="5"></mat-spinner></mat-option>
+      <ng-container *ngIf="!isLoading">
+        <mat-option *ngFor="let material of filteredMateriales" [value]="material" (onSelectionChange)="onOptionSelected(material)">
+          <span>{{ material.nombre }}</span>
+          <small> | ID: {{material.id}}</small>
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+
+  </form>
+  
