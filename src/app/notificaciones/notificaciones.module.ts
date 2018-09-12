@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule, MatDatepickerModule, MatDialogModule, MatIconModule, MatInputModule, MatSelectModule,
   MatSnackBarModule,
@@ -28,7 +28,9 @@ import { AltaDestinatarioComponent } from './alta-destinatario/alta-destinatario
     MatDialogModule,
     UsuariosModule,
     MatDatepickerModule,
-    NotificacionesRoutingModule
+    NotificacionesRoutingModule,
+    UsuariosModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ListaDestinatariosComponent,
@@ -39,6 +41,9 @@ import { AltaDestinatarioComponent } from './alta-destinatario/alta-destinatario
     NotificacionesService,
     AlertService,
     LayoutService
+  ],
+  entryComponents: [
+    AltaDestinatarioComponent
   ]
 })
 

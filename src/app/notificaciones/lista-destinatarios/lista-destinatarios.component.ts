@@ -4,7 +4,8 @@ import { LayoutService } from '../../layout/layout.service';
 import { AlertService } from '../../_services/alert.service';
 import { MatDialog } from '@angular/material';
 import { NotificacionDestinatario } from '../../_models/NotificacionDestinatario';
-import { Usuario } from '../../_models/Usuario';
+import { AltaDestinatarioComponent } from '../alta-destinatario/alta-destinatario.component';
+import { DialogConfirmComponent } from '../../shared/dialog-confirm/dialog-confirm.component';
 
 @Component({
   selector: 'app-lista-destinatarios',
@@ -21,32 +22,66 @@ export class ListaDestinatariosComponent implements OnInit {
               private layoutService: LayoutService) { }
 
   ngOnInit() {
-    let d1 = {} as NotificacionDestinatario;
-    d1.id = 1;
-    d1.tipo = NotificacionDestinatario.TipoEnum.FACTURAERP;
-    let u1 = {} as Usuario;
-    u1.nombre = 'José';
-    u1.email = 'jose@sandonato.com.uy';
-    d1.usuario = u1;
+    this.loadData();
+  }
 
-    let d2 = {} as NotificacionDestinatario;
-    d2.id = 2;
-    d2.tipo = NotificacionDestinatario.TipoEnum.CARGARVALORES;
-    d2.usuario = u1;
+  loadData() {
+    // this.layoutService.updatePreloaderState('active');
     this.destinatarios = new Array();
-    this.destinatarios.push(d1);
-    this.destinatarios.push(d2);
+    this.notificacionesService.getAll().subscribe(
+        (data) => {
+          this.destinatarios = data;
+        },
+        (error) => {
+          this.alertService.error(error, 5000);
+        });
+    // this.layoutService.updatePreloaderState('hide');
   }
 
   nuevo() {
+    const dialog = this.dialog.open(AltaDestinatarioComponent, {
+      data: {},
+      width: '600px',
+    });
 
+    dialog.afterClosed().subscribe(
+        (result) => {
+          if (result === 1) {
+            this.loadData();
+          }
+        });
   }
 
   editar(d: NotificacionDestinatario) {
-
+    const dialog = this.dialog.open(AltaDestinatarioComponent, {
+      data: d,
+      width: '600px',
+    });
+    dialog.afterClosed().subscribe(
+        (result) => {
+          if (result === 1) {
+            this.loadData();
+          }
+        });
   }
 
   eliminar(d: NotificacionDestinatario) {
+    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+      data: '¿Está seguro que desea eliminar el destinatario ' + d.usuario.email +  ' para ' + d.tipo +  '?',
+    });
 
+    dialogRef.afterClosed().subscribe(
+        (result) => {
+          if (result) {
+            this.notificacionesService.delete(d.id).subscribe(
+                (data) => {
+                  this.loadData();
+                },
+                (error) => {
+                  this.alertService.error(error, 5000);
+                });
+            this.alertService.success('Cargo eliminado correctamente.', 3000);
+          }
+        });
   }
 }

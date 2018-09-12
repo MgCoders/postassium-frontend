@@ -11,11 +11,11 @@ export namespace NotificacionDestinatario {
         | 'DEADLINE' | 'TRABAJO_ATRASADO' | 'IMPRIMIR_FICHA';
     export const TipoEnum = {
         LOGIN: 'LOGIN' as TipoEnum,
-        CARGARVALORES: 'CARGAR_VALORES' as TipoEnum,
-        FACTURAERP: 'FACTURA_ERP' as TipoEnum,
-        GENERARREMITO: 'GENERAR_REMITO' as TipoEnum,
+        CARGAR_VALORES: 'CARGAR_VALORES' as TipoEnum,
+        FACTURA_ERP: 'FACTURA_ERP' as TipoEnum,
+        GENERAR_REMITO: 'GENERAR_REMITO' as TipoEnum,
         DEADLINE: 'DEADLINE' as TipoEnum,
-        TRABAJOATRASADO: 'TRABAJO_ATRASADO' as TipoEnum,
+        TRABAJO_ATRASADO: 'TRABAJO_ATRASADO' as TipoEnum,
         IMPRIMIR_FICHA: 'IMPRIMIR_FICHA' as TipoEnum
     }
 }

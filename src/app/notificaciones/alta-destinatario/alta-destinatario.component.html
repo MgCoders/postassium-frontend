@@ -1,3 +1,34 @@
-<p>
-  alta-destinatario works!
-</p>
+<h1 mat-dialog-title>Rubro</h1>
+
+<div mat-dialog-content class="box box-default">
+  <div class="box-body">
+    <form>
+      <div class="row">
+        <div class="col-12">
+          <mat-input-container class="full-width">
+            <mat-select [(value)]="destinatarioActual.tipo" placeholder="Tipo Notificación"
+                        class="full-width"  >
+              <mat-option *ngFor="let x of notificacionesTipos" value="{{x}}">{{x}}</mat-option>
+
+            </mat-select>
+
+          </mat-input-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <app-select-usuario [object]="usuarioActual" (onChange)="usuarioOnChange($event)"
+                              idModel="id" placeHolder="Usuario" id="id" desc="nombre" >
+          </app-select-usuario>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div mat-dialog-actions class="full-width">
+  <div class="full-width text-sm-right">
+    <button mat-button color="primary" class="btn-w-xs" [mat-dialog-close]="false">Cancelar</button>
+    <button mat-button color="primary" class="btn-w-md" (click)="guardar()">Guardar</button>
+  </div>
+</div>

@@ -25,11 +25,11 @@
           <td class="mdl-data-table__cell--non-numeric">{{d.usuario.nombre}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{d.usuario.email}}</td>
           <td>
-            <button mat-icon-button color="primary" (click)="editar(r)">
+            <button mat-icon-button color="primary" (click)="editar(d)">
               <mat-icon class="material-icons">mode_edit</mat-icon>
             </button>
             <button mat-icon-button color="warn">
-              <mat-icon class="material-icons" (click)="eliminar(r)">delete</mat-icon>
+              <mat-icon class="material-icons" (click)="eliminar(d)">delete</mat-icon>
             </button>
           </td>
         </tr>
