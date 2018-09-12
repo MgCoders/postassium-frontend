@@ -7,9 +7,16 @@ import { TiposMaterialesModule } from '../tiposmateriales/tiposmateriales.module
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialesRoutingModule } from './materiales-routing.module';
 import {
-  MatButtonModule, MatCheckboxModule,
-  MatDialogModule, MatIconModule, MatInputModule, MatSelectModule, MatSnackBarModule,
-  MatTooltipModule
+  MatButtonModule,
+  MatCheckboxModule,
+  MatDialogModule,
+  MatIconModule,
+  MatInputModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatTooltipModule,
+  MatAutocompleteModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { MaterialesComponent } from './materiales.component';
 import { MaterialService } from '../_services/material.service';
@@ -17,6 +24,7 @@ import { LayoutService } from '../layout/layout.service';
 import { AlertService } from '../_services/alert.service';
 import { UnidadMedidaModule } from '../unidadmedida/unidadmedida.module';
 import { NucleoMaterialService } from '../_services/nucleomaterial.service';
+import { AutocompleteMaterialComponent } from './autocomplete-material/autocomplete-material.component';
 
 @NgModule({
   imports: [
@@ -34,16 +42,20 @@ import { NucleoMaterialService } from '../_services/nucleomaterial.service';
     TiposMaterialesModule,
     ReactiveFormsModule,
     UnidadMedidaModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     AltaMaterialComponent,
     ListaMaterialesComponent,
     SelectMaterialComponent,
-    MaterialesComponent
+    MaterialesComponent,
+    AutocompleteMaterialComponent
   ],
   exports: [
-    SelectMaterialComponent
+    SelectMaterialComponent,
+    AutocompleteMaterialComponent
   ],
   providers: [
     AlertService,

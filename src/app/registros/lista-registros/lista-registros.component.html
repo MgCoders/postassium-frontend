@@ -2,11 +2,11 @@
   <article class="article">
     <div class="row">
       <h2 class="article-title padding-top-30 col-12 col-sm-6">Registros</h2>
-      <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
-        <!--<button mat-raised-button color="primary" (click)="verTrabajo()">-->
-          <!--<mat-icon class="material-icons">keyboard_backspace</mat-icon>-->
-          <!--Trabajo-->
-        <!--</button>-->
+      <div *ngIf="tarea" class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
+        <button mat-raised-button color="primary" (click)="verTrabajo()">
+          <mat-icon class="material-icons">keyboard_backspace</mat-icon>
+          Trabajo
+        </button>
         <button [disabled]="tarea.completa || (tarea.necesitaVerificacion && tarea.verificada)" mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Crear Registro</button>
       </div>
     </div>

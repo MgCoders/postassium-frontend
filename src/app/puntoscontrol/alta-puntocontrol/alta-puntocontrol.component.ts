@@ -34,11 +34,15 @@ export class AltaPuntocontrolComponent implements OnInit {
       this.responsable2Actual = {} as Usuario;
       this.puntoControlActual.trabajo = this.data[1];
       this.puntoControlActual.orden = 2;
+      this.puntoControlActual.verificado = false;
+      this.puntoControlActual.verificado2 = false;
+      this.puntoControlActual.paraVerificar = false;
     } else {
       this.puntoControlActual = new PuntoControlImp(this.data[0]);
       this.responsableActual = this.data[0].responsable;
       this.responsable2Actual = this.data[0].responsable;
     }
+
   }
 
   guardar() {

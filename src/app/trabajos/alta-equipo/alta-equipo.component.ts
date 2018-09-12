@@ -37,15 +37,14 @@ export class AltaEquipoComponent implements OnInit {
   ngOnInit() {
     if (this.data[0] === undefined) {
       this.equipoActual = {} as Equipo;
+      this.tipoEquipoActual = {} as TipoEquipo;
+      this.marcaActual = {} as MarcaEquipo;
     } else {
       this.equipoActual = new EquipoImp(this.data[0]);
       this.tipoEquipoActual = this.equipoActual.tipoEquipo;
       this.marcaActual = this.equipoActual.marca;
     }
     this.equipoActual.cliente = this.data[1];
-    this.equipoActual.tipoEquipo = {} as TipoEquipo;
-    this.tipoEquipoActual = this.equipoActual.tipoEquipo;
-    this.marcaActual = this.equipoActual.marca;
   }
 
   cerrar() {

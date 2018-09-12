@@ -90,6 +90,7 @@ export class AltaTrabajosComponent implements OnInit {
     this.trabajo.equipoAuxiliar = false;
     this.trabajo.equipoAuxiliarArmada = false;
     this.trabajo.esReparacion = false;
+    this.trabajo.paraFinalizar = false;
 
     this.conEquipo = false;
     console.log(this.cliente);

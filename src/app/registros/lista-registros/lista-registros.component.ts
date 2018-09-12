@@ -98,7 +98,7 @@ export class ListaRegistrosComponent implements OnInit {
       console.log("registro eliminado");
   }
 
-  verTrabajo() {
-      // this.router.navigate(['/app/registros/listaRegistros/', this.tarea.puntoControl.trabajo.id]);
-  }
+    verTrabajo() {
+        this.router.navigate(['/app/trabajos/detalle/', this.tarea.puntoControl.trabajo.id]); // TODO pasa el id del trabajo por url
+    }
 }

@@ -29,6 +29,8 @@ export class AltaTareaComponent implements OnInit {
     if (this.data[0] === undefined) {
       this.tareaActual = {} as Tarea;
       this.puntoControlActual = {} as PuntoControl;
+      this.tareaActual.completa = false;
+      this.tareaActual.verificada = false;
     } else {
       this.tareaActual = new TareaImp(this.data[0]);
       this.puntoControlActual = this.data[0].puntoControl;
