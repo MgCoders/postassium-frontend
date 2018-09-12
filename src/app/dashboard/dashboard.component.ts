@@ -113,7 +113,7 @@ export class DashboardComponent implements OnInit {
     this.trabajoService.countByCampo('esReparacion', 'false').subscribe(
           (data) => {
               if (data != null) {
-                  this.totalReparaciones = data;
+                  this.totalProducciones = data;
               }
           },
           (error) => {
