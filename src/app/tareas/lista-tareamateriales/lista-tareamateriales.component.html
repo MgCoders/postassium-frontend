@@ -8,7 +8,7 @@
           <mat-icon class="material-icons">keyboard_backspace</mat-icon>
           Trabajo
         </button>
-        <button [disabled]="!loadCompleted" mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Agregar Material</button>
+        <button [disabled]="(tarea.completa || (tarea.necesitaVerificacion && tarea.verificada)) && !loadCompleted" mat-raised-button color="accent" class="btn-w-md" (click)="nuevo()">Agregar Material</button>
       </div>
     </div>
 
@@ -30,10 +30,10 @@
           <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.material !== undefined && x.material.tipoMaterial !== undefined">{{x.material.tipoMaterial.nombre}}</span></td>
           <td class="mdl-data-table__cell--non-numeric">{{x.cantidad}}</td>
           <td>
-            <button mat-icon-button color="primary" (click)="editar(x)" matTooltip="Editar">
+            <button [disabled]="tarea.completa || (tarea.necesitaVerificacion && tarea.verificada)" mat-icon-button color="primary" (click)="editar(x)" matTooltip="Editar">
               <mat-icon class="material-icons">mode_edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn" matTooltip="Eliminar">
+            <button [disabled]="tarea.completa || (tarea.necesitaVerificacion && tarea.verificada)" mat-icon-button color="warn" matTooltip="Eliminar">
               <mat-icon class="material-icons" (click)="eliminar(x)">delete</mat-icon>
             </button>
           </td>

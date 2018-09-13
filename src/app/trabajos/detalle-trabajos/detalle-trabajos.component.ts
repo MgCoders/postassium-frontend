@@ -103,7 +103,8 @@ export class DetalleTrabajosComponent implements OnInit {
 
     onChangeParaFinalizarTrabajo(paraFinalizar: boolean) {
       console.log('PARA FINALIZAR');
-      console.log(paraFinalizar);
+      console.log('ANTES');
+      console.log(this.trabajo);
       this.paraFinalizarTrabajo = paraFinalizar;
       this.tareaService.getAllByTrabajo(this.idTrabajo).subscribe(
             (data) => {
@@ -114,6 +115,20 @@ export class DetalleTrabajosComponent implements OnInit {
                 this.layoutService.updatePreloaderState('hide');
                 this.alertService.error(error, 5000);
             });
+      this.trabajoService.get(this.idTrabajo).subscribe(
+          (data) => {
+              this.trabajo = data;
+              console.log('EEEEEE');
+              this.layoutService.updatePreloaderState('hide');
+          },
+          (error) => {
+              this.layoutService.updatePreloaderState('hide');
+              this.alertService.error(error, 5000);
+          });
+
+      console.log('DESPUES');
+      console.log(this.trabajo);
+
     }
 
     onChangeParaVerificarPuntoControl(paraFinalizar: boolean) {

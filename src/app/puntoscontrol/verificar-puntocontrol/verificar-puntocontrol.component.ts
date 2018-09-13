@@ -44,13 +44,13 @@ export class VerificarPuntocontrolComponent implements OnInit {
   guardar() {
       console.log(this.responsableActual);
       this.layoutService.updatePreloaderState('active');
-
       this.puntoControlService.verificar(this.puntoControlActual, this.pin, this.verificacion).subscribe(
         (data) => {
             this.layoutService.updatePreloaderState('hide');
             this.responsableActual = {} as Usuario;
             this.alertService.success('Punto de control verificado correctamente.', 3000);
             this.dialogRef.close(1);
+
 
         },
         (error) => {

@@ -244,7 +244,8 @@ export class AltaTrabajosComponent implements OnInit {
       }
       this.trabajo.estado = 'EN_PROCESO';
       this.trabajo.fechaRecepcion = this.datePipe.transform(this.fechaRecepcion, 'dd-MM-yyyy') + ' ' + this.horaActual;
-      this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy')
+      this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy');
+      this.trabajo.paraFinalizar = false;
       console.log(this.trabajo);
       this.trabajoService.create(this.trabajo).subscribe(
           (data) => {

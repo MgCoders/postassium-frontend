@@ -81,21 +81,30 @@ export class ListaPuntosControlComponent implements OnInit {
 
   eliminar(x: PuntoControl) { }
 
-    verificarDialog(x: PuntoControl) {
-        console.log('VERIFICAR PUNTO CONTROL');
-        console.log(x);
-        const dialog = this.dialog.open(VerificarPuntocontrolComponent, {
-            data: [x, this.trabajo],
-            width: '600px',
-        });
+verificarDialog(x: PuntoControl) {
+    console.log('VERIFICAR PUNTO CONTROL');
+    console.log(x);
+    const dialog = this.dialog.open(VerificarPuntocontrolComponent, {
+        data: [x, this.trabajo],
+        width: '600px',
+    });
 
-        dialog.afterClosed().subscribe(
-            (result) => {
-                if (result) {
-                    this.loadData();
-                }
-            });
-    }
+    dialog.afterClosed().subscribe(
+        (result) => {
+            if (result) {
+                let paraFinalizar = true;
+                this.puntosControl.forEach(
+                    (element) => {
+                        if (!(element.verificado && element.verificado2)) {
+                            paraFinalizar = false;
+                        }
+                    }
+                );
+                this.onChangeParaFinalizarTrabajo.emit(paraFinalizar);
+                this.loadData();
+            }
+        });
+}
 
   verificar(x: PuntoControl) {
     x.verificado = !x.verificado;
@@ -104,7 +113,7 @@ export class ListaPuntosControlComponent implements OnInit {
     let paraFinalizar = true;
     this.puntosControl.forEach(
         (element) => {
-          if (!element.verificado) {
+          if (!(element.verificado && element.verificado2)) {
             paraFinalizar = false;
           }
         }
