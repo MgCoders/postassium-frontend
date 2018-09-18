@@ -26,6 +26,8 @@ export class UsuarioImp implements Usuario {
 
     usuarioRubros?: UsuarioRubro[];
 
+    pin: string;
+
     public constructor(x: Usuario) {
         this.id = x.id;
         this.email = x.email;
@@ -35,6 +37,7 @@ export class UsuarioImp implements Usuario {
         this.token = x.token;
         this.password = x.password;
         this.login = x.login;
+        this.pin = x.pin;
         this.usuarioRubros = new Array();
         x.usuarioRubros.forEach((y) => {
             this.usuarioRubros.push(new UsuarioRubroImp(y));
