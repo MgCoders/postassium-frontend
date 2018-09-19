@@ -31,7 +31,8 @@
         "styles/ui.scss"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js"
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/jquery-slimscroll/jquery.slimscroll.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

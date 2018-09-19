@@ -34,6 +34,7 @@ const routes: Routes = [
       { path: 'table', loadChildren: '../tables/tables.module#MyTablesModule' },
       { path: 'ui', loadChildren: '../ui/ui.module#UIModule' },
       { path: 'tiposequipos', loadChildren: '../tipoequipo/tiposequipos.module#TiposEquiposModule' },
+      { path: 'calendario', loadChildren: '../calendario/calendario.module#CalendarioModule' },
     ]
   }
 ];

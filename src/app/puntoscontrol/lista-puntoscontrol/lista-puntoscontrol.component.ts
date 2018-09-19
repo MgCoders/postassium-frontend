@@ -6,7 +6,7 @@ import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import {Trabajo} from '../../_models/Trabajo';
 import {AltaPuntocontrolComponent} from '../alta-puntocontrol/alta-puntocontrol.component';
-import {VerificarPuntocontrolComponent} from "../verificar-puntocontrol/verificar-puntocontrol.component";
+import {VerificarPuntocontrolComponent} from '../verificar-puntocontrol/verificar-puntocontrol.component';
 
 @Component({
   selector: 'app-lista-puntoscontrol',
@@ -58,7 +58,16 @@ export class ListaPuntosControlComponent implements OnInit {
     dialog.afterClosed().subscribe(
         (result) => {
           if (result) {
-            this.loadData();
+              let paraFinalizar = true;
+              this.puntosControl.forEach(
+                  (element) => {
+                      if (!(element.verificado && element.verificado2)) {
+                          paraFinalizar = false;
+                      }
+                  }
+              );
+              this.onChangeParaFinalizarTrabajo.emit(paraFinalizar);
+              this.loadData();
           }
         });
   }
