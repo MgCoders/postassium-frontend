@@ -21,6 +21,9 @@ import { LayoutService } from '../layout/layout.service';
 import {Ng2GoogleChartsModule} from "ng2-google-charts";
 import {TrabajoService} from "../_services/trabajo.service";
 import {PuntoControlService} from "../_services/punto-control.services";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CalendarModule} from "angular-calendar";
+import {CalendarioCalendarioComponent} from "./calendario/calendario-calendario.component";
 
 @NgModule({
   imports: [
@@ -35,9 +38,11 @@ import {PuntoControlService} from "../_services/punto-control.services";
     MatTooltipModule,
     Ng2GoogleChartsModule,
     MatDialogModule,
+     CalendarModule.forRoot()
   ],
 
   declarations: [
+      CalendarioCalendarioComponent,
     CalendarioComponent,
     GanttComponent
   ],

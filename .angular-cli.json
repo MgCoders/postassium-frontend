@@ -21,6 +21,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/angular-calendar/scss/angular-calendar.scss",
         "styles/app.scss",
         "styles/bootstrap.scss",
         "styles/font-awesome.scss",

@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CalendarioComponent } from './calendario.component';
 import { AdminGuard } from '../_guards/admin.guard';
 import { GanttComponent } from "./gantt/gantt.component";
+import {CalendarioCalendarioComponent} from "./calendario/calendario-calendario.component";
 
 export const CalendarioRoutes: Routes = [
   {
@@ -10,6 +11,7 @@ export const CalendarioRoutes: Routes = [
     canActivate: [AdminGuard],
     children: [
       { path: '', redirectTo: '/app/dashboard', pathMatch: 'full' },
+      { path: 'calendario', component: CalendarioCalendarioComponent },
       { path: 'gantt', component: GanttComponent },
     ]
   }
