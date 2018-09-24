@@ -16,7 +16,8 @@
                         <div class="form-group row">
                             <div class="col-6">
                                 <mat-input-container class="full-width">
-                                    <input matInput placeholder="Motivo visita" [(ngModel)]="trabajo.motivoVisita" name="Motivo Visita">
+                                    <input matInput placeholder="Motivo visita" [(ngModel)]="trabajo.motivoVisita" name="Motivo Visita"  [formControl]="visitaFC">
+                                    <mat-error *ngIf="visitaFC.hasError('required')">El motivo de visita es obligatorio.</mat-error>
                                 </mat-input-container>
                             </div>
                             <div class="col-3">
@@ -30,19 +31,22 @@
                                 <mat-form-field class="full-width">
                                     <mat-datepicker-toggle matSuffix [for]="pickerEntrega"></mat-datepicker-toggle>
                                     <mat-datepicker #pickerEntrega></mat-datepicker>
-                                    <input [(ngModel)]="fechaPrevistaEntrega" name="fechaPrevistaEntrega" class="full-width" matInput [matDatepicker]="pickerEntrega" placeholder="Fecha prevista de entrega">
+                                    <input [(ngModel)]="fechaPrevistaEntrega" [formControl]="entregaFC" name="fechaPrevistaEntrega" class="full-width" matInput [matDatepicker]="pickerEntrega" placeholder="Fecha prevista de entrega">
+                                    <mat-error *ngIf="entregaFC.hasError('required')">La fecha prevista de entrega es obligatoria.</mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-3">
                                 <mat-input-container class="full-width">
-                                    <input matInput [(ngModel)]="trabajo.nroOrdenCompra" placeholder="Número orden de compra" name="nroOrdenCompra">
+                                    <input matInput [(ngModel)]="trabajo.nroOrdenCompra" placeholder="Número orden de compra" name="nroOrdenCompra" [formControl]="nroOrdenFC">
+                                    <mat-error *ngIf="nroOrdenFC.hasError('required')">El número de orden de compra es obligatorio.</mat-error>
                                 </mat-input-container>
                             </div>
                             <div class="col-3">
                                 <mat-input-container class="full-width">
-                                    <input matInput [(ngModel)]="trabajo.cotizacion" placeholder="Cotización" name="cotizacion">
+                                    <input matInput [(ngModel)]="trabajo.cotizacion" placeholder="Cotización" name="cotizacion" [formControl]="cotizacionFC">
+                                    <mat-error *ngIf="cotizacionFC.hasError('required')">La cotización es obligatoria.</mat-error>
                                 </mat-input-container>
                             </div>
                             <div class="col-3">
@@ -207,8 +211,8 @@
     <div class="row">
         <div class="article-title padding-top-30 col-12 col-sm-6"></div>
         <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
-            <button *ngIf="cliente.id !== undefined" mat-raised-button color="accent" class="btn-w-md" (click)="guardar()">Crear Trabajo</button>
-            <button *ngIf="cliente.id !== undefined" mat-raised-button color="accent" class="btn-w-md" (click)="crear()">Continuar luego</button>
+            <button *ngIf="cliente.id !== undefined" [disabled]="visitaFC.invalid || entregaFC.invalid || nroOrdenFC.invalid" mat-raised-button color="accent" class="btn-w-md" (click)="guardar()">Crear Trabajo</button>
+            <button *ngIf="cliente.id !== undefined" [disabled]="visitaFC.invalid || entregaFC.invalid || nroOrdenFC.invalid" mat-raised-button color="accent" class="btn-w-md" (click)="crear()">Continuar luego</button>
         </div>
     </div>
 
