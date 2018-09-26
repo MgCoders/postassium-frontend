@@ -16,7 +16,7 @@ import {
   MatSnackBarModule,
   MatTooltipModule,
   MatAutocompleteModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule, MatTableModule, MatPaginatorModule
 } from '@angular/material';
 import { MaterialesComponent } from './materiales.component';
 import { MaterialService } from '../_services/material.service';
@@ -25,6 +25,7 @@ import { AlertService } from '../_services/alert.service';
 import { UnidadMedidaModule } from '../unidadmedida/unidadmedida.module';
 import { NucleoMaterialService } from '../_services/nucleomaterial.service';
 import { AutocompleteMaterialComponent } from './autocomplete-material/autocomplete-material.component';
+import { ListaMaterialesLazyComponent } from './lista-materiales-lazy/lista-materiales-lazy.component';
 
 @NgModule({
   imports: [
@@ -44,14 +45,17 @@ import { AutocompleteMaterialComponent } from './autocomplete-material/autocompl
     UnidadMedidaModule,
     MatCheckboxModule,
     MatAutocompleteModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   declarations: [
     AltaMaterialComponent,
     ListaMaterialesComponent,
     SelectMaterialComponent,
     MaterialesComponent,
-    AutocompleteMaterialComponent
+    AutocompleteMaterialComponent,
+    ListaMaterialesLazyComponent
   ],
   exports: [
     SelectMaterialComponent,

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { Material } from '../_models/Material';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 /**
  * Created by pablo on 04/03/18.
  */
@@ -25,5 +25,13 @@ export class MaterialService {
 
     edit(x: Material): Observable<any> {
         return this.http.put(`${environment.apiUrl}/materiales/` + x.id, x);
+    }
+
+    getPage(limit: number, offset: number): Observable<Material[]> {
+        return this.http.get<Material[]>(`${environment.apiUrl}/materiales/`, {
+            params: new HttpParams()
+                .set('limit', limit.toString())
+                .set('offset', offset.toString())
+        });
     }
 }

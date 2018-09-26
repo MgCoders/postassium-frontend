@@ -1,0 +1,43 @@
+<section class="container-fluid with-maxwidth chapter">
+  <article class="article">
+    <div class="row">
+      <h2 class="article-title padding-top-30 col-12 col-sm-6">Artículos</h2>
+      <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
+
+      </div>
+    </div>
+
+    <div class="box box-default table-box table-responsive mdl-shadow--2dp">
+
+      <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource">
+
+        <ng-container matColumnDef="codigo">
+
+          <mat-header-cell *matHeaderCellDef >Código</mat-header-cell>
+
+          <mat-cell *matCellDef="let material">{{material.codigo}}</mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+
+          <mat-header-cell *matHeaderCellDef>nombre</mat-header-cell>
+
+          <mat-cell *matCellDef="let material">{{material.nombre}}</mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
+          <mat-cell class="description-cell"
+                    *matCellDef="let material">{{material.descripcion}}</mat-cell>
+
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+      </mat-table>
+    </div>
+  </article>
+</section>
