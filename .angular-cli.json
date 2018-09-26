@@ -21,6 +21,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/angular-calendar/scss/angular-calendar.scss",
         "styles/app.scss",
         "styles/bootstrap.scss",
         "styles/font-awesome.scss",
@@ -31,7 +32,8 @@
         "styles/ui.scss"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js"
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/jquery-slimscroll/jquery.slimscroll.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

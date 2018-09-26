@@ -194,8 +194,10 @@
     <div class="row">
       <div class="article-title padding-top-30 col-12 col-sm-6"></div>
       <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
-        <mat-checkbox *ngIf="trabajo.estado == 'EN_PROCESO'" [disabled]="!this.paraFinalizarTrabajo" [(ngModel)]="remito" name="remito">¿Remito?</mat-checkbox>
-        <button *ngIf="trabajo.estado == 'EN_PROCESO'" [disabled]="!this.paraFinalizarTrabajo" mat-raised-button color="accent" class="btn-w-md" (click)="finalizarTrabajo()">Finalizar Trabajo</button>
+        <mat-checkbox *ngIf="trabajo.estado == 'EN_PROCESO'" [disabled]="!trabajo.paraFinalizar" [(ngModel)]="remito" name="remito">¿Remito?</mat-checkbox>
+        <button *ngIf="trabajo.estado == 'EN_PROCESO'" [disabled]="!trabajo.paraFinalizar" mat-raised-button color="accent" class="btn-w-md" (click)="finalizarTrabajo()">Finalizar Trabajo</button>
+        <!--<mat-checkbox *ngIf="trabajo.estado == 'EN_PROCESO'"  [(ngModel)]="remito" name="remito">¿Remito?</mat-checkbox>-->
+        <!--<button *ngIf="trabajo.estado == 'EN_PROCESO'"  mat-raised-button color="accent" class="btn-w-md" (click)="finalizarTrabajo()">Finalizar Trabajo</button>-->
       </div>
     </div>
   </article>

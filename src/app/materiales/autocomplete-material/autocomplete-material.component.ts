@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { Material, MaterialImp } from '../../_models/models';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { Material } from '../../_models/models';
 import { MaterialService } from '../../_services/material.service';
-import { min, debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
+import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-autocomplete-material',

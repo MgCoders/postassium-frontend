@@ -1,0 +1,84 @@
+<section class="container-fluid with-maxwidth chapter">
+    <article class="article">
+
+        <div class="row">
+            <h2 class="article-title padding-top-30 col-12 col-sm-12">Calendario - {{ viewDate | calendarDate:(view + 'ViewTitle'):'es_UY' }}</h2>
+        </div>
+        <div class="row">
+            <div class="article-title padding-top-30 text-left text-sm-left col-12 col-sm-6">
+                <div
+                        class="btn btn-primary"
+                        mwlCalendarPreviousView
+                        [view]="view"
+                        [(viewDate)]="viewDate"
+                        (viewDateChange)="activeDayIsOpen = false">
+                    Anterior
+                </div>
+                <div
+                        class="btn btn-outline-secondary"
+                        mwlCalendarToday
+                        [(viewDate)]="viewDate">
+                    Hoy
+                </div>
+                <div
+                        class="btn btn-primary"
+                        mwlCalendarNextView
+                        [view]="view"
+                        [(viewDate)]="viewDate"
+                        (viewDateChange)="activeDayIsOpen = false">
+                    Siguiente
+                </div>
+            </div>
+
+            <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
+                <div
+                        class="btn btn-primary"
+                        (click)="view = 'month'"
+                        [class.active]="view === 'month'">
+                    Mes
+                </div>
+                <div
+                        class="btn btn-primary"
+                        (click)="view = 'week'"
+                        [class.active]="view === 'week'">
+                    Semana
+                </div>
+                <div
+                        class="btn btn-primary"
+                        (click)="view = 'day'"
+                        [class.active]="view === 'day'">
+                    Día
+                </div>
+            </div>
+        </div>
+
+        <div [ngSwitch]="view" class="box box-default table-box table-responsive mdl-shadow--2dp">
+                <mwl-calendar-month-view
+                        *ngSwitchCase="'month'"
+                        [viewDate]="viewDate"
+                        [events]="events"
+                        [refresh]="refresh"
+                        [activeDayIsOpen]="activeDayIsOpen"
+                        (dayClicked)="dayClicked($event.day)"
+                        (eventClicked)="handleEvent('Clicked', $event.event)">
+                </mwl-calendar-month-view>
+                <mwl-calendar-week-view
+                        *ngSwitchCase="'week'"
+                        [viewDate]="viewDate"
+                        [events]="events"
+                        [refresh]="refresh"
+                        (eventClicked)="handleEvent('Clicked', $event.event)">
+                </mwl-calendar-week-view>
+                <mwl-calendar-day-view
+                        *ngSwitchCase="'day'"
+                        [viewDate]="viewDate"
+                        [events]="events"
+                        [refresh]="refresh"
+                        (eventClicked)="handleEvent('Clicked', $event.event)">
+                </mwl-calendar-day-view>
+        </div>
+    </article>
+</section>
+
+
+

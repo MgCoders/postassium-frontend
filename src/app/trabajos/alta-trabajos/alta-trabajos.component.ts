@@ -18,6 +18,7 @@ import {EquipoService} from '../../_services/equipo.service';
 import {AltaEquipoComponent} from '../alta-equipo/alta-equipo.component';
 import {InformacionReciboComponent} from '../informacion-recibo/informacion-recibo.component';
 import {DatePipe} from '@angular/common';
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-alta-trabajos',
@@ -41,6 +42,11 @@ export class AltaTrabajosComponent implements OnInit {
   public horaActual: string;
 
   public conEquipo: boolean;
+
+  public visitaFC = new FormControl('', [Validators.required]);
+  public entregaFC = new FormControl('', [Validators.required]);
+  public nroOrdenFC = new FormControl('', [Validators.required]);
+  public cotizacionFC = new FormControl('', [Validators.required]);
 
   constructor(public dialog: MatDialog,
               private tareaService: TareaService,
@@ -66,6 +72,8 @@ export class AltaTrabajosComponent implements OnInit {
     this.equipoSelected = 0;
     this.fechaRecepcion = new Date();
     this.horaActual = this.datePipe.transform(this.fechaRecepcion, 'HH:mm');
+    this.trabajo.nroOrdenCompra = 'N/C';
+    this.trabajo.cotizacion = 'N/C';
 
     this.trabajo.equipoDocumentos = false;
     this.trabajo.equipoRadio = false;
@@ -244,7 +252,8 @@ export class AltaTrabajosComponent implements OnInit {
       }
       this.trabajo.estado = 'EN_PROCESO';
       this.trabajo.fechaRecepcion = this.datePipe.transform(this.fechaRecepcion, 'dd-MM-yyyy') + ' ' + this.horaActual;
-      this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy')
+      this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy');
+      this.trabajo.paraFinalizar = false;
       console.log(this.trabajo);
       this.trabajoService.create(this.trabajo).subscribe(
           (data) => {

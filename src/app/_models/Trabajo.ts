@@ -21,6 +21,7 @@ export interface Trabajo {
     nroFactura: number;
     nroRemito: number;
     nroOrdenCompra: string;
+    porcentajeCompleto: number;
 
     equipoDocumentos: boolean;
     equipoRadio: boolean;
