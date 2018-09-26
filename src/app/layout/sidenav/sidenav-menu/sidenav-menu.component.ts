@@ -15,4 +15,8 @@ export class AppSidenavMenuComponent {
   isAdmin() {
     return this.authService.isAuthenticatedAndAdmin();
   }
+
+  isSuperAdmin() {
+    return this.authService.isAuthenticatedAndSuperAdmin();
+  }
 }

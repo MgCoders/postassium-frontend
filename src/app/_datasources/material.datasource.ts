@@ -17,7 +17,7 @@ export class MaterialDataSource implements DataSource<Material> {
     loadMateriales(pageIndex: number,
                    pageSize: number) {
 
-        this.materialService.getPage( (pageIndex - 1) * pageSize, pageSize ).subscribe(
+        this.materialService.getPage( pageSize, pageIndex * pageSize ).subscribe(
             (data) => {
                 this.materialSubject.next(data);
             },

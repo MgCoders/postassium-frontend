@@ -49,6 +49,15 @@ export class AuthService {
         }
     }
 
+    public isAuthenticatedAndSuperAdmin(): boolean {
+        try {
+            const token = this.getToken();
+            return (token != null) && !this.jwt.isTokenExpired(token) && (this.getCurrentUser() && this.getCurrentUser().role === 'SUPER_ADMIN');
+        } catch (e) {
+            return false;
+        }
+    }
+
     login(email: string, password: string): Observable<boolean> {
         const headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
         const options = new RequestOptions({headers});

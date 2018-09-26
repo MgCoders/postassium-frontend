@@ -28,10 +28,14 @@ export class MaterialService {
     }
 
     getPage(limit: number, offset: number): Observable<Material[]> {
-        return this.http.get<Material[]>(`${environment.apiUrl}/materiales/`, {
+        return this.http.get<Material[]>(`${environment.apiUrl}/materiales`, {
             params: new HttpParams()
                 .set('limit', limit.toString())
                 .set('offset', offset.toString())
         });
+    }
+
+    count(): Observable<number> {
+        return this.http.get<number>(`${environment.apiUrl}/materiales/count`);
     }
 }
