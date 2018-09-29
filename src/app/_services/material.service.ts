@@ -27,11 +27,12 @@ export class MaterialService {
         return this.http.put(`${environment.apiUrl}/materiales/` + x.id, x);
     }
 
-    getPage(limit: number, offset: number): Observable<Material[]> {
+    getPage(limit: number, offset: number, filter: string): Observable<Material[]> {
         return this.http.get<Material[]>(`${environment.apiUrl}/materiales`, {
             params: new HttpParams()
                 .set('limit', limit.toString())
                 .set('offset', offset.toString())
+                .set('filter', filter)
         });
     }
 
