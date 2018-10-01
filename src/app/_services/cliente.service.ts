@@ -32,4 +32,8 @@ export class ClienteService {
     edit(x: Cliente): Observable<any> {
         return this.http.put(`${environment.apiUrl}/clientes/` + x.id, x);
     }
+
+    getAll_x_Filtro(filtro: string): Observable<Cliente[]> {
+        return this.http.get<Cliente[]>(`${environment.apiUrl}/clientes/autocomplete/` + encodeURIComponent(filtro));
+    }
 }
