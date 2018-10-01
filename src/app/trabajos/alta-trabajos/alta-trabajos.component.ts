@@ -13,12 +13,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Cliente } from '../../_models/Cliente';
 import { ClienteService } from '../../_services/cliente.service';
-import {Equipo} from '../../_models/Equipo';
-import {EquipoService} from '../../_services/equipo.service';
-import {AltaEquipoComponent} from '../alta-equipo/alta-equipo.component';
-import {InformacionReciboComponent} from '../informacion-recibo/informacion-recibo.component';
-import {DatePipe} from '@angular/common';
-import {FormControl, Validators} from "@angular/forms";
+import { Equipo } from '../../_models/Equipo';
+import { EquipoService } from '../../_services/equipo.service';
+import { AltaEquipoComponent } from '../alta-equipo/alta-equipo.component';
+import { InformacionReciboComponent } from '../informacion-recibo/informacion-recibo.component';
+import { DatePipe } from '@angular/common';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-alta-trabajos',

@@ -81,7 +81,7 @@
       <div class="row">
           <h2 class="col-12 col-sm-6" style=" font-size: 20px;font-weight: normal;line-height: 32px;margin: .6em 0;color: #2196F3;">Cliente</h2>
           <div class="text-left text-sm-right col-12 col-sm-6">
-              <app-autocomplete-cliente [object]="cliente" elementoActual="clienteActual" (ValueOnChange)="clienteOnChange($event)" [atributoId]="id" [addEmptyItem]="true" [pHolder]="RUT/Nombre"></app-autocomplete-cliente>
+              <app-autocomplete-cliente [object]="cliente" elementoActual="clienteActual" (ValueOnChange)="clienteOnChange($event)" addEmptyItem="true" pHolder="RUT/Nombre"></app-autocomplete-cliente>
           </div>
       </div>
       <form>

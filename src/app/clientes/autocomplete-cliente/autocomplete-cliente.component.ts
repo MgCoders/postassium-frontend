@@ -4,8 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { Material } from '../../_models/models';
 import { MaterialService } from '../../_services/material.service';
 import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
-import {Cliente} from "../../_models/Cliente";
-import {ClienteService} from "../../_services/cliente.service";
+import { Cliente } from '../../_models/Cliente';
+import { ClienteService } from '../../_services/cliente.service';
+import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-autocomplete-cliente',
@@ -14,15 +15,9 @@ import {ClienteService} from "../../_services/cliente.service";
 })
 export class AutocompleteClienteComponent implements OnInit {
 
-/*   public filterCtrl: FormControl;
-  public filtroActual: string;
-  public elementosFiltrados: Material[];
-  public lista: Material[];
-  public loading: number = 0; */
-
-  filteredClientes: Cliente[] = [];
-  clienteForm: FormGroup;
-  isLoading = false;
+  public filteredClientes: Cliente[] = [];
+  public clienteForm: FormGroup;
+  public isLoading = false;
 
   @Input() object: any;
   @Input() elementoActual: string;
@@ -36,7 +31,6 @@ export class AutocompleteClienteComponent implements OnInit {
   constructor(private fb: FormBuilder, private cs: ClienteService) {
     // this.filterCtrl = new FormControl();
   }
-
 
   ngOnInit() {
     this.clienteForm = this.fb.group({
