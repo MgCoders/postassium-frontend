@@ -143,6 +143,10 @@ export class AltaTrabajosComponent implements OnInit {
             });
     }
 
+    clienteOnChange(c: Cliente) {
+        this.cliente = c;
+    }
+
   buscarMatricula() {
         console.log(this.nombreEmpresa);
         this.equipoService.getByMarticula(this.matricula).subscribe(

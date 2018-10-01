@@ -52,6 +52,7 @@ import {VerificarPuntocontrolComponent} from '../puntoscontrol/verificar-puntoco
 import {MarcasModule} from '../marcas/marcas.module';
 import {UsuariosModule} from '../usuarios/usuarios.module';
 import {RegistrosModule} from '../registros/registros.module';
+import {ClientesModule} from "../clientes/clientes.module";
 
 @NgModule({
   imports: [
@@ -74,7 +75,8 @@ import {RegistrosModule} from '../registros/registros.module';
     MarcasModule,
     UsuariosModule,
     MatProgressSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+      ClientesModule
   ],
 
   declarations: [
