@@ -1,0 +1,16 @@
+<form class="example-form" [formGroup]='clienteForm'>
+
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngIf="isLoading"><mat-spinner [diameter]="20" [strokeWidth]="5"></mat-spinner></mat-option>
+      <ng-container *ngIf="!isLoading">
+        <mat-option *ngFor="let cliente of filteredClientes" [value]="cliente" (onSelectionChange)="onOptionSelected(cliente)">
+          <span>{{ cliente.nombreEmpresa }}</span>
+          <small> | RUT: {{cliente.rut}}</small>
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Elija el cliente.." [matAutocomplete]="auto" formControlName='clienteInput'>
+    </mat-form-field>
+  </form>
+  
