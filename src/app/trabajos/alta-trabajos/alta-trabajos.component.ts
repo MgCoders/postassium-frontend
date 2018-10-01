@@ -266,14 +266,14 @@ export class AltaTrabajosComponent implements OnInit {
       });
     }
 
-    crear(){
+    crear() {
         this.trabajo.cliente = this.cliente;
-        if(this.conEquipo) {
+        if (this.conEquipo) {
             this.trabajo.equipo = this.equipo;
         }
         this.trabajo.estado = 'CREADO';
         this.trabajo.fechaRecepcion = this.datePipe.transform(this.fechaRecepcion, 'dd-MM-yyyy') + ' ' + this.horaActual;
-        this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy')
+        this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy');
         console.log(this.trabajo);
         this.trabajoService.create(this.trabajo).subscribe(
             (data) => {
