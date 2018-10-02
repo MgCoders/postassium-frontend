@@ -44,13 +44,9 @@ export class DetalleTrabajosComponent implements OnInit {
 
     this.lista = new Array();
     this.route.params.subscribe((params) => {
-        console.log(+params['id']);
         this.idTrabajo = +params['id'];
-        console.log(this.idTrabajo);
-
     });
 
-    console.log(this.idTrabajo);
 
     this.layoutService.updatePreloaderState('active');
     // TODO pasar por parámetro el id del trabajo
@@ -66,7 +62,6 @@ export class DetalleTrabajosComponent implements OnInit {
         this.layoutService.updatePreloaderState('hide');
         this.alertService.error(error, 5000);
       });
-    console.log('BBBB');
     this.tareaService.getAllByTrabajo(this.idTrabajo).subscribe(
       (data) => {
         this.lista = data;

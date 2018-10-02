@@ -1,12 +1,12 @@
 <section class="container-fluid with-maxwidth chapter">
 
   <div class="row" >
-    <h2 class="article-title padding-top-30 col-12 col-sm-6">Nuevo Trabajo</h2>
+    <h2 class="article-title padding-top-30 col-12 col-sm-12">Nuevo Trabajo</h2>
   </div>
 
     <article class="article">
         <div class="row">
-            <h2 class="article-title padding-top-30 col-4 col-sm-4">Información general</h2>
+            <h2 class="padding-top-30 col-12 col-sm-12" style=" font-size: 20px;font-weight: normal;line-height: 32px;margin: .6em 0;color: #2196F3;">Información general</h2>
 
         </div>
         <form>
@@ -78,20 +78,12 @@
 
 
   <article class="article">
-    <div class="row">
-      <h2 class="article-title padding-top-30 col-4 col-sm-4">Cliente</h2>
-        <div class="padding-top-30 text-left text-sm-right col-12 col-sm-8">
-            <mat-input-container class=" mat-icon-left">
-                <input matInput placeholder="Buscar RUT" [(ngModel)]="rut">
-            </mat-input-container>
-            <button mat-raised-button color="accent" class="btn-w-md" (click)="buscarRut()">Buscar RUT</button>
-            <mat-input-container class=" mat-icon-left">
-                <input matInput placeholder="Buscar Nombre" [(ngModel)]="nombreEmpresa">
-            </mat-input-container>
-            <button mat-raised-button color="accent" class="btn-w-md" (click)="buscarNombre()">Buscar Nombre</button>
-        </div>
-
-    </div>
+      <div class="row">
+          <h2 class="col-12 col-sm-6" style=" font-size: 20px;font-weight: normal;line-height: 32px;margin: .6em 0;color: #2196F3;">Cliente</h2>
+          <div class="text-left text-sm-right col-12 col-sm-6">
+              <app-autocomplete-cliente [object]="cliente" elementoActual="clienteActual" (ValueOnChange)="clienteOnChange($event)" addEmptyItem="true" pHolder="RUT/Nombre"></app-autocomplete-cliente>
+          </div>
+      </div>
       <form>
           <fieldset>
             <div class="box box-default">
@@ -146,13 +138,13 @@
                   </div>
               </div>
             </div>
-              <div class="row">
-                  <div class="article-title padding-top-30 col-12 col-sm-6"></div>
-                  <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
-                      <button *ngIf="cliente.id === undefined" mat-raised-button color="accent" class="btn-w-md" (click)="nuevoCliente()" type="submit">Crear Cliente</button>
-                      <button *ngIf="cliente.id !== undefined" mat-raised-button color="accent" class="btn-w-md" (click)="nuevoCliente()">Nuevo Cliente</button>
-                  </div>
+          <div class="row">
+              <div class="padding-top-30 col-12 col-sm-6"></div>
+              <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
+                  <button *ngIf="cliente.id === undefined" mat-raised-button color="accent" class="btn-w-md" (click)="nuevoCliente()" type="submit">Crear Cliente</button>
+                  <button *ngIf="cliente.id !== undefined" mat-raised-button color="accent" class="btn-w-md" (click)="nuevoCliente()">Nuevo Cliente</button>
               </div>
+          </div>
           </fieldset>
       </form>
   </article>
@@ -161,7 +153,7 @@
   <article class="article">
 
     <div class="row">
-        <h2 class="article-title padding-top-30 col-12 col-sm-6">Equipos</h2>
+        <h2 class="padding-top-30 col-12 col-sm-6" style=" font-size: 20px;font-weight: normal;line-height: 32px;margin: .6em 0;color: #2196F3;">Equipos</h2>
         <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
             <mat-checkbox [disabled]="this.cliente.id === undefined" [(ngModel)]="conEquipo" name="conEquipo">¿Equipo?</mat-checkbox>
             <button [disabled]="this.cliente.id === undefined" mat-raised-button color="accent" class="btn-w-md" (click)="nuevoEquipo()">Crear Equipo</button>
@@ -201,7 +193,7 @@
       </table>
     </div>
       <div class="row">
-          <div class="article-title padding-top-30 col-12 col-sm-6"></div>
+          <div class="padding-top-30 col-12 col-sm-6"></div>
           <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
               <button [disabled]="this.equipoSelected === 0 || !equipo.tipoEquipo.requiereInfoRecibo" mat-raised-button color="accent" class="btn-w-md" (click)="informacionRecibo()">Información recibo</button>
           </div>
@@ -210,7 +202,7 @@
 
     <div class="row">
         <div class="article-title padding-top-30 col-12 col-sm-6"></div>
-        <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
+        <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
             <button *ngIf="cliente.id !== undefined" [disabled]="visitaFC.invalid || entregaFC.invalid || nroOrdenFC.invalid" mat-raised-button color="accent" class="btn-w-md" (click)="guardar()">Crear Trabajo</button>
             <button *ngIf="cliente.id !== undefined" [disabled]="visitaFC.invalid || entregaFC.invalid || nroOrdenFC.invalid" mat-raised-button color="accent" class="btn-w-md" (click)="crear()">Continuar luego</button>
         </div>

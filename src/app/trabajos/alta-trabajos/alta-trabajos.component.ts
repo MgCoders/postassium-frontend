@@ -13,12 +13,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Cliente } from '../../_models/Cliente';
 import { ClienteService } from '../../_services/cliente.service';
-import {Equipo} from '../../_models/Equipo';
-import {EquipoService} from '../../_services/equipo.service';
-import {AltaEquipoComponent} from '../alta-equipo/alta-equipo.component';
-import {InformacionReciboComponent} from '../informacion-recibo/informacion-recibo.component';
-import {DatePipe} from '@angular/common';
-import {FormControl, Validators} from "@angular/forms";
+import { Equipo } from '../../_models/Equipo';
+import { EquipoService } from '../../_services/equipo.service';
+import { AltaEquipoComponent } from '../alta-equipo/alta-equipo.component';
+import { InformacionReciboComponent } from '../informacion-recibo/informacion-recibo.component';
+import { DatePipe } from '@angular/common';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-alta-trabajos',
@@ -143,6 +143,10 @@ export class AltaTrabajosComponent implements OnInit {
             });
     }
 
+    clienteOnChange(c: Cliente) {
+        this.cliente = c;
+    }
+
   buscarMatricula() {
         console.log(this.nombreEmpresa);
         this.equipoService.getByMarticula(this.matricula).subscribe(
@@ -262,14 +266,14 @@ export class AltaTrabajosComponent implements OnInit {
       });
     }
 
-    crear(){
+    crear() {
         this.trabajo.cliente = this.cliente;
-        if(this.conEquipo) {
+        if (this.conEquipo) {
             this.trabajo.equipo = this.equipo;
         }
         this.trabajo.estado = 'CREADO';
         this.trabajo.fechaRecepcion = this.datePipe.transform(this.fechaRecepcion, 'dd-MM-yyyy') + ' ' + this.horaActual;
-        this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy')
+        this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy');
         console.log(this.trabajo);
         this.trabajoService.create(this.trabajo).subscribe(
             (data) => {

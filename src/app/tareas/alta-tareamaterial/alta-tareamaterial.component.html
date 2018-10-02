@@ -5,7 +5,6 @@
     <form>
       <div class="row">
         <div class="col-12">
-          <!-- <app-select-material [object]="materialActual" (onChange)="materialOnChange($event)" idModel="id" placeHolder="Material" id="id" desc="nombre"></app-select-material> -->
           <app-autocomplete-material [object]="tareaMaterialActual" elementoActual="material" (ValueOnChange)="materialOnChange($event)" addEmptyItem="true" placeHolder="Material"></app-autocomplete-material>
         </div>
       </div>
