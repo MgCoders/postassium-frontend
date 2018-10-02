@@ -1,0 +1,17 @@
+<form class="example-form" [formGroup]='materialForm'>
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Elija el tipo.." [matAutocomplete]="auto" formControlName='materialInput'>
+  </mat-form-field>
+  <span>Tipo Elegido: {{getDesc()}}</span>
+
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngIf="isLoading"><mat-spinner [diameter]="20" [strokeWidth]="5"></mat-spinner></mat-option>
+    <ng-container *ngIf="!isLoading">
+      <mat-option *ngFor="let tipoMaterial of filteredMateriales" [value]="tipoMaterial" (onSelectionChange)="onOptionSelected(tipoMaterial)">
+        <span>{{ tipoMaterial.familia }} - {{ tipoMaterial.grupo }} - {{ tipoMaterial.subgrupo }}</span>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>
+
+</form>

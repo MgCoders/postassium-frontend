@@ -15,6 +15,10 @@ export class TipoMaterialService {
         return this.http.get<TipoMaterial[]>(`${environment.apiUrl}/tiposmateriales/`);
     }
 
+    getAll_x_Filtro(filtro: string): Observable<TipoMaterial[]> {
+        return this.http.get<TipoMaterial[]>(`${environment.apiUrl}/tiposmateriales/autocomplete/` + encodeURIComponent(filtro));
+    }
+
     create(x: TipoMaterial): Observable<any> {
         return this.http.post(`${environment.apiUrl}/tiposmateriales/`, x);
     }

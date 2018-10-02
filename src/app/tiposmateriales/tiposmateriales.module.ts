@@ -8,16 +8,18 @@ import { ListaTiposMaterialesComponent } from './lista-tiposmateriales/lista-tip
 import { SelectTipoMaterialComponent } from './select-tipomaterial/select-tipomaterial.component';
 import { TiposMaterialesComponent } from './tiposmateriales.component';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatDialogModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatProgressSpinnerModule,
   MatSelectModule,
   MatSnackBarModule,
   MatTooltipModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TiposMaterialesRoutingModule } from './tiposmateriales-routing.module';
+import { AutocompleteTipomaterialComponent } from './autocomplete-tipomaterial/autocomplete-tipomaterial.component';
 
 @NgModule({
   imports: [
@@ -31,13 +33,16 @@ import { TiposMaterialesRoutingModule } from './tiposmateriales-routing.module';
     MatDialogModule,
     FormsModule,
     TiposMaterialesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     AltaTipoMaterialComponent,
     ListaTiposMaterialesComponent,
     SelectTipoMaterialComponent,
-    TiposMaterialesComponent
+    TiposMaterialesComponent,
+    AutocompleteTipomaterialComponent
   ],
   providers: [
     AlertService,
@@ -45,7 +50,8 @@ import { TiposMaterialesRoutingModule } from './tiposmateriales-routing.module';
     TipoMaterialService
   ],
   exports: [
-      SelectTipoMaterialComponent
+    SelectTipoMaterialComponent,
+    AutocompleteTipomaterialComponent
   ],
   entryComponents: [
       AltaTipoMaterialComponent

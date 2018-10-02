@@ -45,10 +45,9 @@
 
       <div class="row">
         <div class="col-12">
-          <app-select-tipomaterial [object]="tipoMaterialActual"
-                                   (onChange)="tipoMaterialOnChange($event)" idModel="id"
-                                   placeHolder="Tipo de Material" id="id"
-                                   desc="familia" desc2="grupo" desc3="subgrupo" ></app-select-tipomaterial>
+          <app-autocomplete-tipomaterial [object]="tipoMaterialActual" elementoActual="tipoMaterial"
+                                         (ValueOnChange)="tipoMaterialOnChange($event)" addEmptyItem="true"
+                                         placeHolder="Tipo Material"></app-autocomplete-tipomaterial>
         </div>
       </div>
 
