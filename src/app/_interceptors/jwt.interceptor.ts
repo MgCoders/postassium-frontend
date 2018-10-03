@@ -30,11 +30,7 @@ export class JwtInterceptor implements HttpInterceptor {
       console.log(err);
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
-          if (this.auth.getCurrentUser() != null) {
-            this.router.navigate(['extra/lock-screen']);
-          } else {
-            this.router.navigate(['extra/login']);
-          }
+          this.router.navigate(['extra/login']);
           console.log('unauthorized');
         }
       }

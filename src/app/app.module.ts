@@ -94,6 +94,7 @@ import { CustomDateAdapter } from './_helpers/CustomDateAdapter';
 import {TrabajoService} from "./_services/trabajo.service";
 import {AlertService} from "./_services/alert.service";
 import {LayoutService} from "./layout/layout.service";
+import { SuperAdminGuard } from './_guards/auth.superadmin.guard';
 
 @NgModule({
     imports: [
@@ -181,6 +182,7 @@ import {LayoutService} from "./layout/layout.service";
         LayoutService,
         AuthGuard,
         AdminGuard,
+        SuperAdminGuard,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,

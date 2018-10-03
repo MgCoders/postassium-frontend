@@ -64,7 +64,7 @@
     </a>
   </li>
 
-  <li *ngIf="isAdmin()">
+  <li *ngIf="isSuperAdmin()">
     <a mat-button [routerLink]="['/app/usuarios/listaUsuarios']">
       <i class="nav-icon material-icons">assignment_ind</i>
       <span class="nav-text">Usuarios</span>

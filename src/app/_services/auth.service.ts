@@ -43,7 +43,8 @@ export class AuthService {
     public isAuthenticatedAndAdmin(): boolean {
         try {
             const token = this.getToken();
-            return (token != null) && !this.jwt.isTokenExpired(token) && (this.getCurrentUser() && this.getCurrentUser().role === 'ADMIN');
+            return ((token != null) && !this.jwt.isTokenExpired(token) && (this.getCurrentUser() && this.getCurrentUser().role === 'ADMIN'))
+                || this.isAuthenticatedAndSuperAdmin();
         } catch (e) {
             return false;
         }
