@@ -24,7 +24,7 @@ import { Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
-  CalendarEventTimesChangedEvent
+  CalendarEventTimesChangedEvent, CalendarMonthViewComponent
 } from 'angular-calendar';
 
 const colors: any = {
@@ -60,6 +60,9 @@ export class CalendarioCalendarioComponent implements OnInit {
 
   events: CalendarEvent[];
 
+
+  @ViewChild(CalendarMonthViewComponent) calendar: CalendarMonthViewComponent;
+
   activeDayIsOpen: boolean = false;
 
   constructor(private service: TrabajoService,
@@ -75,7 +78,7 @@ export class CalendarioCalendarioComponent implements OnInit {
             event = {
               start: this.getDate(element.fechaRecepcion),
               end: this.getDate(element.fechaProvistaEntrega),
-              title: element.numeroTrabajo,
+              title: element.numeroTrabajo + ' - ' + element.cliente.nombreEmpresa,
               color: {
                 primary: '#' +(0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6),
                 secondary: '#FAE3E3'
@@ -83,6 +86,9 @@ export class CalendarioCalendarioComponent implements OnInit {
             };
             this.events.push(event);
             this.activeDayIsOpen = false;
+            this.refresh.next();
+
+
           });
 
         },
