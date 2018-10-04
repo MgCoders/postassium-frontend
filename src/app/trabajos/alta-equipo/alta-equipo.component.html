@@ -5,8 +5,16 @@
     <form>
       <div class="row">
         <div class="col-12">
-            <app-select-marcas [object]="marcaActual" (onChange)="marcaOnChange($event)" idModel="id"  placeHolder="Marca" desc="nombre" id="id"></app-select-marcas>
+          <app-autocomplete-marca [object]="marcaActual" elementoActual="marcaActual" (ValueOnChange)="marcaOnChange($event)" addEmptyItem="true" pHolder="Marca"></app-autocomplete-marca>
+            <!--<app-select-marcas [object]="marcaActual" (onChange)="marcaOnChange($event)" idModel="id"  placeHolder="Marca" desc="nombre" id="id"></app-select-marcas>-->
             <!--<input [(ngModel)]="equipoActual.marca" matInput placeholder="Marca" name="Marca">-->
+        </div>
+      </div>
+      <div class="row" *ngIf="marcaActual.nombre === 'Otros'">
+        <div class="col-12">
+          <mat-input-container class="full-width">
+            <input [(ngModel)]="equipoActual.marcaOtros" matInput placeholder="Marca" name="Marca">
+          </mat-input-container>
         </div>
       </div>
       <div class="row">

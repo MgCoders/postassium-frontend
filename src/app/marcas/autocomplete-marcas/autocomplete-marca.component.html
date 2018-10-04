@@ -1,0 +1,15 @@
+<form class="example-form" [formGroup]='marcaForm'>
+
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngIf="isLoading"><mat-spinner [diameter]="20" [strokeWidth]="5"></mat-spinner></mat-option>
+      <ng-container *ngIf="!isLoading">
+        <mat-option *ngFor="let marca of filteredMarcas" [value]="marca" (onSelectionChange)="onOptionSelected(marca)">
+          <span>{{ marca.nombre }}</span>
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Elija la marca.." [matAutocomplete]="auto" formControlName='marcaInput'>
+    </mat-form-field>
+  </form>
+  

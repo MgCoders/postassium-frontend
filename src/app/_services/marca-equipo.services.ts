@@ -27,4 +27,8 @@ export class MarcaEquipoService {
     edit(x: MarcaEquipo): Observable<any> {
         return this.http.put(`${environment.apiUrl}/marcas/` + x.id, x);
     }
+
+    getAll_x_Filtro(filtro: string): Observable<MarcaEquipo[]> {
+        return this.http.get<MarcaEquipo[]>(`${environment.apiUrl}/marcas/autocomplete/` + encodeURIComponent(filtro));
+    }
 }

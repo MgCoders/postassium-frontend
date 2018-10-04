@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ListaMarcasComponent } from './lista-marcas/lista-marcas.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+  MatAutocompleteModule,
   MatButtonModule, MatCheckboxModule,
-  MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatSelectModule, MatSnackBarModule,
+  MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule,
+  MatSnackBarModule,
   MatTooltipModule
 } from '@angular/material';
 import { AlertService } from '../_services/alert.service';
@@ -16,6 +18,7 @@ import { AltaMarcaComponent } from './alta-marca/alta-marca.component';
 import { SelectMarcaComponent } from './select-marca/select-marcaequipo.component';
 import { RubrosModule } from '../rubros/rubros.module';
 import {MarcaEquipoService} from "../_services/marca-equipo.services";
+import {AutocompleteMarcaComponent} from "./autocomplete-marcas/autocomplete-marca.component";
 
 @NgModule({
   imports: [
@@ -32,7 +35,9 @@ import {MarcaEquipoService} from "../_services/marca-equipo.services";
     MatCheckboxModule,
     ReactiveFormsModule,
     RubrosModule,
-    MatListModule
+    MatListModule,
+    MatAutocompleteModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     AlertService,
@@ -43,9 +48,10 @@ import {MarcaEquipoService} from "../_services/marca-equipo.services";
     ListaMarcasComponent,
     MarcasComponent,
     AltaMarcaComponent,
-    SelectMarcaComponent
+    SelectMarcaComponent,
+    AutocompleteMarcaComponent
   ],
-  exports: [SelectMarcaComponent],
+  exports: [SelectMarcaComponent, AutocompleteMarcaComponent],
   entryComponents: [AltaMarcaComponent]
 })
 export class MarcasModule { }

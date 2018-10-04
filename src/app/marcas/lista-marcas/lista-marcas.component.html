@@ -21,10 +21,10 @@
           <td>{{x.id}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{x.nombre}}</td>
           <td>
-            <button mat-icon-button color="primary" (click)="editar(x)">
+            <button mat-icon-button color="primary" (click)="editar(x)" *ngIf="x.nombre !== 'Otros'">
               <mat-icon class="material-icons">mode_edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn">
+            <button mat-icon-button color="warn" *ngIf="x.nombre !== 'Otros'">
               <mat-icon class="material-icons" (click)="eliminar(x)">delete</mat-icon>
             </button>
           </td>

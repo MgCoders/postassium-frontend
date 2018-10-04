@@ -13,4 +13,5 @@ export interface Equipo {
     numeroChasis: string;
     descripcion: string;
     tipoEquipo: models.TipoEquipo;
+    marcaOtros: string;
 }

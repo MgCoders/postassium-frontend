@@ -13,6 +13,7 @@ export class EquipoImp implements models.Equipo {
     numeroChasis: string;
     descripcion: string;
     tipoEquipo: models.TipoEquipo;
+    marcaOtros: string;
     constructor(x: models.Equipo) {
         this.id = x.id;
         this.cliente = x.cliente;
@@ -23,5 +24,6 @@ export class EquipoImp implements models.Equipo {
         this.numeroChasis = x.numeroChasis;
         this.descripcion = x.descripcion;
         this.tipoEquipo = x.tipoEquipo;
+        this.marcaOtros = x.marcaOtros;
     }
 }

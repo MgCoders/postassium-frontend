@@ -95,6 +95,7 @@ export class AltaEquipoComponent implements OnInit {
     this.tipoEquipoActual = tp;
   }
 
+
   marcaOnChange(x: MarcaEquipo) {
     this.marcaActual = x;
     //this.equipoActual.marca = x;
