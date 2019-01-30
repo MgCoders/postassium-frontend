@@ -53,6 +53,7 @@ import {MarcasModule} from '../marcas/marcas.module';
 import {UsuariosModule} from '../usuarios/usuarios.module';
 import {RegistrosModule} from '../registros/registros.module';
 import {ClientesModule} from "../clientes/clientes.module";
+import {RecuperarTrabajosComponent} from "./recuperar-trabajos/recuperar-trabajos.component";
 
 @NgModule({
   imports: [
@@ -84,6 +85,7 @@ import {ClientesModule} from "../clientes/clientes.module";
     DetalleTrabajosComponent,
     MonitorFacturacionTrabajosComponent,
     AltaTrabajosComponent,
+    RecuperarTrabajosComponent,
     AltaMonitorFacturacionTrabajosComponent,
     InformacionReciboComponent,
     AltaEquipoComponent,

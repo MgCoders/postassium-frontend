@@ -17,7 +17,7 @@
         <tr>
           <th>#</th>
           <th class="mdl-data-table__cell--non-numeric">Fecha</th>
-          <th class="mdl-data-table__cell--non-numeric">Duración</th>
+          <th class="mdl-data-table__cell--non-numeric">Duración (En horas)</th>
           <th class="mdl-data-table__cell--non-numeric">Usuario</th>
           <th class="mdl-data-table__cell--non-numeric">Rubro</th>
           <th></th>
@@ -27,7 +27,7 @@
         <tr *ngFor="let r of registros">
           <td>{{r.id}}</td>
           <td class="mdl-data-table__cell--non-numeric">{{r.fecha}}</td>
-          <td class="mdl-data-table__cell--non-numeric">{{r.minutos}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{r.minutos / 60 | number : '1.2-2'}}</td>
           <td class="mdl-data-table__cell--non-numeric"><span *ngIf="r.usuario != undefined">{{r.usuario.nombre}}</span></td>
           <td class="mdl-data-table__cell--non-numeric"><span *ngIf="r.rubro != undefined">{{r.rubro.nombre}}</span></td>
           <td>

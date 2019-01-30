@@ -1,0 +1,211 @@
+<section class="container-fluid with-maxwidth chapter" *ngIf="trabajo !== undefined">
+
+  <div class="row" >
+    <h2 class="article-title padding-top-30 col-12 col-sm-12">Recuperar Trabajo</h2>
+  </div>
+
+    <article class="article">
+        <div class="row">
+            <h2 class="padding-top-30 col-12 col-sm-12" style=" font-size: 20px;font-weight: normal;line-height: 32px;margin: .6em 0;color: #2196F3;">Información general</h2>
+
+        </div>
+        <form>
+            <fieldset>
+                <div class="box box-default">
+                    <div class="box-body">
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <mat-input-container class="full-width">
+                                    <input matInput placeholder="Motivo visita" [(ngModel)]="trabajo.motivoVisita" name="Motivo Visita"  [formControl]="visitaFC">
+                                    <mat-error *ngIf="visitaFC.hasError('required')">El motivo de visita es obligatorio.</mat-error>
+                                </mat-input-container>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field class="full-width">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <input [(ngModel)]="fechaRecepcion" name="fechaRecepcion" class="full-width" matInput [matDatepicker]="picker" placeholder="Fecha recepción">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field class="full-width">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerEntrega"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerEntrega></mat-datepicker>
+                                    <input [(ngModel)]="fechaPrevistaEntrega" [formControl]="entregaFC" name="fechaPrevistaEntrega" class="full-width" matInput [matDatepicker]="pickerEntrega" placeholder="Fecha prevista de entrega">
+                                    <mat-error *ngIf="entregaFC.hasError('required')">La fecha prevista de entrega es obligatoria.</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-3">
+                                <mat-input-container class="full-width">
+                                    <input matInput [(ngModel)]="trabajo.nroOrdenCompra" placeholder="Número orden de compra" name="nroOrdenCompra" [formControl]="nroOrdenFC">
+                                    <mat-error *ngIf="nroOrdenFC.hasError('required')">El número de orden de compra es obligatorio.</mat-error>
+                                </mat-input-container>
+                            </div>
+                            <div class="col-3">
+                                <mat-input-container class="full-width">
+                                    <input matInput [(ngModel)]="trabajo.cotizacion" placeholder="Cotización" name="cotizacion" [formControl]="cotizacionFC">
+                                    <mat-error *ngIf="cotizacionFC.hasError('required')">La cotización es obligatoria.</mat-error>
+                                </mat-input-container>
+                            </div>
+                            <div class="col-3">
+                                <mat-checkbox [(ngModel)]="trabajo.requierePresupuesto" name="documentos">¿Requiere Presupuesto?</mat-checkbox>
+                            </div>
+                            <div class="col-3">
+                                <mat-checkbox [(ngModel)]="trabajo.esReparacion" name="documentos">¿Reparación?</mat-checkbox>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <mat-input-container class="full-width">
+                                    <input matInput [(ngModel)]="trabajo.nombreClienteRecepcion" placeholder="Nombre Cliente Recepción" name="NombrePersona">
+                                </mat-input-container>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <mat-input-container class="full-width">
+                                    <textarea matInput placeholder="Comentarios" [(ngModel)]="trabajo.comentarios" name="Comentarios"></textarea>
+                                </mat-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </article>
+
+
+  <article class="article">
+      <div class="row">
+          <h2 class="col-12 col-sm-6" style=" font-size: 20px;font-weight: normal;line-height: 32px;margin: .6em 0;color: #2196F3;">Cliente</h2>
+          <div class="text-left text-sm-right col-12 col-sm-6">
+              <app-autocomplete-cliente [object]="cliente" elementoActual="clienteActual" (ValueOnChange)="clienteOnChange($event)" addEmptyItem="true" pHolder="RUT/Nombre"></app-autocomplete-cliente>
+          </div>
+      </div>
+      <form>
+          <fieldset>
+            <div class="box box-default">
+              <div class="box-body">
+                  <div class="form-group row">
+                    <div class="col-6">
+                      <mat-input-container class="full-width">
+                        <input matInput placeholder="Nombre Empresa" [(ngModel)]="cliente.nombreEmpresa" name="Nombre Empresa">
+                      </mat-input-container>
+                    </div>
+                    <div class="col-6">
+                      <mat-input-container class="full-width">
+                        <input matInput placeholder="RUT" [(ngModel)]="cliente.rut" name="RUT">
+                      </mat-input-container>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-6">
+                      <mat-input-container class="full-width mat-icon-left">
+                        <mat-icon class="material-icons">email</mat-icon>
+                        <input matInput [(ngModel)]="cliente.emailEmpresa" placeholder="Email" name="Email">
+                      </mat-input-container>
+                    </div>
+                    <div class="col-6">
+                      <mat-input-container class="full-width mat-icon-left">
+                        <mat-icon class="material-icons">settings_phone</mat-icon>
+                        <input matInput [(ngModel)]="cliente.telefono" placeholder="Teléfono" name="Telefono">
+                      </mat-input-container>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <mat-input-container class="full-width mat-icon-left">
+                        <mat-icon class="material-icons">map</mat-icon>
+                        <textarea matInput placeholder="Dirección" [(ngModel)]="cliente.direccion" name="Direccion"></textarea>
+                      </mat-input-container>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-6">
+                      <mat-input-container class="full-width mat-icon-left">
+                        <mat-icon class="material-icons">perm_identity</mat-icon>
+                        <input matInput [(ngModel)]="cliente.personaContacto" placeholder="Persona de contacto" name="Persona de contacto">
+                      </mat-input-container>
+                    </div>
+                    <div class="col-6">
+                      <mat-input-container class="full-width mat-icon-left">
+                        <mat-icon class="material-icons">settings_phone</mat-icon>
+                        <input matInput [(ngModel)]="cliente.telefonoContacto" placeholder="Teléfono contacto" name="Telefono contacto">
+                      </mat-input-container>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          <div class="row">
+              <div class="padding-top-30 col-12 col-sm-6"></div>
+              <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
+                  <button *ngIf="cliente.id === undefined" mat-raised-button color="accent" class="btn-w-md" (click)="nuevoCliente()" type="submit">Crear Cliente</button>
+                  <button *ngIf="cliente.id !== undefined" mat-raised-button color="accent" class="btn-w-md" (click)="nuevoCliente()">Nuevo Cliente</button>
+              </div>
+          </div>
+          </fieldset>
+      </form>
+  </article>
+
+
+  <article class="article">
+
+    <div class="row">
+        <h2 class="padding-top-30 col-12 col-sm-6" style=" font-size: 20px;font-weight: normal;line-height: 32px;margin: .6em 0;color: #2196F3;">Equipos</h2>
+        <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
+            <mat-checkbox [disabled]="this.cliente.id === undefined" [(ngModel)]="conEquipo" name="conEquipo">¿Equipo?</mat-checkbox>
+            <button [disabled]="this.cliente.id === undefined" mat-raised-button color="accent" class="btn-w-md" (click)="nuevoEquipo()">Crear Equipo</button>
+        </div>
+    </div>
+
+    <div class="box box-default table-box table-responsive mdl-shadow--2dp">
+      <table class="mdl-data-table">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th class="mdl-data-table__cell--non-numeric">Marca</th>
+          <th class="mdl-data-table__cell--non-numeric">Modelo</th>
+          <th class="mdl-data-table__cell--non-numeric">Matrícula</th>
+          <th class="mdl-data-table__cell--non-numeric"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let x of equiposCliente">
+          <td>{{x.id}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{x.marca.nombre}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{x.modelo}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{x.matricula}}</td>
+          <td class="mdl-data-table__cell--non-numeric">
+              <button  [disabled]="!conEquipo" *ngIf="x.id !== equipoSelected"  mat-icon-button color="primary" matTooltip="Seleccionar" (click)="seleccionarEquipo(x)">
+                  <mat-icon class="material-icons" >check</mat-icon>
+              </button>
+              <button  [disabled]="!conEquipo" *ngIf="x.id === equipoSelected"  mat-icon-button color="primary" matTooltip="Seleccionar" (click)="seleccionarEquipo(x)">
+                  <mat-icon *ngIf="x.id === equipoSelected" class="material-icons" style="color: red;">close</mat-icon>
+              </button>
+              <button [disabled]="!conEquipo"  mat-icon-button color="primary" matTooltip="Editar" (click)="editarEquipo(x)">
+                  <mat-icon class="material-icons">mode_edit</mat-icon>
+              </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+      <div class="row">
+          <div class="padding-top-30 col-12 col-sm-6"></div>
+          <div class="padding-top-30 text-left text-sm-right col-12 col-sm-6">
+              <button [disabled]="this.equipoSelected === 0 || !equipo.tipoEquipo.requiereInfoRecibo" mat-raised-button color="accent" class="btn-w-md" (click)="informacionRecibo()">Información recibo</button>
+          </div>
+      </div>
+  </article>
+
+    <div class="row">
+        <div class="article-title padding-top-30 col-12 col-sm-6"></div>
+        <div class="article-title padding-top-30 text-left text-sm-right col-12 col-sm-6">
+            <button *ngIf="cliente.id !== undefined" [disabled]="visitaFC.invalid || entregaFC.invalid || nroOrdenFC.invalid" mat-raised-button color="accent" class="btn-w-md" (click)="guardar()">Crear Trabajo</button>
+            <button *ngIf="cliente.id !== undefined" [disabled]="visitaFC.invalid || entregaFC.invalid || nroOrdenFC.invalid" mat-raised-button color="accent" class="btn-w-md" (click)="crear()">Continuar luego</button>
+        </div>
+    </div>
+
+</section>

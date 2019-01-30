@@ -51,6 +51,13 @@
   </li>
 
   <li *ngIf="isAdmin()">
+    <a mat-button [routerLink]="['/app/trabajos/monitorfacturacion/recuperar']">
+      <i class="nav-icon material-icons">assignment_ind</i>
+      <span class="nav-text">Trabajos a recuperar</span>
+    </a>
+  </li>
+
+  <li *ngIf="isAdmin()">
     <a mat-button [routerLink]="['/app/trabajos/monitorfacturacion/todos']">
       <i class="nav-icon material-icons">assignment_ind</i>
       <span class="nav-text">Trabajos</span>

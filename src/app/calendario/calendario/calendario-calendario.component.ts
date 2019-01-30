@@ -20,12 +20,12 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import { Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent, CalendarMonthViewComponent
 } from 'angular-calendar';
+import {Subject} from "rxjs/Subject";
 
 const colors: any = {
   red: {
@@ -78,7 +78,7 @@ export class CalendarioCalendarioComponent implements OnInit {
             event = {
               start: this.getDate(element.fechaRecepcion),
               end: this.getDate(element.fechaProvistaEntrega),
-              title: element.numeroTrabajo + ' - ' + element.cliente.nombreEmpresa,
+              title: element.numeroTrabajo + ' - ' + element.cliente.nombreEmpresa + '. Inicio: ' + element.fechaRecepcion,
               color: {
                 primary: '#' +(0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6),
                 secondary: '#FAE3E3'

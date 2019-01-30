@@ -43,6 +43,10 @@ export class MonitorFacturacionTrabajosComponent implements OnInit {
     this.titulo = '';
     this.route.params.subscribe((params) => {
         switch (params['tipo']) {
+            case 'recuperar':
+                this.estado = 'CREADO';
+                this.titulo = 'Trabajos a recuperar';
+                break;
               case 'factura':
                   this.estado = 'PENDIENTE_FACTURA';
                   this.titulo = 'Trabajos a facturar';
@@ -180,6 +184,31 @@ export class MonitorFacturacionTrabajosComponent implements OnInit {
       console.log(x.id);
       this.router.navigate(['/app/trabajos/detalle/', x.id]);
   }
+
+    recuperar(x: Trabajo) {
+        console.log(x.id);
+        this.router.navigate(['/app/trabajos/recuperarTrabajo/', x.id]);
+    }
+
+    eliminar(x: Trabajo) {
+        const dialogRef = this.dialog.open(DialogConfirmComponent, {
+            data: '¿Está seguro que desea eliminar el trabajo #' + x.id + '?',
+        });
+        dialogRef.afterClosed().subscribe(
+            (result) => {
+                if (result) {
+                    x.estado = 'BORRADO';
+                    this.trabajoService.edit(x).subscribe(
+                        (data) => {
+                            this.loadData();
+                        },
+                        (error) => {
+                            this.alertService.error(error, 5000);
+                        });
+                    this.alertService.success('Trabajo eliminado correctamente.', 3000);
+                }
+            });
+    }
 
   verPDF(x: Trabajo) {
     this.trabajoService.getPDF(x.id).subscribe(

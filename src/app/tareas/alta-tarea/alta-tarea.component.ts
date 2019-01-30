@@ -15,6 +15,7 @@ import { PuntoControl } from '../../_models/PuntoControl';
 export class AltaTareaComponent implements OnInit {
 
   public tareaActual: Tarea;
+  public minutosEstimados: number;
   public puntoControlActual: PuntoControl;
 
   constructor(
@@ -31,9 +32,11 @@ export class AltaTareaComponent implements OnInit {
       this.puntoControlActual = {} as PuntoControl;
       this.tareaActual.completa = false;
       this.tareaActual.verificada = false;
+      this.minutosEstimados = 0;
     } else {
       this.tareaActual = new TareaImp(this.data[0]);
       this.puntoControlActual = this.data[0].puntoControl;
+      this.minutosEstimados = this.tareaActual.minutosEstimados;
     }
   }
 
@@ -42,6 +45,7 @@ export class AltaTareaComponent implements OnInit {
   }
 
   guardar() {
+    this.tareaActual.minutosEstimados = this.minutosEstimados * 60;
     this.layoutService.updatePreloaderState('active');
     if (this.data[0] === undefined) {
       this.tareaService.create(this.tareaActual).subscribe(

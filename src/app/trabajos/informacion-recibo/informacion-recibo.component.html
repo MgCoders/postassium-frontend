@@ -27,9 +27,15 @@
           <mat-checkbox [(ngModel)]="trabajo.equipoAbollones" name="abollones">¿Abollones?</mat-checkbox>
           <mat-checkbox [(ngModel)]="trabajo.equipoAuxiliar" name="auxiliar">¿Auxiliar?</mat-checkbox>
           <mat-checkbox [(ngModel)]="trabajo.equipoAuxiliarArmada" name="auxiliarArmada">¿Auxiliar armada?</mat-checkbox>
-          <mat-input-container class="full-width">
-            <input [(ngModel)]="trabajo.equipoCantidadCombustible" matInput placeholder="Cantidad combustible" name="Cantidad combustible">
-          </mat-input-container>
+          <mat-select [(value)]="trabajo.equipoCantidadCombustible" placeholder="Cantidad de combustible" class="full-width">
+            <mat-option value="1">1/8</mat-option>
+            <mat-option value="2">2/8</mat-option>
+            <mat-option value="3">3/8</mat-option>
+            <mat-option value="4">4/8</mat-option>
+            <mat-option value="5">5/8</mat-option>
+            <mat-option value="6">6/8</mat-option>
+            <mat-option value="7">8/8</mat-option>
+          </mat-select>
           <mat-input-container class="full-width">
             <input [(ngModel)]="trabajo.kmEquipoRecepcion" matInput placeholder="Cantidad de kilómetros" name="Cantidad de kilómetros">
           </mat-input-container>

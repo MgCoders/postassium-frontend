@@ -22,11 +22,12 @@ import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-alta-trabajos',
-  templateUrl: './alta-trabajos.component.html',
-  styleUrls: ['./alta-trabajos.component.scss']
+  templateUrl: './recuperar-trabajos.component.html',
+  styleUrls: ['./recuperar-trabajos.component.scss']
 })
-export class AltaTrabajosComponent implements OnInit {
+export class RecuperarTrabajosComponent implements OnInit {
 
+    public idTrabajo: number;
   public lista: Tarea[];
   public trabajo: Trabajo;
   public cliente: Cliente;
@@ -42,6 +43,8 @@ export class AltaTrabajosComponent implements OnInit {
   public horaActual: string;
 
   public conEquipo: boolean;
+
+  public completed: boolean;
 
   public visitaFC = new FormControl('', [Validators.required]);
   public entregaFC = new FormControl('', [Validators.required]);
@@ -62,48 +65,45 @@ export class AltaTrabajosComponent implements OnInit {
 
   ngOnInit() {
 
-    this.lista = new Array();
-    this.trabajo = {} as Trabajo;
-    this.cliente = {} as Cliente;
-    this.rut = '';
-    this.equipo = {} as Equipo;
-    this.equiposCliente = new Array();
-    this.loadCompleted = true;
-    this.equipoSelected = 0;
-    this.fechaRecepcion = new Date();
-    this.horaActual = this.datePipe.transform(this.fechaRecepcion, 'HH:mm');
-    this.trabajo.nroOrdenCompra = 'N/C';
-    this.trabajo.cotizacion = 'N/C';
+      this.route.params.subscribe((params) => {
+          this.idTrabajo = +params['id'];
+      });
+      this.layoutService.updatePreloaderState('active');
+      // TODO pasar por parámetro el id del trabajo
 
-    this.trabajo.equipoDocumentos = false;
-    this.trabajo.equipoRadio = false;
-    this.trabajo.equipoExtintor = false;
-    this.trabajo.equipoBalizas = false;
-    this.trabajo.equipoLlaveRuedas = false;
-    this.trabajo.equipoHerramientas = false;
-    this.trabajo.equipoManuales = false;
-    this.trabajo.equipoFrenteRadio = false;
-    this.trabajo.equipoMangueraCabina = false;
-    this.trabajo.equipoCenicero = false;
-    this.trabajo.equipoGatoPalanca = false;
-    this.trabajo.equipoParabrisasSano = false;
-    this.trabajo.equipoVidriosLaterales = false;
-    this.trabajo.equipoVidriosLateralesSanos = false;
-    this.trabajo.equipoEspejos = false;
-    this.trabajo.equipoEspejosSanos = false;
-    this.trabajo.equipoSenalerosSanos = false;
-    this.trabajo.equipoLucesTraserasSanas = false;
-    this.trabajo.equipoRayones = false;
-    this.trabajo.equipoAbollones = false;
-    this.trabajo.equipoAuxiliar = false;
-    this.trabajo.equipoAuxiliarArmada = false;
-    this.trabajo.esReparacion = false;
-    this.trabajo.paraFinalizar = false;
+      this.trabajoService.get(this.idTrabajo).subscribe(
+          (data) => {
+              this.trabajo = data;
+              this.cliente = this.trabajo.cliente;
+              this.fechaPrevistaEntrega = this.dateFromString(this.trabajo.fechaProvistaEntrega);
+              this.loadDataEquipos();
+              if (this.trabajo.equipo !== undefined) {
+                  this.equipo = this.trabajo.equipo;
+                  this.equipoSelected = 1;
+                  this.conEquipo = true;
+              } else {
+                  this.equipo = {} as Equipo;
+                  this.equipoSelected = 0;
+                  this.conEquipo = false;
+              }
+              console.log(data);
+              this.layoutService.updatePreloaderState('hide');
 
-    this.conEquipo = false;
-    console.log(this.cliente);
-    this.layoutService.updatePreloaderState('active');
-    this.layoutService.updatePreloaderState('hide');
+          },
+          (error) => {
+              this.layoutService.updatePreloaderState('hide');
+              this.alertService.error(error, 5000);
+          });
+
+      this.lista = new Array();
+
+      this.rut = '';
+      this.loadCompleted = true;
+      this.fechaRecepcion = new Date();//this.dateFromString(this.trabajo.fechaRecepcion);
+      this.horaActual = this.datePipe.transform(this.fechaRecepcion, 'HH:mm');
+      console.log(this.cliente);
+      this.layoutService.updatePreloaderState('active');
+      this.layoutService.updatePreloaderState('hide');
   }
 
   monitorFacturacion() {
@@ -259,12 +259,14 @@ export class AltaTrabajosComponent implements OnInit {
       this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy');
       this.trabajo.paraFinalizar = false;
       console.log(this.trabajo);
-      this.trabajoService.create(this.trabajo).subscribe(
+      this.trabajoService.edit(this.trabajo).subscribe(
           (data) => {
               this.alertService.success('Trabajo agregado correctamente.', 3000);
+              this.completed = true;
               this.router.navigate(['/app/trabajos/monitorfacturacion/progreso']);
-              //this.ngOnInit();
       });
+
+
     }
 
     crear() {
@@ -276,12 +278,13 @@ export class AltaTrabajosComponent implements OnInit {
         this.trabajo.fechaRecepcion = this.datePipe.transform(this.fechaRecepcion, 'dd-MM-yyyy') + ' ' + this.horaActual;
         this.trabajo.fechaProvistaEntrega = this.datePipe.transform(this.fechaPrevistaEntrega, 'dd-MM-yyyy');
         console.log(this.trabajo);
-        this.trabajoService.create(this.trabajo).subscribe(
+        this.trabajoService.edit(this.trabajo).subscribe(
             (data) => {
                 this.alertService.success('Trabajo para continuar luego agregado correctamente.', 3000);
+                this.completed = true;
                 this.router.navigate(['/app/trabajos/monitorfacturacion/recuperar']);
-                //this.ngOnInit();
             });
+
     }
 
     dateFromString(str: string): Date {
