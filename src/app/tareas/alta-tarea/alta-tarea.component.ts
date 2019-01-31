@@ -36,7 +36,7 @@ export class AltaTareaComponent implements OnInit {
     } else {
       this.tareaActual = new TareaImp(this.data[0]);
       this.puntoControlActual = this.data[0].puntoControl;
-      this.minutosEstimados = this.tareaActual.minutosEstimados;
+      this.minutosEstimados = this.tareaActual.minutosEstimados / 60;
     }
   }
 

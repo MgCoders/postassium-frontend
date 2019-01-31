@@ -46,7 +46,7 @@ export class AltaRegistroComponent implements OnInit {
     } else {
       this.registroActual = new RegistroImp(this.data[0]);
       this.fechaActual = this.dateFromString(this.registroActual.fecha);
-      this.minutos = this.registroActual.minutos;
+      this.minutos = this.registroActual.minutos / 60;
     }
 
     if (this.registroActual.usuario === undefined) {
@@ -65,7 +65,7 @@ export class AltaRegistroComponent implements OnInit {
   guardar() {
     this.layoutService.updatePreloaderState('active');
     this.registroActual.fecha = this.datePipe.transform(this.fechaActual, 'dd-MM-yyyy');
-    this.registroActual.minutos = this.minutos;
+    this.registroActual.minutos = this.minutos * 60;
     if (this.data[0] === undefined) {
       this.registroService.create(this.registroActual).subscribe(
           (data) => {
