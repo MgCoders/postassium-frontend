@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { Material } from '../_models/Material';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { TipoMaterial } from '../_models/TipoMaterial';
 /**
  * Created by pablo on 04/03/18.
  */
@@ -39,4 +40,9 @@ export class MaterialService {
     count(): Observable<number> {
         return this.http.get<number>(`${environment.apiUrl}/materiales/count`);
     }
+
+    getByTipoMaterial(tm: TipoMaterial): Observable<Material[]> {
+        return this.http.get<Material[]>(`${environment.apiUrl}/materiales/tipomaterial/` + tm.id);
+    }
+
 }

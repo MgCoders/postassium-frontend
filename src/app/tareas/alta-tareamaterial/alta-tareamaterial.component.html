@@ -5,9 +5,26 @@
     <form>
       <div class="row">
         <div class="col-12">
-          <app-autocomplete-material [object]="tareaMaterialActual" elementoActual="material" (ValueOnChange)="materialOnChange($event)" addEmptyItem="true" placeHolder="Material"></app-autocomplete-material>
+          <app-select-tipomaterial  [object]="tipoMaterialActual" (onChange)="tipoMaterialOnChange($event)" idModel="id"
+                                    placeHolder="Familia y Grupo" id="id" desc="familia" desc2="grupo" desc3="subgrupo"></app-select-tipomaterial>
         </div>
       </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-form-field class="full-width" *ngIf="this.tipoMaterialActual !== undefined">
+            <mat-select [(value)]="materialActualId" placeholder="Material" class="full-width" (change)="materialOnChange($event)">
+              <mat-option [value]="-1">Seleccionar Material</mat-option>
+              <mat-option *ngFor="let m of materiales" [value]="m.id" >{{m.codigo}} - {{m.nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+        <div class="row">
+            <div class="col-12">
+                <app-select-unidadmedida [object]="tareaMaterialActual.unidadMedida" (onChange)="unidadOnChange($event)" idModel="id"
+                                         placeHolder="Unidad" id="id" desc="codigo" desc2="decimales"></app-select-unidadmedida>
+            </div>
+        </div>
       <div class="row">
         <div class="col-12">
           <mat-input-container class="full-width">

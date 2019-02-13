@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  MatButtonModule, MatCheckboxModule,
+  MatButtonModule,
+  MatCheckboxModule,
   MatIconModule,
   MatInputModule,
   MatSelectModule,
@@ -10,9 +11,7 @@ import {
   MatTooltipModule
 } from '@angular/material';
 
-import {
-  MatDialogModule
-} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { TareasComponent } from './tareas.component';
 import { TareasRoutingModule } from './tareas-routing.module';
@@ -29,6 +28,8 @@ import { TrabajoService } from '../_services/trabajo.service';
 import { ListaTareaMaterialesComponent } from './lista-tareamateriales/lista-tareamateriales.component';
 import { AltaTareaMaterialComponent } from './alta-tareamaterial/alta-tareamaterial.component';
 import { MaterialesModule } from '../materiales/materiales.module';
+import { TiposMaterialesModule } from '../tiposmateriales/tiposmateriales.module';
+import { UnidadMedidaModule } from '../unidadmedida/unidadmedida.module';
 
 @NgModule({
   imports: [
@@ -44,7 +45,9 @@ import { MaterialesModule } from '../materiales/materiales.module';
     MatDialogModule,
     PuntosControlModule,
     MaterialesModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+      TiposMaterialesModule,
+    UnidadMedidaModule
   ],
 
   declarations: [

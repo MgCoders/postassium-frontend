@@ -83,8 +83,18 @@ export class ListaTareaMaterialesComponent implements OnInit {
 
   }
 
-  editar() {
+  editar(tm: TareaMaterial) {
+      const dialog = this.dialog.open(AltaTareaMaterialComponent, {
+          data: [tm, this.tarea],
+          width: '600px',
+      });
 
+      dialog.afterClosed().subscribe(
+          (result) => {
+              if (result === 1) {
+                  this.loadData();
+              }
+          });
   }
 
   verTrabajo() {

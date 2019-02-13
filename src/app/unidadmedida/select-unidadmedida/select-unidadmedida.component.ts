@@ -15,6 +15,7 @@ export class SelectUnidadMedidaComponent implements OnInit {
   @Input() placeHolder: string;
   @Input() id: string;
   @Input() desc: string;
+  @Input() desc2: string;
 
   @Output() onChange: EventEmitter<UnidadMedida> = new EventEmitter<UnidadMedida>();
 

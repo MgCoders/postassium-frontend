@@ -19,6 +19,7 @@
           <th>#</th>
           <th class="mdl-data-table__cell--non-numeric">Material</th>
           <th class="mdl-data-table__cell--non-numeric">Tipo Material</th>
+            <th class="mdl-data-table__cell--non-numeric">Unidad Medida</th>
           <th class="mdl-data-table__cell--non-numeric">Cantidad</th>
           <th></th>
         </tr>
@@ -27,8 +28,13 @@
         <tr *ngFor="let x of tareaMateriales">
           <td>{{x.id}}</td>
           <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.material !== undefined">{{x.material.nombre}}</span></td>
-          <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.material !== undefined && x.material.tipoMaterial !== undefined">{{x.material.tipoMaterial.nombre}}</span></td>
-          <td class="mdl-data-table__cell--non-numeric">{{x.cantidad}}</td>
+          <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.material !== undefined && x.material.tipoMaterial !== undefined">
+            {{x.material.tipoMaterial.familia}} - {{x.material.tipoMaterial.grupo}} - {{x.material.tipoMaterial.subgrupo}}
+          </span></td>
+            <td class="mdl-data-table__cell--non-numeric"><span *ngIf="x.unidadMedida !== undefined">
+            {{x.unidadMedida.codigo}} - {{x.unidadMedida.decimales}}
+          </span></td>
+            <td class="mdl-data-table__cell--non-numeric">{{x.cantidad}}</td>
           <td>
             <button [disabled]="!loadCompleted &&  (tarea.completa || (tarea.necesitaVerificacion && tarea.verificada))" mat-icon-button color="primary" (click)="editar(x)" matTooltip="Editar">
               <mat-icon class="material-icons">mode_edit</mat-icon>

@@ -21,4 +21,5 @@ export interface TareaMaterial {
 
     material: models.Material;
 
+    unidadMedida: models.UnidadMedida;
 }

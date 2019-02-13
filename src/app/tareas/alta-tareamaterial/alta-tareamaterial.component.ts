@@ -7,6 +7,9 @@ import { AlertService } from '../../_services/alert.service';
 import { LayoutService } from '../../layout/layout.service';
 import { Material } from '../../_models/Material';
 import { TareaMaterialImp } from '../../_models/TareaMaterialImp';
+import { TipoMaterial } from '../../_models/TipoMaterial';
+import { MaterialService } from '../../_services/material.service';
+import { UnidadMedida } from '../../_models/UnidadMedida';
 
 @Component({
   selector: 'app-alta-tareamaterial',
@@ -17,13 +20,17 @@ export class AltaTareaMaterialComponent implements OnInit {
 
   tareaMaterialActual: TareaMaterial;
   materialActual: Material;
+  materialActualId: number;
+  tipoMaterialActual: TipoMaterial;
+  materiales: Material[];
 
   constructor(
       public dialogRef: MatDialogRef<AltaTareaMaterialComponent>,
       @Inject(MAT_DIALOG_DATA) public data: [TareaMaterial, Tarea],
       private tareaService: TareaService,
       private alertService: AlertService,
-      private layoutService: LayoutService
+      private layoutService: LayoutService,
+      private materialService: MaterialService
   ) { }
 
   ngOnInit() {
@@ -32,10 +39,14 @@ export class AltaTareaMaterialComponent implements OnInit {
       this.materialActual = {} as Material;
       this.materialActual.id = -1;
       this.tareaMaterialActual.tarea = this.data[1];
+      this.tipoMaterialActual = {} as TipoMaterial;
+      this.tareaMaterialActual.unidadMedida = {} as UnidadMedida;
     } else {
       this.tareaMaterialActual = new TareaMaterialImp(this.data[0]);
       this.materialActual = this.tareaMaterialActual.material;
+      this.tipoMaterialActual = this.materialActual.tipoMaterial;
     }
+    this.materialActualId = this.materialActual.id;
   }
 
   guardar() {
@@ -63,8 +74,25 @@ export class AltaTareaMaterialComponent implements OnInit {
     }
   }
 
-  materialOnChange(m: Material) {
-    this.tareaMaterialActual.material = m;
+  materialOnChange(evt) {
+    this.tareaMaterialActual.material = this.materiales.find((x) => x.id === evt.value);
   }
 
+  tipoMaterialOnChange(tm: TipoMaterial) {
+    this.tipoMaterialActual = tm;
+    this.tareaMaterialActual.material = undefined;
+    this.materialActualId = -1;
+    this.materiales = new Array();
+    this.materialService.getByTipoMaterial(this.tipoMaterialActual).subscribe(
+        (data) => {
+          this.materiales = data;
+        },
+        (error) => {
+          this.alertService.error(error, 5000);
+        });
+  }
+
+  unidadOnChange(un: UnidadMedida) {
+    this.tareaMaterialActual.unidadMedida = un;
+  }
 }
